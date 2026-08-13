@@ -1,0 +1,1188 @@
+/* =========================================================
+   Bali → Barcelona — cardboard advent calendar
+   Prototype: plain HTML/CSS/JS. No build step.
+   ========================================================= */
+
+:root {
+  /* kraft card */
+  --kraft-1: #d9b98a;
+  --kraft-2: #c8a172;
+  --kraft-3: #b08a5d;
+  --kraft-edge: #8d6942;
+  --kraft-deep: #6a4a2b;
+
+  /* the dark recess behind a door */
+  --well: #2a1d13;
+  --well-2: #14100c;
+
+  /* printed inks */
+  --ink: #2f3d46;
+  --ink-soft: #6a7a83;
+  --red: #b8402c;
+  --red-deep: #8d2c1c;
+  --cream: #f4e7ce;
+
+  /* the printed map */
+  --sea: #6f9296;
+  --sea-2: #5e8085;
+  --sea-line: #517277;
+  --coast-halo: #a9c3bb;
+  --map-ink: #4d3b26;
+  --river: #6a929c;
+  --snow: #f2f6f7;
+  --photo-frame: #f7f2e6;
+  --photo-paper: #b7ac95;
+
+  /* biomes — printed flat, the way an old atlas does it */
+  --b-jungle:    #8aa863;
+  --b-wet:       #9cb56f;
+  --b-dry:       #c9b782;
+  --b-desert:    #ddc492;
+  --b-alpine:    #b6b4a4;
+  --b-steppe:    #c4bb8a;
+  --b-temperate: #a3ba7c;
+  --b-med:       #b6bf7c;
+
+  --i-jungle:    #3f5a2f;
+  --i-dry:       #7d6a3c;
+  --i-desert:    #96784a;
+  --i-alpine:    #5e5f5c;
+  --i-temperate: #46603a;
+
+  --door: clamp(48px, 7.2vh, 78px);
+
+  --font-display: "Fraunces", "Hoefler Text", Georgia, serif;
+  --font-body: "Karla", "Avenir Next", "Segoe UI", sans-serif;
+
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background:
+    radial-gradient(120% 90% at 50% 0%, #3c4c52 0%, #26333a 55%, #1a2429 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------------------------------------------------------
+   Masthead
+   --------------------------------------------------------- */
+
+.masthead {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 26px 14px;
+  color: var(--cream);
+  border-bottom: 1px solid rgba(244, 231, 206, .14);
+}
+
+.masthead h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(20px, 2.6vh, 30px);
+  letter-spacing: -0.02em;
+  font-variation-settings: "SOFT" 60, "WONK" 1;
+}
+
+.masthead h1 .arrow {
+  color: var(--red);
+  padding: 0 .12em;
+}
+
+.masthead__sub {
+  margin: 3px 0 0;
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(244, 231, 206, .5);
+}
+
+.masthead__meta {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.stat { text-align: right; line-height: 1; }
+
+.stat__num {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(18px, 2.4vh, 26px);
+  color: var(--cream);
+}
+
+.stat__label {
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(244, 231, 206, .45);
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: var(--red-deep);
+  border: 1px solid rgba(244, 231, 206, .2);
+  border-radius: 2px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background .2s, transform .12s;
+}
+
+.btn:hover { background: var(--red); }
+.btn:active { transform: translateY(1px); }
+
+.btn--ghost {
+  background: transparent;
+  color: rgba(244, 231, 206, .7);
+}
+
+.btn--ghost:hover { background: rgba(244, 231, 206, .12); }
+
+/* ---------------------------------------------------------
+   The card itself
+   --------------------------------------------------------- */
+
+.scroller {
+  flex: 1 1 auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding: 22px;
+}
+
+/* no scrollbar — the card is the only thing on screen */
+.scroller {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scroller::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
+/* mobile: the same ribbon, running down the screen instead of across */
+body.is-vertical .scroller {
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0;
+}
+
+body.is-vertical .card {
+  height: auto;
+  width: 100%;
+  border-radius: 0;
+}
+
+/* the date sits under the door in both orientations */
+body.is-vertical .door__date {
+  font-size: calc(var(--door) * .24);
+}
+
+/* the header and controls need to grow too, not just the map */
+body.is-vertical .masthead {
+  padding: 12px 16px;
+  gap: 10px;
+  align-items: center;
+}
+
+body.is-vertical .masthead h1 { font-size: 16px; white-space: nowrap; }
+body.is-vertical .masthead__sub { display: none; }
+
+/* only the number that matters survives the narrow header */
+body.is-vertical .stat:first-child { display: none; }
+
+body.is-vertical .masthead__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+}
+
+body.is-vertical .masthead__meta { flex: 0 0 auto; }
+body.is-vertical .masthead__meta { gap: 16px; }
+body.is-vertical .stat__num { font-size: 21px; }
+body.is-vertical .stat__label { font-size: 9px; }
+body.is-vertical .btn { padding: 10px 16px; font-size: 13px; }
+
+body.is-vertical .devbar {
+  padding: 10px 18px;
+  font-size: 13px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+body.is-vertical .devbar__note { display: none; }
+
+body.is-vertical .modal__panel {
+  width: min(94vw, 440px);
+  padding: 28px 26px 32px;
+}
+
+body.is-vertical .modal__title { font-size: 27px; }
+body.is-vertical .modal__artist { font-size: 15px; }
+body.is-vertical .modal__place { font-size: 12px; }
+body.is-vertical .modal__link { font-size: 15px; padding: 14px 24px; }
+body.is-vertical .modal__stage { width: 268px; height: 232px; }
+body.is-vertical .modal__sleeve { width: 232px; height: 232px; }
+body.is-vertical .modal__sleeve--cd { width: 204px; }
+body.is-vertical .modal__disc { width: 204px; height: 204px; top: 14px; }
+body.is-vertical .modal__photo figcaption { font-size: 14px; }
+
+/* the city view gets the full width to show the photo properly —
+   it was pinned to a 250px box before, which is why it read as
+   cropped/small; the frame should grow to fit the image instead */
+body.is-vertical .modal--city { width: min(94vw, 460px); }
+body.is-vertical .modal__photo-paper { width: 100%; min-height: 180px; }
+body.is-vertical .modal__photo-paper img { max-height: 60vh; }
+
+/* Portrait turns the map's long axis into its narrow one, so every
+   label now has a phone's width to fit in rather than a screen's.
+   The tiers keep their ratios; they just all come down together. */
+body.is-vertical .map-country {
+  font-size: 110px;
+  letter-spacing: 26px;
+  transform: translateX(13px);
+}
+
+body.is-vertical .map-region {
+  font-size: 66px;
+  letter-spacing: 18px;
+  transform: translateX(9px);
+}
+
+body.is-vertical .map-sea {
+  letter-spacing: 16px;
+  transform: translateX(8px);
+}
+
+body.is-vertical .city__name { font-size: 74px; stroke-width: 7; }
+body.is-vertical .city--town .city__name { font-size: 52px; stroke-width: 6; }
+
+body.is-vertical .pin__cap { font-size: 34px; }
+body.is-vertical .pin__cap--city { font-size: 28px; letter-spacing: 3px; }
+
+body.is-vertical .compass__n { font-size: 56px; }
+
+.card {
+  position: relative;
+  height: 100%;
+  flex: 0 0 auto;
+  overflow: hidden;
+
+  background: linear-gradient(168deg, var(--kraft-1), var(--kraft-3));
+  border-radius: 3px;
+  box-shadow:
+    0 26px 60px rgba(0, 0, 0, .55),
+    0 4px 12px rgba(0, 0, 0, .35);
+}
+
+/* paper grain, printed over the map and the doors alike */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  background-image: var(--grain);
+  background-size: 300px 300px;
+  mix-blend-mode: multiply;
+  opacity: .3;
+  pointer-events: none;
+}
+
+/* worn edge */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  border: 1px solid rgba(109, 76, 43, .5);
+  border-radius: inherit;
+  box-shadow: 0 0 30px rgba(58, 40, 22, .5) inset;
+  pointer-events: none;
+}
+
+.mapart,
+.route,
+.layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mapart { z-index: 0; }
+.layer { z-index: 2; }
+
+/* The route sits over the map as a full-card SVG. Left interactive it
+   hit-tests across its whole box and eats every click meant for a city
+   or a photo underneath it. */
+.route {
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+   Map lettering & vignettes
+   --------------------------------------------------------- */
+
+.map-country,
+.map-region,
+.map-sea,
+.city__name,
+.compass__n,
+.scalebar__t,
+.pin__cap {
+  font-family: var(--font-display);
+  text-anchor: middle;
+  paint-order: stroke;
+}
+
+/* Four tiers, biggest area to smallest point:
+
+     1  COUNTRY          huge, wide, dominant
+     2  REGION / ISLAND  half the size, lighter, still wide
+     3  City             small but dark and heavy — reads first up close
+     4  Town             smaller and lighter again
+
+   Areas get size and tracking; points get weight and contrast. Each tier
+   is clearly half the one above rather than a nudge, so the ranking is
+   readable at any zoom.                                                */
+
+/* Countries and regions are waypoints on the path now, so they sit over
+   the route line — the halo keeps them legible where it runs through. */
+.map-country {
+  font-size: 268px;
+  font-weight: 700;
+  letter-spacing: 86px;
+  transform: translateX(43px);    /* letter-spacing trails the last glyph */
+  fill: var(--map-ink);
+  opacity: .62;
+  stroke: rgba(255, 252, 244, .5);
+  stroke-width: 16;
+}
+
+.map-region {
+  font-size: 132px;
+  font-weight: 400;
+  letter-spacing: 42px;
+  transform: translateX(21px);
+  fill: var(--map-ink);
+  opacity: .58;
+  stroke: rgba(255, 252, 244, .5);
+  stroke-width: 10;
+}
+
+.map-sea {
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 26px;
+  transform: translateX(13px);
+  fill: #edf4f1;
+  opacity: .46;
+}
+
+.compass { stroke: var(--map-ink); }
+.compass__n { font-size: 84px; fill: var(--map-ink); opacity: .6; stroke: none; }
+
+.scalebar { stroke: var(--map-ink); fill: var(--map-ink); }
+.scalebar__t {
+  font-size: 46px;
+  letter-spacing: 8px;
+  fill: var(--map-ink);
+  opacity: .5;
+  stroke: none;
+}
+
+.terrain { pointer-events: none; }
+
+/* vegetation */
+.veg {
+  fill: none;
+  stroke: var(--veg);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: .5;
+}
+
+.veg--tree path:last-child,
+.veg--cypress path:last-child { fill: var(--veg); fill-opacity: .22; }
+
+.veg--snowpeak { stroke-width: 6; }
+.veg--snowpeak .rock { fill: var(--veg); fill-opacity: .18; }
+.veg--snowpeak .snow { fill: var(--snow); stroke: none; opacity: .9; }
+
+/* cities — ink drawings that fill in once you've walked past */
+.city { cursor: pointer; }
+
+.city__icon {
+  transform: scale(1.35);
+  fill: none;
+  stroke: var(--map-ink);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: .4;
+  transition: opacity .4s, stroke .4s;
+}
+
+/* the densest, darkest type on the map — cities are what you scan for */
+.city__name {
+  font-size: 118px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  fill: #3b2c1c;
+  opacity: .82;
+  stroke: rgba(255, 252, 244, .55);
+  stroke-width: 8;
+  transition: fill .4s, opacity .4s;
+}
+
+/* tier four: the smaller stops along the way */
+.city--town .city__name {
+  font-size: 82px;
+  font-weight: 700;
+  opacity: .62;
+  stroke-width: 7;
+}
+
+.city--town .city__icon {
+  transform: scale(.95);
+  opacity: .3;
+}
+
+.city:hover .city__icon { opacity: .85; }
+.city:hover .city__name { opacity: 1; }
+.city--passed .city__icon { stroke: var(--red-deep); opacity: .95; }
+.city--passed .city__name { fill: var(--red-deep); opacity: 1; }
+
+/* landmark photos pinned to the card */
+.pin { cursor: pointer; }
+.pin__shadow { fill: rgba(0, 0, 0, .32); }
+.pin__frame  { fill: var(--photo-frame); }
+.pin__paper  { fill: var(--photo-paper); }
+
+.pin__draw {
+  fill: none;
+  stroke: #6b6350;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: .55;
+}
+
+/* the caption echoes the map: landmark light and italic, city dark and bold */
+.pin__cap {
+  font-size: 50px;
+  font-style: italic;
+  font-weight: 400;
+  fill: #7d715c;
+}
+
+.pin__cap--city {
+  font-size: 42px;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 4px;
+  fill: #3b2c1c;
+}
+
+.pin__tack { fill: var(--red); opacity: .9; }
+
+.pin {
+  transition: transform .18s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.pin:hover .pin__frame { fill: #fffdf6; }
+.pin:hover .pin__tack { opacity: 1; }
+
+.layer { pointer-events: none; }
+.layer > * { pointer-events: auto; }
+
+.route__ghost {
+  stroke: rgba(70, 52, 34, .38);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-dasharray: 34 26;
+}
+
+.route__walked {
+  stroke: var(--red);
+  stroke-width: 11;
+  stroke-linecap: round;
+  opacity: .85;
+}
+
+/* ---------------------------------------------------------
+   Doors
+   --------------------------------------------------------- */
+
+.door {
+  position: absolute;
+  width: var(--door);
+  height: var(--door);
+  transform: translate(-50%, -50%) rotate(var(--tilt, 0deg));
+  perspective: 900px;
+}
+
+/* the hole in the card, and what sits in it */
+.door__well {
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .1) 0%, rgba(0, 0, 0, 0) 40%),
+    radial-gradient(90% 90% at 42% 32%, #4a3524 0%, var(--well) 55%, var(--well-2) 100%);
+  box-shadow:
+    5px 4px 9px rgba(0, 0, 0, .8) inset,
+    -1px -1px 0 rgba(255, 255, 255, .1) inset;
+  display: grid;
+  place-items: center;
+}
+
+/* the flap */
+.door__flap {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 1s cubic-bezier(.16, .84, .28, 1);
+  will-change: transform;
+}
+
+.door__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 2px;
+  display: grid;
+  place-items: center;
+}
+
+/* outside of the flap — printed cardboard */
+.door__face--front {
+  background:
+    linear-gradient(155deg, var(--kraft-1) 0%, var(--kraft-2) 60%, var(--kraft-3) 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, .35) inset,
+    0 -1px 0 rgba(0, 0, 0, .18) inset,
+    1px 1px 3px rgba(0, 0, 0, .22);
+}
+
+.door__face--front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  background-size: 300px 300px;
+  mix-blend-mode: multiply;
+  opacity: .4;
+  border-radius: inherit;
+}
+
+/* die-cut perforation */
+.door__perf {
+  position: absolute;
+  inset: 2px;
+  border: 1px dashed rgba(106, 74, 43, .55);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* inside of the flap, seen once it swings open */
+.door__face--back {
+  transform: rotateY(180deg);
+  background: linear-gradient(155deg, var(--kraft-3), var(--kraft-edge));
+  box-shadow: 0 0 10px rgba(0, 0, 0, .4) inset;
+}
+
+.door__num {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: calc(var(--door) * .42);
+  color: rgba(59, 44, 30, .78);
+  font-variation-settings: "SOFT" 80, "WONK" 1;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .3);
+  transform: rotate(var(--numtilt, 0deg));
+  z-index: 1;
+}
+
+/* date printed on the card beneath the door */
+.door__date {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: calc(var(--door) * .21);
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: rgba(63, 47, 30, .62);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .22);
+  pointer-events: none;
+}
+
+.door--open .door__date { color: var(--red-deep); opacity: .95; }
+.door--today .door__date { color: var(--red-deep); font-weight: 700; }
+
+/* --- states --- */
+
+.door--locked { cursor: default; }
+.door--locked .door__face--front { filter: saturate(.85) brightness(.94); }
+.door--locked .door__date { opacity: .55; }
+
+.door--refuse .door__flap { animation: refuse .4s ease; }
+
+@keyframes refuse {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-3px); }
+  75%      { transform: translateX(3px); }
+}
+
+.door--today .door__face--front {
+  background: linear-gradient(155deg, #e8cb9d 0%, var(--kraft-1) 55%, var(--kraft-2) 100%);
+}
+
+.door--today .door__num { color: var(--red-deep); }
+
+.door--today .door__perf {
+  border-color: var(--red);
+  animation: breathe 2.6s ease-in-out infinite;
+}
+
+.door--today { cursor: pointer; z-index: 5; }
+.door--today .door__flap { animation: nudge 4s ease-in-out infinite; }
+
+@keyframes breathe {
+  0%, 100% { opacity: .45; }
+  50%      { opacity: 1; }
+}
+
+@keyframes nudge {
+  0%, 88%, 100% { transform: rotateY(0deg); }
+  93%           { transform: rotateY(-9deg); }
+}
+
+.door--open { z-index: 4; }
+
+.door--open .door__flap {
+  transform: rotateY(-116deg);
+  animation: none;
+  box-shadow: 12px 6px 20px rgba(0, 0, 0, .35);
+}
+
+.door--open:hover { z-index: 6; }
+
+/* ---------------------------------------------------------
+   Discs — vinyl on odd days, CD on even
+   --------------------------------------------------------- */
+
+.disc {
+  position: relative;
+  width: 84%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  animation: spin 7s linear infinite;
+  animation-play-state: paused;
+  transition: filter .25s;
+}
+
+.door--open .disc { animation-play-state: running; }
+.disc:hover { filter: brightness(1.14); }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* vinyl */
+.disc--vinyl {
+  background:
+    repeating-radial-gradient(circle at 50% 50%,
+      rgba(255, 255, 255, .055) 0 1px,
+      rgba(0, 0, 0, 0) 1px 3px),
+    radial-gradient(circle at 34% 30%,
+      rgba(255, 255, 255, .16) 0%,
+      rgba(255, 255, 255, 0) 42%),
+    radial-gradient(circle at 50% 50%, #241f1d 0%, #0d0b0a 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .7);
+}
+
+.disc--vinyl .disc__art {
+  width: 40%;
+  border-radius: 50%;
+}
+
+/* cd */
+.disc--cd {
+  background:
+    conic-gradient(from 210deg,
+      rgba(255, 190, 120, .55),
+      rgba(150, 220, 255, .5),
+      rgba(210, 160, 255, .5),
+      rgba(160, 255, 210, .45),
+      rgba(255, 190, 120, .55)),
+    radial-gradient(circle at 50% 50%, #d8dde2 0%, #9aa3ab 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .6);
+}
+
+.disc--cd .disc__art {
+  width: 78%;
+  border-radius: 50%;
+  opacity: .92;
+  mix-blend-mode: luminosity;
+}
+
+.disc__art {
+  position: absolute;
+  aspect-ratio: 1;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .35);
+}
+
+/* spindle hole */
+.disc::after {
+  content: "";
+  position: absolute;
+  width: 11%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--well-2);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .18);
+  z-index: 2;
+}
+
+.disc--cd::after {
+  width: 15%;
+  background: rgba(20, 16, 12, .92);
+  box-shadow: 0 0 0 5px rgba(232, 238, 242, .5);
+}
+
+/* ---------------------------------------------------------
+   The popup
+   --------------------------------------------------------- */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+}
+
+.modal[hidden] { display: none; }
+
+.modal__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(14, 20, 23, .74);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity .26s;
+}
+
+.modal--in .modal__scrim { opacity: 1; }
+
+.modal__panel {
+  position: relative;
+  width: min(90vw, 400px);
+  max-height: 92vh;
+  overflow: auto;
+  padding: 26px 30px 30px;
+  text-align: center;
+  color: var(--ink);
+  border-radius: 4px;
+
+  background:
+    linear-gradient(168deg, #f6ecd6 0%, #ecdfc2 100%);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, .6),
+    0 0 0 1px rgba(109, 76, 43, .35);
+
+  opacity: 0;
+  transform: translateY(14px) scale(.97);
+  transition: opacity .26s cubic-bezier(.2, .8, .2, 1),
+              transform .26s cubic-bezier(.2, .8, .2, 1);
+}
+
+.modal--in .modal__panel { opacity: 1; transform: none; }
+
+.modal__panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  background-size: 300px 300px;
+  mix-blend-mode: multiply;
+  opacity: .3;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.modal__close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  border: 0;
+  background: none;
+  font-size: 26px;
+  line-height: 1;
+  color: rgba(59, 44, 30, .45);
+  cursor: pointer;
+  padding: 4px 6px;
+  z-index: 2;
+}
+
+.modal__close:hover { color: var(--red-deep); }
+
+/* the close button is focused on open — don't flash a ring for that */
+.modal__close:focus:not(:focus-visible) { outline: none; }
+
+.modal__day {
+  margin: 0 0 18px;
+  font-size: 10px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--red-deep);
+}
+
+.modal__day em {
+  font-style: normal;
+  color: rgba(59, 44, 30, .5);
+}
+
+.modal__day em::before {
+  content: "·";
+  padding: 0 .5em;
+}
+
+/* the record sliding out of its sleeve */
+.modal__stage {
+  position: relative;
+  width: 230px;
+  height: 200px;
+  margin: 0 auto 20px;
+}
+
+.modal__sleeve {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 2px;
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, .4),
+    0 0 0 1px rgba(0, 0, 0, .22) inset;
+  filter: saturate(.9) contrast(1.05);
+}
+
+.modal__sleeve--cd {
+  width: 176px;
+  height: 200px;
+  border-radius: 2px 5px 5px 2px;
+}
+
+.modal__sleeve::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg,
+    rgba(255, 255, 255, .3) 0%,
+    rgba(255, 255, 255, 0) 38%);
+  border-radius: inherit;
+}
+
+.modal__disc {
+  position: absolute;
+  right: 0;
+  top: 12px;
+  width: 176px;
+  height: 176px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  animation: spin 7s linear infinite;
+}
+
+.modal--in .modal__disc { animation-play-state: running; }
+
+.modal__disc .disc__art {
+  position: absolute;
+  aspect-ratio: 1;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .35);
+}
+
+.modal__disc.disc--vinyl .disc__art { width: 40%; }
+.modal__disc.disc--cd .disc__art { width: 78%; opacity: .92; mix-blend-mode: luminosity; }
+
+.modal__disc::after {
+  content: "";
+  position: absolute;
+  width: 11%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #14100c;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .18);
+  z-index: 2;
+}
+
+.modal__disc.disc--cd::after {
+  width: 15%;
+  background: rgba(20, 16, 12, .92);
+  box-shadow: 0 0 0 5px rgba(232, 238, 242, .5);
+}
+
+.modal__title {
+  position: relative;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.15;
+  letter-spacing: -.01em;
+}
+
+.modal__artist {
+  position: relative;
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: rgba(59, 44, 30, .68);
+}
+
+.modal__place {
+  position: relative;
+  margin: 16px 0 22px;
+  font-size: 11px;
+  font-style: italic;
+  letter-spacing: .04em;
+  color: rgba(59, 44, 30, .5);
+}
+
+.modal__place::before,
+.modal__place::after {
+  content: "—";
+  padding: 0 .5em;
+  opacity: .5;
+}
+
+.modal__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  background: #1c1c1e;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform .14s, box-shadow .2s;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .32);
+}
+
+.modal__link:hover { transform: translateY(-1px); box-shadow: 0 7px 20px rgba(0, 0, 0, .4); }
+.modal__link[hidden] { display: none; }
+
+.modal__link-mark {
+  width: 17px;
+  height: 17px;
+  border-radius: 4px;
+  background: linear-gradient(160deg, #fb5c74, #fa233b);
+  position: relative;
+}
+
+.modal__link-mark::after {
+  content: "";
+  position: absolute;
+  left: 5.5px;
+  top: 3.5px;
+  width: 5px;
+  height: 7px;
+  border-left: 1.6px solid #fff;
+  border-radius: 1px;
+  box-shadow: -1.6px 6px 0 -1.2px #fff;
+}
+
+.modal__pending {
+  position: relative;
+  margin: 0;
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(59, 44, 30, .45);
+}
+
+/* --- the city view --- */
+
+/* the city view gets a wider panel — the photo is the point of it */
+.modal--city { width: min(94vw, 580px); }
+
+.modal__photo {
+  position: relative;
+  margin: 0 0 22px;
+}
+
+.modal__photo-paper {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  margin: 0 auto;
+  background: var(--photo-paper);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, .4),
+    0 0 0 12px var(--photo-frame),
+    0 0 0 13px rgba(0, 0, 0, .12);
+  overflow: hidden;
+}
+
+/* the ink drawing is the stand-in until a photo loads over it */
+.modal__photo-draw {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #6b6350;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: .6;
+}
+
+/* once the photo is in, the frame shrinks to fit it — no letterboxing */
+.modal__photo-paper.has-photo {
+  min-height: 0;
+  width: fit-content;
+  max-width: 100%;
+  background: transparent;
+}
+
+.modal__photo-paper.has-photo .modal__photo-draw { display: none; }
+
+.modal__photo-paper img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: min(52vh, 420px);
+  margin: 0 auto;
+}
+
+.modal__photo figcaption {
+  margin-top: 22px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(59, 44, 30, .62);
+}
+
+/* ---------------------------------------------------------
+   Walker marker
+   --------------------------------------------------------- */
+
+.walker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.walker__pin {
+  display: block;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 0 3px rgba(184, 64, 44, .28), 0 2px 5px rgba(0, 0, 0, .5);
+  animation: ping 2.4s ease-out infinite;
+}
+
+@keyframes ping {
+  0%   { box-shadow: 0 0 0 0 rgba(184, 64, 44, .5), 0 2px 5px rgba(0, 0, 0, .5); }
+  70%  { box-shadow: 0 0 0 16px rgba(184, 64, 44, 0), 0 2px 5px rgba(0, 0, 0, .5); }
+  100% { box-shadow: 0 0 0 0 rgba(184, 64, 44, 0), 0 2px 5px rgba(0, 0, 0, .5); }
+}
+
+/* ---------------------------------------------------------
+   Prototype-only controls
+   --------------------------------------------------------- */
+
+.devbar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 9px 26px;
+  background: rgba(0, 0, 0, .34);
+  border-top: 1px solid rgba(244, 231, 206, .1);
+  color: rgba(244, 231, 206, .75);
+  font-size: 12px;
+}
+
+.devbar label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.devbar input {
+  font-family: var(--font-body);
+  font-size: 12px;
+  padding: 4px 7px;
+  border-radius: 2px;
+  border: 1px solid rgba(244, 231, 206, .25);
+  background: rgba(244, 231, 206, .08);
+  color: var(--cream);
+  color-scheme: dark;
+}
+
+.devbar__note {
+  margin-left: auto;
+  font-style: italic;
+  color: rgba(244, 231, 206, .35);
+}
+
+/* ---------------------------------------------------------
+   Motion preferences
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .disc { animation: none; }
+  .door__flap { transition: none; animation: none; }
+  .door--today .door__perf { animation: none; opacity: .9; }
+  .walker__pin { animation: none; }
+  .scroller { scroll-behavior: auto; }
+}
