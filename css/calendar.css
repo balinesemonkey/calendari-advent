@@ -27,11 +27,18 @@
   --sea-2: #5e8085;
   --sea-line: #517277;
   --coast-halo: #a9c3bb;
+  --lake: #7ba2a6;
   --map-ink: #4d3b26;
-  --river: #6a929c;
+  --river: #5f8a95;
   --snow: #f2f6f7;
   --photo-frame: #f7f2e6;
   --photo-paper: #b7ac95;
+
+  /* map lettering — four tiers, three inks.
+     Areas are printed pale and wide; points are printed dark and tight. */
+  --label-area: #574222;      /* countries and regions */
+  --label-point: #2b1d0f;     /* cities and towns */
+  --label-halo: rgba(255, 252, 244, .62);
 
   /* biomes — printed flat, the way an old atlas does it */
   --b-jungle:    #8aa863;
@@ -92,7 +99,7 @@ body {
 .masthead h1 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 900;
+  font-weight: 500;
   font-size: clamp(20px, 2.6vh, 30px);
   letter-spacing: -0.02em;
   font-variation-settings: "SOFT" 60, "WONK" 1;
@@ -159,6 +166,29 @@ body {
 
 .btn--ghost:hover { background: rgba(244, 231, 206, .12); }
 
+/* the "jump to today" button — a compass rose instead of a label */
+.btn--compass {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.btn--compass svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: var(--cream);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+
+.btn--compass__needle { fill: var(--cream); stroke: none; }
+
+body.is-vertical .btn--compass { width: 40px; height: 40px; }
+
 /* ---------------------------------------------------------
    The card itself
    --------------------------------------------------------- */
@@ -221,6 +251,7 @@ body.is-vertical .masthead__meta { gap: 16px; }
 body.is-vertical .stat__num { font-size: 21px; }
 body.is-vertical .stat__label { font-size: 9px; }
 body.is-vertical .btn { padding: 10px 16px; font-size: 13px; }
+body.is-vertical .btn--compass { padding: 0; }
 
 body.is-vertical .devbar {
   padding: 10px 18px;
@@ -257,14 +288,14 @@ body.is-vertical .modal__photo-paper img { max-height: 60vh; }
    label now has a phone's width to fit in rather than a screen's.
    The tiers keep their ratios; they just all come down together. */
 body.is-vertical .map-country {
-  font-size: 110px;
-  letter-spacing: 26px;
-  transform: translateX(13px);
+  font-size: 118px;
+  letter-spacing: 28px;
+  transform: translateX(14px);
 }
 
 body.is-vertical .map-region {
-  font-size: 66px;
-  letter-spacing: 18px;
+  font-size: 62px;
+  letter-spacing: 17px;
   transform: translateX(9px);
 }
 
@@ -273,11 +304,18 @@ body.is-vertical .map-sea {
   transform: translateX(8px);
 }
 
-body.is-vertical .city__name { font-size: 74px; stroke-width: 7; }
-body.is-vertical .city--town .city__name { font-size: 52px; stroke-width: 6; }
+body.is-vertical .city__name { font-size: 76px; stroke-width: 7; }
+body.is-vertical .city--town .city__name { font-size: 54px; stroke-width: 6; }
+body.is-vertical .city__dot { stroke-width: 8; }
+body.is-vertical .city--town .city__dot { stroke-width: 6; }
+
+body.is-vertical .veg { stroke-width: 6; }
+body.is-vertical .sea-glyph { stroke-width: 5; }
 
 body.is-vertical .pin__cap { font-size: 34px; }
 body.is-vertical .pin__cap--city { font-size: 28px; letter-spacing: 3px; }
+body.is-vertical .pin--scene .pin__cap--scene { font-size: 32px; }
+body.is-vertical .pin--scene .pin__cap--where { font-size: 25px; }
 
 body.is-vertical .compass__n { font-size: 56px; }
 
@@ -346,6 +384,7 @@ body.is-vertical .compass__n { font-size: 56px; }
 .map-country,
 .map-region,
 .map-sea,
+.map-isle,
 .city__name,
 .compass__n,
 .scalebar__t,
@@ -357,37 +396,42 @@ body.is-vertical .compass__n { font-size: 56px; }
 
 /* Four tiers, biggest area to smallest point:
 
-     1  COUNTRY          huge, wide, dominant
-     2  REGION / ISLAND  half the size, lighter, still wide
-     3  City             small but dark and heavy — reads first up close
-     4  Town             smaller and lighter again
+     1  COUNTRY          huge, wide, pale — the ground you're walking on
+     2  REGION           half the size, lighter still, same treatment
+     3  City             a dot on the route, name lifted off it in the
+                         darkest ink on the card
+     4  Town             the same, two thirds the size
 
-   Areas get size and tracking; points get weight and contrast. Each tier
-   is clearly half the one above rather than a nudge, so the ranking is
-   readable at any zoom.                                                */
+   The split that matters isn't size, it's kind. Areas are *lettered
+   along* the route in capitals, spaced out, printed pale enough to sit
+   under everything else. Points are *marked on* it: a dot, then a
+   compact name in mixed case, dark, haloed. So the eye separates
+   "where I am" from "what I'm passing" before it reads a word — and
+   each tier is still half the one above, so the ranking survives any
+   zoom.                                                               */
 
-/* Countries and regions are waypoints on the path now, so they sit over
-   the route line — the halo keeps them legible where it runs through. */
+/* Countries and regions are waypoints on the path, so they sit over the
+   route line — the halo keeps them legible where it runs through. */
 .map-country {
-  font-size: 268px;
+  font-size: 300px;
   font-weight: 700;
-  letter-spacing: 86px;
-  transform: translateX(43px);    /* letter-spacing trails the last glyph */
-  fill: var(--map-ink);
-  opacity: .62;
-  stroke: rgba(255, 252, 244, .5);
-  stroke-width: 16;
+  letter-spacing: 96px;
+  transform: translateX(48px);    /* letter-spacing trails the last glyph */
+  fill: var(--label-area);
+  opacity: .58;
+  stroke: rgba(255, 252, 244, .42);
+  stroke-width: 18;
 }
 
 .map-region {
-  font-size: 132px;
+  font-size: 150px;
   font-weight: 400;
-  letter-spacing: 42px;
-  transform: translateX(21px);
-  fill: var(--map-ink);
-  opacity: .58;
-  stroke: rgba(255, 252, 244, .5);
-  stroke-width: 10;
+  letter-spacing: 46px;
+  transform: translateX(23px);
+  fill: var(--label-area);
+  opacity: .5;
+  stroke: rgba(255, 252, 244, .42);
+  stroke-width: 11;
 }
 
 .map-sea {
@@ -397,6 +441,20 @@ body.is-vertical .compass__n { font-size: 56px; }
   transform: translateX(13px);
   fill: #edf4f1;
   opacity: .46;
+}
+
+/* the inland ones are surrounded by land, so they need a little more
+   contrast to hold against it than the open sea does */
+.map-sea--inland { opacity: .58; letter-spacing: 14px; transform: translateX(7px); }
+
+/* islands the route never lands on — named, but quietly */
+.map-isle {
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 9px;
+  transform: translateX(5px);
+  fill: var(--label-area);
+  opacity: .5;
 }
 
 .compass { stroke: var(--map-ink); }
@@ -411,71 +469,99 @@ body.is-vertical .compass__n { font-size: 56px; }
   stroke: none;
 }
 
-.terrain { pointer-events: none; }
+.terrain, .sealife { pointer-events: none; }
 
-/* vegetation */
+/* Everything drawn on the ground: trees, dunes, peaks, villages. Each
+   one is a <use> of a glyph defined once, and takes its ink from the
+   biome it landed in via `color`. */
 .veg {
   fill: none;
-  stroke: var(--veg);
+  stroke: currentColor;
   stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: .48;
+}
+
+/* what people put there rather than what grows there — drawn in the
+   map's own ink, a shade darker than the vegetation around it */
+.veg--built { opacity: .42; stroke-width: 6; }
+
+/* out on the water */
+.sea-glyph {
+  fill: none;
+  stroke: var(--sea-line);
+  stroke-width: 6;
   stroke-linecap: round;
   stroke-linejoin: round;
   opacity: .5;
+  color: var(--sea-line);
 }
 
-.veg--tree path:last-child,
-.veg--cypress path:last-child { fill: var(--veg); fill-opacity: .22; }
+/* A <use> only passes inherited properties into the glyph it stamps
+   out, so anything a glyph needs per-shape — a filled hull, a white
+   snowcap — is baked into the definition and picks `currentColor` up
+   from here. */
+.sea-glyph--ship,
+.sea-glyph--junk { color: var(--map-ink); stroke: var(--map-ink); opacity: .42; }
+.sea-glyph--wind { opacity: .3; fill: var(--sea-line); fill-opacity: .3; }
+.sea-glyph--whale,
+.sea-glyph--fish { fill: var(--sea-line); fill-opacity: .18; opacity: .42; }
 
-.veg--snowpeak { stroke-width: 6; }
-.veg--snowpeak .rock { fill: var(--veg); fill-opacity: .18; }
-.veg--snowpeak .snow { fill: var(--snow); stroke: none; opacity: .9; }
-
-/* cities — ink drawings that fill in once you've walked past */
+/* cities — a dot printed on the route, name lifted just off the line */
 .city { cursor: pointer; }
 
-.city__icon {
-  transform: scale(1.35);
-  fill: none;
-  stroke: var(--map-ink);
-  stroke-width: 7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  opacity: .4;
-  transition: opacity .4s, stroke .4s;
+.city__dot {
+  fill: var(--cream);
+  stroke: var(--label-point);
+  stroke-width: 11;
+  opacity: .8;
+  transition: stroke .4s, opacity .4s;
 }
 
-/* the densest, darkest type on the map — cities are what you scan for */
+/* the densest, darkest type on the map — cities are what you scan for.
+   Still the most opaque tier, but not by such a wide margin over the
+   country/region names that those read as an afterthought — weight
+   and size already carry most of the hierarchy, opacity only needs to
+   finish the job. */
 .city__name {
   font-size: 118px;
   font-weight: 900;
-  letter-spacing: 1px;
-  fill: #3b2c1c;
-  opacity: .82;
-  stroke: rgba(255, 252, 244, .55);
-  stroke-width: 8;
+  letter-spacing: 2px;
+  fill: var(--label-point);
+  opacity: .74;
+  stroke: var(--label-halo);
+  stroke-width: 9;
   transition: fill .4s, opacity .4s;
 }
 
 /* tier four: the smaller stops along the way */
 .city--town .city__name {
-  font-size: 82px;
+  font-size: 78px;
   font-weight: 700;
-  opacity: .62;
+  opacity: .58;
   stroke-width: 7;
 }
 
-.city--town .city__icon {
-  transform: scale(.95);
-  opacity: .3;
-}
+.city--town .city__dot { stroke-width: 8; opacity: .6; }
 
-.city:hover .city__icon { opacity: .85; }
+.city:hover .city__dot { opacity: 1; }
 .city:hover .city__name { opacity: 1; }
-.city--passed .city__icon { stroke: var(--red-deep); opacity: .95; }
-.city--passed .city__name { fill: var(--red-deep); opacity: 1; }
+
+/* passed cities read as *filled in* rather than as a different colour —
+   red on the map is reserved for the route and for today's door, so a
+   city never competes with that for attention */
+.city--passed .city__dot { fill: var(--label-point); opacity: 1; }
+.city--passed .city__name { opacity: 1; }
 
 /* landmark photos pinned to the card */
 .pin { cursor: pointer; }
+
+/* today's own pin, held back until its door is opened — see render()
+   in calendar.js. `visibility` rather than `display`: the pin still
+   has to hold its place through declutter()'s measuring, or the spot
+   it's owed goes unreserved and whatever's next to it drifts in. */
+.pin--today { visibility: hidden; pointer-events: none; }
 .pin__shadow { fill: rgba(0, 0, 0, .32); }
 .pin__frame  { fill: var(--photo-frame); }
 .pin__paper  { fill: var(--photo-paper); }
@@ -502,13 +588,44 @@ body.is-vertical .compass__n { font-size: 56px; }
   font-style: normal;
   font-weight: 900;
   letter-spacing: 4px;
-  fill: #3b2c1c;
+  fill: var(--label-point);
 }
 
 .pin__tack { fill: var(--red); opacity: .9; }
 
+/* the scenes: a smaller print, taped down instead of tacked, so the
+   country you pass through reads apart from the landmarks you stop at */
+.pin--scene .pin__frame { fill: #f2ead9; }
+.pin--scene .pin__cap--scene {
+  font-size: 44px;
+  font-style: normal;
+  font-weight: 600;
+  fill: #4a3f2e;
+}
+
+.pin--scene .pin__cap--where {
+  font-size: 32px;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 3px;
+  fill: #8a7d66;
+}
+
+.pin__tape {
+  fill: rgba(233, 222, 196, .72);
+  stroke: rgba(120, 100, 70, .22);
+  stroke-width: 2;
+}
+
+.pin--scene:hover .pin__frame { fill: #fffdf6; }
+
+/* No transition on transform here: declutter() moves pins by rewriting
+   this same attribute at load time, reading the result straight back
+   with getBoundingClientRect() to place the next one. A transition
+   would animate that write, so the read lands on the pre-move position
+   — every pin after the first would be dodging a ghost of where its
+   neighbour used to be, not where it actually ended up. */
 .pin {
-  transition: transform .18s ease;
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -519,18 +636,22 @@ body.is-vertical .compass__n { font-size: 56px; }
 .layer { pointer-events: none; }
 .layer > * { pointer-events: auto; }
 
+/* One line, one ink, the whole way — the only thing that tells the
+   road ahead from the road behind is whether it's dashed or solid, not
+   a change of colour. */
 .route__ghost {
-  stroke: rgba(70, 52, 34, .38);
-  stroke-width: 7;
+  stroke: var(--map-ink);
+  stroke-width: 8;
   stroke-linecap: round;
   stroke-dasharray: 34 26;
+  opacity: .22;
 }
 
 .route__walked {
-  stroke: var(--red);
-  stroke-width: 11;
+  stroke: var(--map-ink);
+  stroke-width: 8;
   stroke-linecap: round;
-  opacity: .85;
+  opacity: .4;
 }
 
 /* ---------------------------------------------------------
@@ -1107,33 +1228,6 @@ body.is-vertical .compass__n { font-size: 56px; }
 }
 
 /* ---------------------------------------------------------
-   Walker marker
-   --------------------------------------------------------- */
-
-.walker {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 3;
-}
-
-.walker__pin {
-  display: block;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: var(--red);
-  box-shadow: 0 0 0 3px rgba(184, 64, 44, .28), 0 2px 5px rgba(0, 0, 0, .5);
-  animation: ping 2.4s ease-out infinite;
-}
-
-@keyframes ping {
-  0%   { box-shadow: 0 0 0 0 rgba(184, 64, 44, .5), 0 2px 5px rgba(0, 0, 0, .5); }
-  70%  { box-shadow: 0 0 0 16px rgba(184, 64, 44, 0), 0 2px 5px rgba(0, 0, 0, .5); }
-  100% { box-shadow: 0 0 0 0 rgba(184, 64, 44, 0), 0 2px 5px rgba(0, 0, 0, .5); }
-}
-
-/* ---------------------------------------------------------
    Prototype-only controls
    --------------------------------------------------------- */
 
@@ -1183,6 +1277,5 @@ body.is-vertical .compass__n { font-size: 56px; }
   .disc { animation: none; }
   .door__flap { transition: none; animation: none; }
   .door--today .door__perf { animation: none; opacity: .9; }
-  .walker__pin { animation: none; }
   .scroller { scroll-behavior: auto; }
 }

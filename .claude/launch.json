@@ -4,8 +4,9 @@
     {
       "name": "calendar",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["tools/serve.py", "4321"],
-      "port": 4321
+      "runtimeArgs": ["tools/serve.py"],
+      "port": 4321,
+      "autoPort": true
     }
   ]
 }

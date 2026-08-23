@@ -1,19 +1,23 @@
 #!/usr/bin/env python3
 """
-Fetch a landmark photo for every city on the route.
+Fetch the photographs printed on the card.
 
-Source is Wikimedia Commons, via the Wikipedia API's lead image for each
-landmark's article. Those files are freely licensed, so they can be
-committed to the repo and served from a public GitHub Pages site — which
-is the whole point of baking them in rather than hotlinking.
+Two sets, and both come from Wikimedia Commons via the Wikipedia API's
+lead image for an article. Those files are freely licensed, so they can
+be committed to the repo and served from a public GitHub Pages site —
+which is the whole point of baking them in rather than hotlinking.
+
+    cities   the 49 landmarks       js/map.js     → photos/<slug>.jpg
+    scenes   the country between    js/scenes.js  → photos/scenes/<slug>.jpg
 
 Run from the project root:
 
-    python3 tools/fetch-photos.py
+    python3 tools/fetch-photos.py           # both
+    python3 tools/fetch-photos.py scenes    # just one set
 
-Photos land in photos/<slug>.jpg. Cities that already have a file are
-skipped, so dropping in your own photo and re-running keeps it.
-Attribution for every file is written to photos/CREDITS.md.
+Anything that already has a file is skipped, so dropping in your own
+photo and re-running keeps it. Attribution for every file downloaded is
+appended to photos/CREDITS.md.
 """
 
 import json
@@ -22,7 +26,6 @@ import re
 import subprocess
 import sys
 import time
-import unicodedata
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -30,6 +33,7 @@ import urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "photos")
 MAP_JS = os.path.join(ROOT, "js", "map.js")
+SCENES_JS = os.path.join(ROOT, "js", "scenes.js")
 
 API = "https://en.wikipedia.org/w/api.php"
 UA = "bali-advent-calendar/1.0 (personal project; python-urllib)"
@@ -37,27 +41,48 @@ WIDTH = 900
 PAUSE = 1.5          # seconds between requests
 
 
-def slugify(name):
-    s = unicodedata.normalize("NFD", name)
-    s = "".join(c for c in s if unicodedata.category(c) != "Mn").lower()
-    return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
-
-
-def cities_from_map_js():
-    """Read the CITIES table straight out of map.js so there's one source
-    of truth for the route."""
-    src = open(MAP_JS, encoding="utf-8").read()
-    block = re.search(r"const CITIES = \[(.*?)\n\];", src, re.S)
+def table(path, const, fields):
+    """Read one of the JS tables straight out of its source file, so the
+    route stays a single source of truth. Returns a dict per entry with
+    whichever of `fields` that line carries."""
+    src = open(path, encoding="utf-8").read()
+    block = re.search(r"const %s = \[(.*?)\n\];" % const, src, re.S)
     if not block:
-        sys.exit("could not find CITIES in js/map.js")
+        sys.exit("could not find %s in %s" % (const, os.path.basename(path)))
 
     out = []
     for line in block.group(1).splitlines():
-        name = re.search(r'name:\s*"([^"]+)"', line)
-        wiki = re.search(r'wiki:\s*"([^"]+)"', line)
-        if name and wiki:
-            out.append((name.group(1), wiki.group(1)))
+        row = {}
+        for f in fields:
+            m = re.search(r'\b%s:\s*"([^"]+)"' % f, line)
+            if m:
+                row[f] = m.group(1)
+        if row:
+            out.append(row)
     return out
+
+
+def city_jobs():
+    """The 49 landmarks. `wiki` is optional — without it we ask Wikipedia
+    for the landmark's own name, then the city's."""
+    jobs = []
+    for c in table(MAP_JS, "CITIES", ("name", "slug", "wiki", "landmark")):
+        if "slug" not in c:
+            continue
+        titles = [t for t in (c.get("wiki"), c.get("landmark"), c.get("name")) if t]
+        jobs.append((c.get("name", c["slug"]), c["slug"], titles, OUT))
+    return jobs
+
+
+def scene_jobs():
+    """The country in between — one photo per stretch of geography."""
+    out = os.path.join(OUT, "scenes")
+    jobs = []
+    for s in table(SCENES_JS, "SCENES", ("name", "slug", "wiki")):
+        if "slug" not in s or "wiki" not in s:
+            continue
+        jobs.append((s.get("name", s["slug"]), s["slug"], [s["wiki"]], out))
+    return jobs
 
 
 _last = [0.0]
@@ -141,30 +166,43 @@ def to_jpeg(src, dst):
 
 
 def main():
+    which = set(sys.argv[1:]) or {"cities", "scenes"}
+    unknown = which - {"cities", "scenes"}
+    if unknown:
+        sys.exit("unknown set: " + ", ".join(sorted(unknown)))
+
+    jobs = []
+    if "cities" in which:
+        jobs += city_jobs()
+    if "scenes" in which:
+        jobs += scene_jobs()
+
     os.makedirs(OUT, exist_ok=True)
+    for _, _, _, out in jobs:
+        os.makedirs(out, exist_ok=True)
     tmp = os.path.join(OUT, ".tmp")
     os.makedirs(tmp, exist_ok=True)
 
-    cities = cities_from_map_js()
-    print(f"{len(cities)} cities on the route\n")
+    print(f"{len(jobs)} photos to account for\n")
 
     credits, got, skipped, failed = [], 0, 0, []
 
-    for name, wiki in cities:
-        slug = slugify(name)
-        dst = os.path.join(OUT, f"{slug}.jpg")
+    for name, slug, titles, out in jobs:
+        dst = os.path.join(out, f"{slug}.jpg")
 
         if os.path.exists(dst):
-            print(f"  ·  {name:<14} already have it")
+            print(f"  ·  {name:<22} already have it")
             skipped += 1
             continue
 
         try:
-            url, filename = lead_image(wiki)
-            if not url:                       # fall back to the city itself
-                url, filename = lead_image(name)
+            url = filename = None
+            for title in titles:
+                url, filename = lead_image(title)
+                if url:
+                    break
             if not url:
-                raise RuntimeError(f'no lead image on "{wiki}"')
+                raise RuntimeError('no lead image on "%s"' % '" / "'.join(titles))
 
             raw = os.path.join(tmp, slug + os.path.splitext(url)[1][:5])
             with open(raw, "wb") as f:
@@ -173,14 +211,14 @@ def main():
             os.remove(raw)
 
             artist, lic = credit(filename)
-            credits.append((name, wiki, filename, artist, lic))
+            credits.append((name, title, filename, artist, lic))
             size = os.path.getsize(dst) // 1024
-            print(f"  ✓  {name:<14} {wiki}  ({size} KB)")
+            print(f"  ✓  {name:<22} {title}  ({size} KB)")
             got += 1
 
         except Exception as e:
-            print(f"  ✗  {name:<14} {e}")
-            failed.append((name, wiki, str(e)))
+            print(f"  ✗  {name:<22} {e}")
+            failed.append((name, titles[0] if titles else "", str(e)))
 
     os.rmdir(tmp) if not os.listdir(tmp) else None
 

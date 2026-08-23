@@ -7,7 +7,7 @@
      open      — today once opened, and every past day
    ========================================================= */
 
-const START = "2026-08-14";
+const START = "2026-08-18";
 const END   = "2026-12-20";
 const STORE = "bb-opened";
 
@@ -66,12 +66,17 @@ function routeV(u) {
     + a3 * Math.sin(u /  837 + 0.6);
 }
 
+/* The line runs door to door — from the first day to the last — rather
+   than out into the margin either side, so it starts exactly at day
+   one instead of trailing off into empty card beforehand. */
 function routeD() {
+  const u0 = DOOR_U[0], u1 = DOOR_U[DOOR_U.length - 1];
   const pts = [];
-  for (let u = 1000; u <= JOURNEY - 1000; u += 120) {
+  for (let u = u0; u <= u1; u += 120) {
     const p = P(u, routeV(u));
     pts.push(`${p.x.toFixed(1)},${p.y.toFixed(1)}`);
   }
+  pts.push(`${P(u1, routeV(u1)).x.toFixed(1)},${P(u1, routeV(u1)).y.toFixed(1)}`);
   return "M" + pts.join("L");
 }
 
@@ -104,9 +109,6 @@ const els = {
   path:     document.getElementById("routePath"),
   walked:   document.getElementById("routeWalked"),
   doors:    document.getElementById("doorLayer"),
-  walker:   document.getElementById("walker"),
-  statOpen: document.getElementById("statOpen"),
-  statLeft: document.getElementById("statLeft"),
   jump:     document.getElementById("jumpToday"),
   devDate:  document.getElementById("devDate"),
   devReset: document.getElementById("devReset"),
@@ -129,35 +131,61 @@ els.card.style.aspectRatio = `${VB_W} / ${VB_H}`;
 [els.mapArt, document.getElementById("routeSvg")]
   .forEach(s => s.setAttribute("viewBox", VIEWBOX));
 
+/* The ink-bleed filter's region has to be pinned to real coordinates —
+   left at the default (a percentage of the element's own bounding box)
+   it blows up into something absurd on a path this long and thin, and
+   Safari simply fails to rasterise it: the line vanishes with no error.
+   A generous but bounded pad is enough for the turbulence displacement
+   (scale 9) to spill over the stroke without the filter region itself
+   ballooning. */
+{
+  const pad = 400;
+  const f = document.getElementById("inkBleed");
+  f.setAttribute("x", VB_X - pad);
+  f.setAttribute("y", -pad);
+  f.setAttribute("width", VB_W + pad * 2);
+  f.setAttribute("height", VB_H + pad * 2);
+}
+
+/* The visible line only runs door to door — see routeD() — but doors,
+   cities, pins and labels are positioned all along the ribbon,
+   including the stretch before day one where the country and region
+   names sit. So positioning is worked out directly from (u, routeV(u))
+   rather than by walking along the drawn line: a lookup outside the
+   line's own span would otherwise have nowhere on it to land. */
+const ROUTE_U0 = DOOR_U[0], ROUTE_U1 = DOOR_U[DOOR_U.length - 1];
+
+const atPos = u => P(u, routeV(u));
+
+/* …and as a percentage of the card, for positioning HTML */
+function atPercent(u) {
+  const p = atPos(u);
+  return { left: ((p.x - VB_X) / VB_W) * 100, top: (p.y / VB_H) * 100 };
+}
+buildMap(els.mapArt, atPos);
+
+/* The line itself is drawn separately from that positioning — this is
+   only ever the door1-to-doorLast stretch. */
 const routePathD = routeD();
 els.path.setAttribute("d", routePathD);
 els.walked.setAttribute("d", routePathD);
 
-const PATH_LEN = els.path.getTotalLength();
-els.walked.style.strokeDasharray = PATH_LEN;
-
-/* point at a fraction along the route, in card coordinates */
-function atXY(t) {
-  return els.path.getPointAtLength(PATH_LEN * Math.max(0, Math.min(1, t)));
-}
-
-/* …and at a distance along the journey, which is what the running
-   order deals in */
-const atU = u => atXY(u / JOURNEY);
-
-/* the same point, as % of the card, for positioning HTML */
-function at(t) {
-  const p = atXY(t);
-  return { left: ((p.x - VB_X) / VB_W) * 100, top: (p.y / VB_H) * 100 };
-}
-buildMap(els.mapArt, atU);
+/* `pathLength` renormalises the path to a fixed length of our choosing,
+   so the reveal trick below can work in small round numbers (0–1000)
+   instead of the raw geometric length — which runs into the hundreds
+   of thousands here, and floating-point stroke-dasharray at that scale
+   is exactly the kind of thing that renders fine in one engine and not
+   another. */
+const PLEN = 1000;
+els.walked.setAttribute("pathLength", PLEN);
+els.walked.style.strokeDasharray = PLEN;
 
 let opened = loadOpened();
 const doorEls = [];
 
 DATES.forEach((k, i) => {
   const n = i + 1;
-  const pos = at(DOOR_U[i] / JOURNEY);
+  const pos = atPercent(DOOR_U[i]);
   const isVinyl = n % 2 === 1;                 // odd → vinyl, even → CD
   const tilt = (((i * 2654435761) >>> 0) % 700) / 100 - 3.5;
 
@@ -257,7 +285,6 @@ function fillDoor(door, k) {
 
 function render() {
   const todayIdx = todayIndex();
-  let openCount = 0;
 
   DATES.forEach((k, i) => {
     const door = doorEls[i];
@@ -267,33 +294,31 @@ function render() {
     door.classList.toggle("door--today", st === "openable");
     door.classList.toggle("door--locked", st === "locked");
 
-    if (st === "open") {
-      openCount++;
-      fillDoor(door, k);
-    }
+    if (st === "open") fillDoor(door, k);
   });
 
   // route progress — measured along the path, which is no longer
   // evenly divided by day now that the names take up room on it
-  const walkedU = todayIdx < 0 ? 0 : DOOR_U[todayIdx];
-  const prog = walkedU / JOURNEY;
-  els.walked.style.strokeDashoffset = PATH_LEN * (1 - prog);
-
-  if (todayIdx >= 0) {
-    const p = at(prog);
-    els.walker.hidden = false;
-    els.walker.style.left = p.left + "%";
-    els.walker.style.top = p.top + "%";
-  } else {
-    els.walker.hidden = true;
-  }
+  const walkedU = todayIdx < 0 ? ROUTE_U0 : DOOR_U[todayIdx];
+  const prog = (walkedU - ROUTE_U0) / (ROUTE_U1 - ROUTE_U0);
+  els.walked.style.strokeDashoffset = PLEN * (1 - prog);
 
   els.mapArt.querySelectorAll(".city").forEach(el => {
     el.classList.toggle("city--passed", parseFloat(el.dataset.u) <= walkedU + 1e-6);
   });
 
-  els.statOpen.textContent = openCount;
-  els.statLeft.textContent = TOTAL - openCount;
+  /* Today's own photo stays covered until its door does — opening the
+     door is what reveals where you've landed, so the pin showing it
+     ahead of that would give the day away before you've unwrapped it.
+     Once it's open, the pin takes its normal place on the card. */
+  const todayUnopened = todayIdx >= 0 && !opened.has(DATES[todayIdx]);
+  els.mapArt.querySelectorAll(".pin").forEach(el => {
+    const t = el.dataset.city !== undefined
+      ? CITIES[+el.dataset.city].t
+      : SCENES[+el.dataset.scene].t;
+    const dayIdx = Math.round(t * (TOTAL - 1));
+    el.classList.toggle("pin--today", todayUnopened && dayIdx === todayIdx);
+  });
 }
 
 /* ---------------------------------------------------------
@@ -359,7 +384,6 @@ function showCity(ci) {
   const c = CITIES[ci];
   const i = Math.round(c.t * (TOTAL - 1));
   const k = DATES[i];
-  const reached = i <= Math.max(todayIndex(), -1);
 
   els.modalBody.innerHTML = `
     <p class="modal__day">${esc(c.country)} <em>${PRETTY(k)}</em></p>
@@ -372,12 +396,28 @@ function showCity(ci) {
              onerror="this.remove()">
       </div>
       <figcaption>${esc(c.landmark)}, ${esc(c.name)}</figcaption>
-    </figure>
+    </figure>`;
 
-    <h2 class="modal__title">${esc(c.name)}</h2>
-    <p class="modal__place">${reached
-      ? `hi vam arribar el dia ${i + 1}`
-      : `dia ${i + 1} — encara no hi som`}</p>`;
+  openModal("modal--city");
+}
+
+/* the country between the cities — no day attached to it, just the
+   place and where along the walk it turns up */
+function showScene(si) {
+  const s = SCENES[si];
+  const i = Math.round(s.t * (TOTAL - 1));
+
+  els.modalBody.innerHTML = `
+    <p class="modal__day">${esc(s.where)} <em>${PRETTY(DATES[i])}</em></p>
+
+    <figure class="modal__photo">
+      <div class="modal__photo-paper">
+        <img src="photos/scenes/${s.slug}.jpg" alt="${esc(s.name)}"
+             onload="this.closest('.modal__photo-paper').classList.add('has-photo')"
+             onerror="this.remove()">
+      </div>
+      <figcaption>${esc(s.name)}</figcaption>
+    </figure>`;
 
   openModal("modal--city");
 }
@@ -400,10 +440,13 @@ document.addEventListener("keydown", e => {
   if (e.key === "Escape" && !els.modal.hidden) hideModal();
 });
 
-/* cities and their pinned photos both open the place */
+/* cities and their pinned photos both open the place; the scenes in
+   between open on their own */
 els.mapArt.addEventListener("click", e => {
   const g = e.target.closest(".pin, .city");
-  if (g) showCity(+g.dataset.city);
+  if (!g) return;
+  if (g.dataset.scene !== undefined) showScene(+g.dataset.scene);
+  else showCity(+g.dataset.city);
 });
 
 function scrollToToday() {
@@ -504,7 +547,21 @@ function originOf(el) {
 }
 
 function declutter() {
-  const upp = VB_W / els.card.clientWidth;        // user units per pixel
+  /* Nothing to measure while the card has no size — a background tab,
+     say. Running anyway would divide by zero and write Infinity into
+     every position it touched. */
+  if (!els.card.clientWidth || !els.card.clientHeight) return;
+
+  /* user units per pixel, along whichever screen axis sliding actually
+     happens on — the journey runs down the card in portrait (VB_H over
+     its height) and across it in landscape (VB_W over its width). Using
+     the wrong axis here doesn't just point the slide the wrong way, it
+     scales it wrong too: a move verified clear in pixel-search space
+     then lands short of that in SVG space, and the "resolved" pin is
+     still sitting in the gap it was meant to clear. */
+  const upp = VERTICAL
+    ? VB_H / els.card.clientHeight
+    : VB_W / els.card.clientWidth;
   const box = el => el.getBoundingClientRect();
 
   const overlaps = (a, b, pad) =>
@@ -523,18 +580,44 @@ function declutter() {
      order set aside for them, so they're already clear of the doors
      and of each other. They can't move without leaving their place in
      the sequence — so they join the doors as fixed obstacles, and
-     everything else resolves around them. */
+     everything else resolves around them. The compass and scale bar
+     are fixed the same way — ornaments, not part of the running order,
+     but still real ink on the card that nothing else should sit on. */
   obstacles.push(
-    ...[...els.mapArt.querySelectorAll(".map-country, .map-region, .city__name")].map(box),
+    ...[...els.mapArt.querySelectorAll(
+      ".map-country, .map-region, .city__name, .compass, .scalebar",
+    )].map(box),
   );
 
+  /* Photos try hard for a generous gap first, but never disappear for
+     want of one — on a packed stretch of card a smaller gap beats no
+     photo at all, so a blocked pin steps back through smaller pads
+     before it steps back through `hide`. Sea and isle names are
+     background dressing, not content, so they keep the old
+     one-pad-or-hide behaviour.
+
+     Photos also alternate between the two bands by construction (see
+     CITY_BAND / SCENE_BAND in map.js) — but only at the spot each one
+     was *drawn*. `noCross` is what keeps that true after sliding too:
+     it stops a pin from ever sliding far enough to swap places with
+     its journey neighbour, which is exactly the move that would let
+     three from the same band end up in a row. */
   const TIERS = [
-    { sel: ".pin",     reach: 900,  pad: 10 },   // photos
-    { sel: ".map-sea", reach: 5000, pad: 10 },
+    { sel: ".pin",      reach: 1400, pad: [46, 28, 14, 4], hide: false, noCross: true },
+    { sel: ".map-sea",  reach: 5000, pad: [10],            hide: true },
+    { sel: ".map-isle", reach: 2000, pad: [8],             hide: true },
   ];
 
   for (const tier of TIERS) {
-    const nodes = [...els.mapArt.querySelectorAll(tier.sel)];
+    /* Resolved in journey order, not DOM order — cities and scenes are
+       two separate lists in the markup, so DOM order jumps between
+       them instead of walking the card the way a reader does. Two
+       pins that are actually next to each other on the route need to
+       be resolved back to back, or the one processed out of turn is
+       dodging obstacles from all over the card instead of just its
+       real neighbours, and drifts further than it has to. */
+    const nodes = [...els.mapArt.querySelectorAll(tier.sel)]
+      .sort((a, b) => originOf(a) - originOf(b));
 
     // reset to the original drawn position and visibility first, so a
     // repeat run doesn't compound displacement from the last one
@@ -543,26 +626,59 @@ function declutter() {
       el.style.display = "";
     });
 
-    nodes.forEach(el => {
+    nodes.forEach((el, idx) => {
       let r = box(el);
+      const widestPad = tier.pad[0];
 
-      if (!clearOf(r, obstacles, tier.pad)) {
+      if (!clearOf(r, obstacles, widestPad)) {
         let move = null;
-        for (let d = 14; d <= tier.reach && move === null; d += 14) {
-          for (const s of [d, -d]) {
-            if (clearOf(slid(r, s), obstacles, tier.pad)) { move = s; break; }
+
+        // capped so a slide can't cross the midpoint to whichever
+        // neighbour sits on that side — see `noCross` above
+        let reachPos = tier.reach, reachNeg = tier.reach;
+        if (tier.noCross) {
+          if (idx < nodes.length - 1) {
+            reachPos = Math.min(reachPos, (originOf(nodes[idx + 1]) - originOf(el)) / upp / 2);
+          }
+          if (idx > 0) {
+            reachNeg = Math.min(reachNeg, (originOf(el) - originOf(nodes[idx - 1])) / upp / 2);
           }
         }
 
-        if (move === null) { el.style.display = "none"; return; }
+        for (const pad of tier.pad) {
+          for (let d = 14; (d <= reachPos || d <= reachNeg) && move === null; d += 14) {
+            if (d <= reachPos && clearOf(slid(r, d), obstacles, pad)) { move = d; break; }
+            if (move === null && d <= reachNeg && clearOf(slid(r, -d), obstacles, pad)) { move = -d; break; }
+          }
+          if (move !== null) break;
+        }
 
-        setJourneyCoord(el, originOf(el) + move * upp);
-        r = box(el);
+        if (move === null) {
+          if (tier.hide) { el.style.display = "none"; return; }
+          // otherwise: stay put rather than vanish — see comment above
+        } else {
+          setJourneyCoord(el, originOf(el) + move * upp);
+          r = box(el);
+        }
       }
 
       obstacles.push(r);
     });
   }
+
+  /* Vegetation, mountains, boats and the rest of the ground cover are
+     drawn underneath all of that — so instead of nudging them (there
+     are thousands, and moving one is just as likely to walk it into a
+     different obstacle), any symbol left overlapping a door, a photo,
+     or a piece of lettering is simply hidden. Generation already keeps
+     them a minimum distance apart from one another (see SYMBOL_SPACE
+     in map.js), so this pass is only about the text and images sitting
+     above them, not about symbols clipping each other. */
+  const symbols = [...els.mapArt.querySelectorAll(".veg, .sea-glyph")];
+  symbols.forEach(el => { el.style.display = ""; });
+  symbols.forEach(el => {
+    if (!clearOf(box(el), obstacles, 4)) el.style.display = "none";
+  });
 }
 
 render();

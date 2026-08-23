@@ -7,8 +7,11 @@ anything — otherwise an edit to calendar.js or calendar.css can sit
 invisible behind a stale copy while you wonder why nothing changed.
 
     python3 tools/serve.py [port]
+
+The port comes from the argument, or $PORT, or 4321 — in that order.
 """
 
+import os
 import sys
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
@@ -26,6 +29,6 @@ class NoCache(SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    port = int(sys.argv[1]) if len(sys.argv) > 1 else 4321
+    port = int(sys.argv[1] if len(sys.argv) > 1 else os.environ.get("PORT") or 4321)
     print(f"serving on http://localhost:{port}")
     ThreadingHTTPServer(("", port), NoCache).serve_forever()

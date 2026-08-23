@@ -4,30 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Bali → Barcelona</title>
+<title>El Nostre Calendari d'Advent</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/calendar.css?v=3">
+<link rel="stylesheet" href="css/calendar.css?v=5">
 </head>
 <body>
 
 <header class="masthead">
   <div class="masthead__title">
-    <h1>Bali <span class="arrow">→</span> Barcelona</h1>
-    <p class="masthead__sub">Una cançó cada dia, tot el camí cap a casa</p>
+    <h1>El Nostre Calendari d'Advent</h1>
   </div>
 
   <div class="masthead__meta">
-    <div class="stat">
-      <span class="stat__num" id="statOpen">—</span>
-      <span class="stat__label">obertes</span>
-    </div>
-    <div class="stat">
-      <span class="stat__num" id="statLeft">—</span>
-      <span class="stat__label">que falten</span>
-    </div>
-    <button class="btn" id="jumpToday">Avui</button>
+    <button class="btn btn--compass" id="jumpToday" aria-label="Avui" title="Avui">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="12.5"/>
+        <circle cx="16" cy="16" r="8.5" opacity=".5"/>
+        <path class="btn--compass__needle" d="M16 6.5 L20 16 L16 25.5 L12 16 Z"/>
+      </svg>
+    </button>
   </div>
 </header>
 
@@ -38,7 +35,11 @@
 
     <svg class="route" id="routeSvg" viewBox="0 0 62000 1600" preserveAspectRatio="none" aria-hidden="true">
       <defs>
-        <filter id="inkBleed" x="-20%" y="-20%" width="140%" height="140%">
+        <!-- filterUnits/region set in JS once the viewBox is known: a
+             percentage-of-bounding-box region (the default) blows up on
+             a path this long and thin, which Safari fails to rasterise
+             at all — see calendar.js. -->
+        <filter id="inkBleed" filterUnits="userSpaceOnUse">
           <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" seed="7" result="n"/>
           <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G"/>
         </filter>
@@ -48,7 +49,6 @@
     </svg>
 
     <div class="layer" id="doorLayer"></div>
-    <div class="walker" id="walker" hidden><span class="walker__pin"></span></div>
 
   </div>
 </div>
@@ -63,14 +63,15 @@
 
 <div class="devbar">
   <label>Data de previsualització
-    <input type="date" id="devDate" min="2026-08-14" max="2026-12-20">
+    <input type="date" id="devDate" min="2026-08-18" max="2026-12-20">
   </label>
   <button class="btn btn--ghost" id="devReset">Reinicia les obertes</button>
   <span class="devbar__note">controls del prototip — no formen part del producte final</span>
 </div>
 
-<script src="js/songs.js?v=3"></script>
-<script src="js/map.js?v=3"></script>
-<script src="js/calendar.js?v=3"></script>
+<script src="js/songs.js?v=5"></script>
+<script src="js/scenes.js?v=5"></script>
+<script src="js/map.js?v=5"></script>
+<script src="js/calendar.js?v=5"></script>
 </body>
 </html>
