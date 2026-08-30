@@ -3,68 +3,113 @@
    Prototype: plain HTML/CSS/JS. No build step.
    ========================================================= */
 
+/* Terra Ignota — the lettering for open water and inland seas.
+   Ships a single Regular weight, no true italic. */
+@font-face {
+  font-family: "Terra Ignota";
+  src: url("../fonts/terra-ignota.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Antiquarian — the place names: countries, regions, cities and towns.
+   Single Regular weight. */
+@font-face {
+  font-family: "Antiquarian";
+  src: url("../fonts/antiquarian.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  /* kraft card */
-  --kraft-1: #d9b98a;
-  --kraft-2: #c8a172;
-  --kraft-3: #b08a5d;
-  --kraft-edge: #8d6942;
-  --kraft-deep: #6a4a2b;
+  /* aged parchment — the sheet everything is drawn on */
+  --kraft-1: #eaddb9;
+  --kraft-2: #ddcb9f;
+  --kraft-3: #cdb886;
+  --kraft-edge: #a98e5c;
+  --kraft-deep: #7c6135;
 
   /* the dark recess behind a door */
   --well: #2a1d13;
   --well-2: #14100c;
 
   /* printed inks */
-  --ink: #2f3d46;
-  --ink-soft: #6a7a83;
-  --red: #b8402c;
-  --red-deep: #8d2c1c;
+  --ink: #46351f;
+  --ink-soft: #7d6a4d;
+  --red: #a8402a;
+  --red-deep: #822b18;
   --cream: #f4e7ce;
 
-  /* the printed map */
-  --sea: #6f9296;
-  --sea-2: #5e8085;
-  --sea-line: #517277;
-  --coast-halo: #a9c3bb;
-  --lake: #7ba2a6;
-  --map-ink: #4d3b26;
-  --river: #5f8a95;
-  --snow: #f2f6f7;
-  --photo-frame: #f7f2e6;
-  --photo-paper: #b7ac95;
+  /* the drawn map — watercolour washes over brown ink.
+     The sea is glazed in four tones, palest out in open water and
+     deepest where the paint has run up against a coast. */
+  --sea-far: #b5cfd8;
+  --sea: #8fbac6;
+  --sea-2: #6fa3b3;
+  --sea-deep: #4f8496;
+  --sea-line: #3d6672;
+  --lake: #82aebb;
+  --shore-wash: #6c7a3c;      /* the tint brushed in along every coast */
+  --map-ink: #45321c;
+  --river: #6a95a0;
+  --snow: #f4f3ea;
+  --photo-frame: #f6efdd;
+  --photo-paper: #b9ad93;
 
   /* map lettering — four tiers, three inks.
      Areas are printed pale and wide; points are printed dark and tight. */
-  --label-area: #574222;      /* countries and regions */
-  --label-point: #2b1d0f;     /* cities and towns */
-  --label-halo: rgba(255, 252, 244, .62);
+  --label-area: #57401d;      /* countries and regions */
+  --label-point: #2c1d0b;     /* cities and towns */
+  --label-halo: rgba(250, 242, 222, .58);
 
-  /* biomes — printed flat, the way an old atlas does it */
-  --b-jungle:    #8aa863;
-  --b-wet:       #9cb56f;
-  --b-dry:       #c9b782;
-  --b-desert:    #ddc492;
-  --b-alpine:    #b6b4a4;
-  --b-steppe:    #c4bb8a;
-  --b-temperate: #a3ba7c;
-  --b-med:       #b6bf7c;
+  /* biomes — thin washes, the way a hand-tinted map lays them down */
+  --b-jungle:    #a9b578;
+  --b-wet:       #b4be82;
+  --b-dry:       #d5c592;
+  --b-desert:    #e2cf9d;
+  --b-alpine:    #c5bda6;
+  --b-steppe:    #d0c391;
+  --b-temperate: #bcc489;
+  --b-med:       #c8ca8b;
 
-  --i-jungle:    #3f5a2f;
-  --i-dry:       #7d6a3c;
-  --i-desert:    #96784a;
-  --i-alpine:    #5e5f5c;
-  --i-temperate: #46603a;
+  --i-jungle:    #4b5a2c;
+  --i-dry:       #7a6435;
+  --i-desert:    #8f7040;
+  --i-alpine:    #5c5a4b;
+  --i-temperate: #4e5f31;
 
   --door: clamp(48px, 7.2vh, 78px);
 
   --font-display: "Fraunces", "Hoefler Text", Georgia, serif;
   --font-body: "Karla", "Avenir Next", "Segoe UI", sans-serif;
+  /* hand-lettered map annotation — sea names and the dates under the doors */
+  --font-map-hand: "Terra Ignota", "Fraunces", "Hoefler Text", Georgia, serif;
+  /* engraved place names — countries, regions, cities, towns */
+  --font-map-place: "Antiquarian", "Fraunces", "Hoefler Text", Georgia, serif;
+  /* everything that isn't the map: header, buttons, popup text. A plain
+     system UI stack — the decorative faces belong on the chart, not here. */
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+             "Helvetica Neue", Arial, sans-serif;
+  --font-chrome: var(--font-ui);
+  --font-stamp: var(--font-ui);
+
+  /* header / chrome colours — plain, not a warm printed plate */
+  --paper: #f4f2ec;
+  --paper-edge: #cbb384;
+  --chrome-ink: #ecebe6;          /* near-white text on the dark ground */
+  --chrome-ink-dim: #9b9992;
+  --chrome-line: rgba(255, 255, 255, .14);
 
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
 }
 
 * { box-sizing: border-box; }
+
+:root {
+  --masthead-h: 56px;
+}
 
 html, body {
   margin: 0;
@@ -72,11 +117,12 @@ html, body {
   overflow: hidden;
 }
 
+/* the desk the chart is unrolled on */
 body {
   font-family: var(--font-body);
   color: var(--ink);
   background:
-    radial-gradient(120% 90% at 50% 0%, #3c4c52 0%, #26333a 55%, #1a2429 100%);
+    radial-gradient(120% 90% at 50% 0%, #4a3a28 0%, #2e241a 55%, #1d1610 100%);
   display: flex;
   flex-direction: column;
 }
@@ -86,36 +132,46 @@ body {
    --------------------------------------------------------- */
 
 .masthead {
-  flex: 0 0 auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 18px 26px 14px;
-  color: var(--cream);
-  border-bottom: 1px solid rgba(244, 231, 206, .14);
+  padding: 12px 24px;
+  color: var(--chrome-ink);
+  /* frosted glass over the map scrolling beneath */
+  background: rgba(78, 70, 58, .2);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid var(--chrome-line);
 }
 
 .masthead h1 {
+  position: relative;
   margin: 0;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(20px, 2.6vh, 30px);
-  letter-spacing: -0.02em;
-  font-variation-settings: "SOFT" 60, "WONK" 1;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: clamp(16px, 2.2vh, 21px);
+  letter-spacing: -.01em;
+  color: var(--chrome-ink);
 }
 
 .masthead h1 .arrow {
-  color: var(--red);
-  padding: 0 .12em;
+  color: var(--chrome-ink-dim);
+  padding: 0 .18em;
+  font-weight: 400;
 }
 
 .masthead__sub {
-  margin: 3px 0 0;
+  margin: 2px 0 0;
+  font-family: var(--font-ui);
   font-size: 12px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: rgba(244, 231, 206, .5);
+  letter-spacing: .01em;
+  color: var(--chrome-ink-dim);
 }
 
 .masthead__meta {
@@ -128,45 +184,47 @@ body {
 
 .stat__num {
   display: block;
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
   font-weight: 600;
-  font-size: clamp(18px, 2.4vh, 26px);
-  color: var(--cream);
+  font-size: clamp(17px, 2.2vh, 22px);
+  color: var(--chrome-ink);
 }
 
 .stat__label {
   font-size: 10px;
-  letter-spacing: .18em;
+  letter-spacing: .08em;
   text-transform: uppercase;
-  color: rgba(244, 231, 206, .45);
+  color: var(--chrome-ink-dim);
 }
 
 .btn {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--cream);
-  background: var(--red-deep);
-  border: 1px solid rgba(244, 231, 206, .2);
-  border-radius: 2px;
-  padding: 8px 14px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--chrome-ink);
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid var(--chrome-line);
+  border-radius: 7px;
+  padding: 7px 14px;
   cursor: pointer;
-  transition: background .2s, transform .12s;
+  transition: background .16s, border-color .16s;
 }
 
-.btn:hover { background: var(--red); }
-.btn:active { transform: translateY(1px); }
+.btn:hover {
+  background: rgba(255, 255, 255, .12);
+  border-color: rgba(255, 255, 255, .28);
+}
+.btn:active { background: rgba(255, 255, 255, .08); }
 
 .btn--ghost {
   background: transparent;
-  color: rgba(244, 231, 206, .7);
+  border-color: transparent;
+  color: var(--chrome-ink-dim);
 }
+.btn--ghost:hover { background: rgba(255, 255, 255, .08); color: var(--chrome-ink); }
 
-.btn--ghost:hover { background: rgba(244, 231, 206, .12); }
-
-/* the "jump to today" button — a compass rose instead of a label */
+/* the "jump to today" button — a compass rose stamped on the plate */
 .btn--compass {
   display: grid;
   place-items: center;
@@ -174,20 +232,23 @@ body {
   height: 38px;
   padding: 0;
   border-radius: 50%;
+  border-color: var(--chrome-ink-dim);
 }
+.btn--compass:hover { background: rgba(240, 228, 198, .1); }
 
 .btn--compass svg {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   fill: none;
-  stroke: var(--cream);
-  stroke-width: 1.6;
+  stroke: var(--chrome-ink);
+  stroke-width: 1.4;
   stroke-linejoin: round;
 }
 
-.btn--compass__needle { fill: var(--cream); stroke: none; }
+.btn--compass__needle { fill: var(--red); stroke: none; }
 
 body.is-vertical .btn--compass { width: 40px; height: 40px; }
+body.is-vertical .btn--compass svg { width: 32px; height: 32px; }
 
 /* ---------------------------------------------------------
    The card itself
@@ -198,7 +259,7 @@ body.is-vertical .btn--compass { width: 40px; height: 40px; }
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
-  padding: 22px;
+  padding: calc(var(--masthead-h) + 16px) 22px 22px;
 }
 
 /* no scrollbar — the card is the only thing on screen */
@@ -213,7 +274,7 @@ body.is-vertical .btn--compass { width: 40px; height: 40px; }
 body.is-vertical .scroller {
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 0;
+  padding: var(--masthead-h) 0 0;
 }
 
 body.is-vertical .card {
@@ -222,9 +283,16 @@ body.is-vertical .card {
   border-radius: 0;
 }
 
+/* the sheet runs the other way on a phone, so the foxing has to tile
+   down it rather than along it */
+body.is-vertical .card {
+  background-size: 100% 760px, 100% 1130px, 100% 1670px, 100% 2290px, 100% 100%;
+  background-repeat: repeat-y;
+}
+
 /* the date sits under the door in both orientations */
 body.is-vertical .door__date {
-  font-size: calc(var(--door) * .24);
+  font-size: calc(var(--door) * .30);
 }
 
 /* the header and controls need to grow too, not just the map */
@@ -253,15 +321,6 @@ body.is-vertical .stat__label { font-size: 9px; }
 body.is-vertical .btn { padding: 10px 16px; font-size: 13px; }
 body.is-vertical .btn--compass { padding: 0; }
 
-body.is-vertical .devbar {
-  padding: 10px 18px;
-  font-size: 13px;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-body.is-vertical .devbar__note { display: none; }
-
 body.is-vertical .modal__panel {
   width: min(94vw, 440px);
   padding: 28px 26px 32px;
@@ -269,7 +328,6 @@ body.is-vertical .modal__panel {
 
 body.is-vertical .modal__title { font-size: 27px; }
 body.is-vertical .modal__artist { font-size: 15px; }
-body.is-vertical .modal__place { font-size: 12px; }
 body.is-vertical .modal__link { font-size: 15px; padding: 14px 24px; }
 body.is-vertical .modal__stage { width: 268px; height: 232px; }
 body.is-vertical .modal__sleeve { width: 232px; height: 232px; }
@@ -304,13 +362,13 @@ body.is-vertical .map-sea {
   transform: translateX(8px);
 }
 
-body.is-vertical .city__name { font-size: 76px; stroke-width: 7; }
-body.is-vertical .city--town .city__name { font-size: 54px; stroke-width: 6; }
+body.is-vertical .city__name { font-size: 92px; stroke-width: 8; }
+body.is-vertical .city--town .city__name { font-size: 66px; stroke-width: 7; }
 body.is-vertical .city__dot { stroke-width: 8; }
 body.is-vertical .city--town .city__dot { stroke-width: 6; }
 
-body.is-vertical .veg { stroke-width: 6; }
-body.is-vertical .sea-glyph { stroke-width: 5; }
+body.is-vertical .veg { stroke-width: 3.6; }
+body.is-vertical .sea-glyph { stroke-width: 3.2; }
 
 body.is-vertical .pin__cap { font-size: 34px; }
 body.is-vertical .pin__cap--city { font-size: 28px; letter-spacing: 3px; }
@@ -319,13 +377,28 @@ body.is-vertical .pin--scene .pin__cap--where { font-size: 25px; }
 
 body.is-vertical .compass__n { font-size: 56px; }
 
+/* The sheet: an old chart, foxed and sun-bleached in patches. The
+   stains are a handful of soft radial blooms laid over the base tint —
+   irregular enough that no two stretches of the card look alike as you
+   scroll along it. */
 .card {
   position: relative;
   height: 100%;
   flex: 0 0 auto;
   overflow: hidden;
 
-  background: linear-gradient(168deg, var(--kraft-1), var(--kraft-3));
+  /* Each stain layer repeats on its own period, so they beat against
+     one another instead of marching in step — the card is thousands of
+     pixels long and a single blot stretched over all of it reads as no
+     blot at all. */
+  background:
+    radial-gradient(50% 62% at 30% 18%, rgba(146, 103, 48, .17), transparent 72%),
+    radial-gradient(44% 54% at 62% 86%, rgba(124, 86, 38, .16), transparent 74%),
+    radial-gradient(56% 70% at 18% 74%, rgba(158, 118, 60, .13), transparent 70%),
+    radial-gradient(40% 50% at 80% 34%, rgba(118, 82, 36, .15), transparent 74%),
+    linear-gradient(168deg, var(--kraft-1), var(--kraft-2) 55%, var(--kraft-3));
+  background-size: 760px 100%, 1130px 100%, 1670px 100%, 2290px 100%, 100% 100%;
+  background-repeat: repeat-x;
   border-radius: 3px;
   box-shadow:
     0 26px 60px rgba(0, 0, 0, .55),
@@ -341,19 +414,20 @@ body.is-vertical .compass__n { font-size: 56px; }
   background-image: var(--grain);
   background-size: 300px 300px;
   mix-blend-mode: multiply;
-  opacity: .3;
+  opacity: .26;
   pointer-events: none;
 }
 
-/* worn edge */
+/* the sheet's edges: scorched and thumbed darker than the middle, the
+   way a chart that's been rolled and unrolled for years goes */
 .card::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 9;
-  border: 1px solid rgba(109, 76, 43, .5);
+  border: 1px solid rgba(96, 68, 34, .55);
   border-radius: inherit;
-  box-shadow: 0 0 30px rgba(58, 40, 22, .5) inset;
+  background: rgba(105, 73, 34, .05);
   pointer-events: none;
 }
 
@@ -413,6 +487,7 @@ body.is-vertical .compass__n { font-size: 56px; }
 /* Countries and regions are waypoints on the path, so they sit over the
    route line — the halo keeps them legible where it runs through. */
 .map-country {
+  font-family: var(--font-map-place);
   font-size: 300px;
   font-weight: 700;
   letter-spacing: 96px;
@@ -424,6 +499,7 @@ body.is-vertical .compass__n { font-size: 56px; }
 }
 
 .map-region {
+  font-family: var(--font-map-place);
   font-size: 150px;
   font-weight: 400;
   letter-spacing: 46px;
@@ -435,7 +511,8 @@ body.is-vertical .compass__n { font-size: 56px; }
 }
 
 .map-sea {
-  font-style: italic;
+  font-family: var(--font-map-hand);
+  font-style: normal;            /* Terra Ignota ships Regular only */
   font-weight: 400;
   letter-spacing: 26px;
   transform: translateX(13px);
@@ -477,24 +554,26 @@ body.is-vertical .compass__n { font-size: 56px; }
 .veg {
   fill: none;
   stroke: currentColor;
-  stroke-width: 7;
+  stroke-width: 4.5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: .48;
+  opacity: .6;
 }
 
 /* what people put there rather than what grows there — drawn in the
    map's own ink, a shade darker than the vegetation around it */
-.veg--built { opacity: .42; stroke-width: 6; }
+.veg--built { opacity: .55; stroke-width: 4; }
 
-/* out on the water */
+/* out on the water. A <use> scales the stroke along with the shape, and
+   the craft are stamped at 1.5–2.2x, so this reads about twice as heavy
+   on the water as it does here — keep it under the land weight. */
 .sea-glyph {
   fill: none;
   stroke: var(--sea-line);
-  stroke-width: 6;
+  stroke-width: 4;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: .5;
+  opacity: .6;
   color: var(--sea-line);
 }
 
@@ -503,10 +582,10 @@ body.is-vertical .compass__n { font-size: 56px; }
    snowcap — is baked into the definition and picks `currentColor` up
    from here. */
 .sea-glyph--ship,
-.sea-glyph--junk { color: var(--map-ink); stroke: var(--map-ink); opacity: .42; }
-.sea-glyph--wind { opacity: .3; fill: var(--sea-line); fill-opacity: .3; }
+.sea-glyph--junk { color: var(--map-ink); stroke: var(--map-ink); opacity: .62; }
+.sea-glyph--wind { opacity: .38; fill: var(--sea-line); fill-opacity: .3; }
 .sea-glyph--whale,
-.sea-glyph--fish { fill: var(--sea-line); fill-opacity: .18; opacity: .42; }
+.sea-glyph--fish { fill: var(--sea-line); fill-opacity: .22; opacity: .58; }
 
 /* cities — a dot printed on the route, name lifted just off the line */
 .city { cursor: pointer; }
@@ -525,22 +604,23 @@ body.is-vertical .compass__n { font-size: 56px; }
    and size already carry most of the hierarchy, opacity only needs to
    finish the job. */
 .city__name {
-  font-size: 118px;
+  font-family: var(--font-map-place);
+  font-size: 142px;
   font-weight: 900;
   letter-spacing: 2px;
   fill: var(--label-point);
   opacity: .74;
   stroke: var(--label-halo);
-  stroke-width: 9;
+  stroke-width: 11;
   transition: fill .4s, opacity .4s;
 }
 
 /* tier four: the smaller stops along the way */
 .city--town .city__name {
-  font-size: 78px;
+  font-size: 94px;
   font-weight: 700;
   opacity: .58;
-  stroke-width: 7;
+  stroke-width: 9;
 }
 
 .city--town .city__dot { stroke-width: 8; opacity: .6; }
@@ -641,17 +721,17 @@ body.is-vertical .compass__n { font-size: 56px; }
    a change of colour. */
 .route__ghost {
   stroke: var(--map-ink);
-  stroke-width: 8;
+  stroke-width: 9;
   stroke-linecap: round;
-  stroke-dasharray: 34 26;
-  opacity: .22;
+  stroke-dasharray: 8 34;
+  opacity: .34;
 }
 
 .route__walked {
   stroke: var(--map-ink);
-  stroke-width: 8;
+  stroke-width: 10;
   stroke-linecap: round;
-  opacity: .4;
+  opacity: .6;
 }
 
 /* ---------------------------------------------------------
@@ -701,14 +781,17 @@ body.is-vertical .compass__n { font-size: 56px; }
   place-items: center;
 }
 
-/* outside of the flap — printed cardboard */
+/* outside of the flap — a patch of the same chart, cut and hinged.
+   The wash across it is the map's own paper, so a shut door reads as
+   part of the sheet rather than as a card laid on top of it. */
 .door__face--front {
   background:
-    linear-gradient(155deg, var(--kraft-1) 0%, var(--kraft-2) 60%, var(--kraft-3) 100%);
+    radial-gradient(70% 70% at 30% 26%, rgba(255, 248, 228, .5), transparent 68%),
+    linear-gradient(155deg, var(--kraft-1) 0%, var(--kraft-2) 58%, var(--kraft-3) 100%);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, .35) inset,
-    0 -1px 0 rgba(0, 0, 0, .18) inset,
-    1px 1px 3px rgba(0, 0, 0, .22);
+    0 1px 0 rgba(255, 250, 232, .4) inset,
+    0 -1px 0 rgba(88, 60, 28, .2) inset,
+    1px 1px 3px rgba(70, 48, 22, .28);
 }
 
 .door__face--front::after {
@@ -722,13 +805,14 @@ body.is-vertical .compass__n { font-size: 56px; }
   border-radius: inherit;
 }
 
-/* die-cut perforation */
+/* the cut line, ruled in the same brown ink as the rest of the chart */
 .door__perf {
   position: absolute;
   inset: 2px;
-  border: 1px dashed rgba(106, 74, 43, .55);
+  border: 1px dashed rgba(69, 50, 28, .6);
   border-radius: 2px;
   pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(255, 250, 232, .22) inset;
 }
 
 /* inside of the flap, seen once it swings open */
@@ -741,11 +825,11 @@ body.is-vertical .compass__n { font-size: 56px; }
 .door__num {
   position: relative;
   font-family: var(--font-display);
-  font-weight: 900;
+  font-weight: 700;
   font-size: calc(var(--door) * .42);
-  color: rgba(59, 44, 30, .78);
-  font-variation-settings: "SOFT" 80, "WONK" 1;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, .3);
+  color: rgba(69, 50, 28, .8);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  text-shadow: 0 1px 0 rgba(255, 250, 232, .38);
   transform: rotate(var(--numtilt, 0deg));
   z-index: 1;
 }
@@ -757,12 +841,13 @@ body.is-vertical .compass__n { font-size: 56px; }
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
-  font-family: var(--font-display);
-  font-size: calc(var(--door) * .21);
-  font-weight: 600;
+  font-family: var(--font-map-hand);
+  font-style: normal;            /* Terra Ignota ships Regular only */
+  font-size: calc(var(--door) * .26);
+  font-weight: 500;
   letter-spacing: .04em;
-  color: rgba(63, 47, 30, .62);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, .22);
+  color: rgba(69, 50, 28, .66);
+  text-shadow: 0 1px 0 rgba(250, 242, 222, .3);
   pointer-events: none;
 }
 
@@ -784,7 +869,9 @@ body.is-vertical .compass__n { font-size: 56px; }
 }
 
 .door--today .door__face--front {
-  background: linear-gradient(155deg, #e8cb9d 0%, var(--kraft-1) 55%, var(--kraft-2) 100%);
+  background:
+    radial-gradient(70% 70% at 30% 26%, rgba(255, 251, 236, .62), transparent 68%),
+    linear-gradient(155deg, #f2e4c0 0%, var(--kraft-1) 55%, var(--kraft-2) 100%);
 }
 
 .door--today .door__num { color: var(--red-deep); }
@@ -857,28 +944,73 @@ body.is-vertical .compass__n { font-size: 56px; }
   border-radius: 50%;
 }
 
-/* cd */
+/* cd — the bare mirror surface, no printed art. The data area reads as
+   a metal disc under a thin film that splits the light: a repeating
+   spectrum broken up by a second offset sweep, and a bright glance of
+   light on one side falling to shadow on the other. */
 .disc--cd {
   background:
-    conic-gradient(from 210deg,
-      rgba(255, 190, 120, .55),
-      rgba(150, 220, 255, .5),
-      rgba(210, 160, 255, .5),
-      rgba(160, 255, 210, .45),
-      rgba(255, 190, 120, .55)),
-    radial-gradient(circle at 50% 50%, #d8dde2 0%, #9aa3ab 100%);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .6);
+    /* the specular glance and the shadow opposite it */
+    radial-gradient(circle at 32% 26%,
+      rgba(255, 255, 255, .62), rgba(255, 255, 255, 0) 48%),
+    radial-gradient(circle at 74% 82%,
+      rgba(12, 18, 28, .34), rgba(12, 18, 28, 0) 52%),
+    /* a second spectrum, offset and fainter, to break the regularity */
+    conic-gradient(from 30deg at 50% 50%,
+      hsl(190 55% 74% / .16), hsl(300 45% 76% / .16), hsl(45 65% 76% / .16),
+      hsl(190 55% 74% / .16), hsl(300 45% 76% / .16), hsl(45 65% 76% / .16),
+      hsl(190 55% 74% / .16)),
+    /* the main spectrum — ROYGBIV twice around */
+    conic-gradient(from 105deg at 50% 50%,
+      hsl(275 55% 74% / .36), hsl(210 62% 72% / .36), hsl(160 48% 70% / .34),
+      hsl(90 45% 72% / .32),  hsl(52 72% 74% / .36),  hsl(20 68% 72% / .36),
+      hsl(330 52% 74% / .34),
+      hsl(275 55% 74% / .36), hsl(210 62% 72% / .36), hsl(160 48% 70% / .34),
+      hsl(90 45% 72% / .32),  hsl(52 72% 74% / .36),  hsl(20 68% 72% / .36),
+      hsl(330 52% 74% / .34), hsl(275 55% 74% / .36)),
+    /* the metal underneath, with the clear plastic rim at the edge */
+    radial-gradient(circle at 50% 50%,
+      #eef1f4 0%, #d7dde2 38%, #bcc4cb 66%, #cdd4d9 86%,
+      #aeb6bd 95%, #9aa3ab 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .6),
+              inset 0 0 0 1px rgba(255, 255, 255, .4),
+              inset 0 0 6px rgba(0, 0, 0, .18);
 }
 
-.disc--cd .disc__art {
-  width: 78%;
-  border-radius: 50%;
-  opacity: .92;
-  mix-blend-mode: luminosity;
+/* the written hub — an SVG sized to the whole disc, its centre exactly
+   the disc's centre, with the title inked in a ring around the hole */
+.disc__label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  overflow: visible;
+  pointer-events: none;
 }
+
+.disc__hub { fill: #f4f0e7; opacity: .93; }
+.disc__hubring { fill: none; stroke: rgba(0, 0, 0, .13); stroke-width: .6; }
+
+.disc__cap {
+  fill: #3a322c;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 6px;            /* starting guess — fitCdLabel() in calendar.js
+                               sets the real per-line size */
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.disc__cap--artist { fill: #5c5249; }
+.disc__dot { fill: #5c5249; }
 
 .disc__art {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   aspect-ratio: 1;
   background-size: cover;
   background-position: center;
@@ -889,6 +1021,9 @@ body.is-vertical .compass__n { font-size: 56px; }
 .disc::after {
   content: "";
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 11%;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -898,9 +1033,10 @@ body.is-vertical .compass__n { font-size: 56px; }
 }
 
 .disc--cd::after {
-  width: 15%;
-  background: rgba(20, 16, 12, .92);
-  box-shadow: 0 0 0 5px rgba(232, 238, 242, .5);
+  width: 11%;
+  background: #2a2320;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .5),
+              0 0 0 1.5px rgba(0, 0, 0, .18);
 }
 
 /* ---------------------------------------------------------
@@ -920,8 +1056,9 @@ body.is-vertical .compass__n { font-size: 56px; }
 .modal__scrim {
   position: absolute;
   inset: 0;
-  background: rgba(14, 20, 23, .74);
+  background: rgba(14, 20, 23, .72);
   backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   opacity: 0;
   transition: opacity .26s;
 }
@@ -933,16 +1070,19 @@ body.is-vertical .compass__n { font-size: 56px; }
   width: min(90vw, 400px);
   max-height: 92vh;
   overflow: auto;
-  padding: 26px 30px 30px;
+  padding: 30px 30px 32px;
   text-align: center;
   color: var(--ink);
-  border-radius: 4px;
+  border-radius: 2px;
 
-  background:
-    linear-gradient(168deg, #f6ecd6 0%, #ecdfc2 100%);
+  /* a plain card of the same stock as the chart, held in a ruled frame */
+  background: linear-gradient(176deg, var(--paper), #e4d5b3);
   box-shadow:
-    0 30px 80px rgba(0, 0, 0, .6),
-    0 0 0 1px rgba(109, 76, 43, .35);
+    0 34px 80px rgba(0, 0, 0, .62),
+    0 0 0 1px var(--paper-edge),
+    inset 0 0 0 1px rgba(255, 252, 240, .5),
+    inset 0 0 0 5px var(--paper),
+    inset 0 0 0 6px rgba(120, 92, 48, .3);
 
   opacity: 0;
   transform: translateY(14px) scale(.97);
@@ -966,39 +1106,49 @@ body.is-vertical .compass__n { font-size: 56px; }
 
 .modal__close {
   position: absolute;
-  top: 8px;
+  top: 10px;
   right: 12px;
   border: 0;
   background: none;
-  font-size: 26px;
+  font-family: var(--font-chrome);
+  font-size: 22px;
   line-height: 1;
-  color: rgba(59, 44, 30, .45);
+  color: var(--ink-soft);
   cursor: pointer;
   padding: 4px 6px;
   z-index: 2;
+  transition: color .15s, transform .15s;
 }
 
-.modal__close:hover { color: var(--red-deep); }
+.modal__close:hover { color: var(--red-deep); transform: rotate(90deg); }
 
 /* the close button is focused on open — don't flash a ring for that */
 .modal__close:focus:not(:focus-visible) { outline: none; }
 
+/* the day line, struck like a rubber date-stamp */
 .modal__day {
+  display: inline-block;
   margin: 0 0 18px;
-  font-size: 10px;
-  letter-spacing: .24em;
+  padding: 3px 12px 2px;
+  font-family: var(--font-stamp);
+  font-size: 12px;
+  letter-spacing: .22em;
   text-transform: uppercase;
   color: var(--red-deep);
+  border: 1.5px solid var(--red-deep);
+  border-radius: 2px;
+  transform: rotate(-1.6deg);
+  opacity: .9;
 }
 
 .modal__day em {
   font-style: normal;
-  color: rgba(59, 44, 30, .5);
+  color: rgba(130, 43, 24, .62);
 }
 
 .modal__day em::before {
   content: "·";
-  padding: 0 .5em;
+  padding: 0 .45em;
 }
 
 /* the record sliding out of its sleeve */
@@ -1056,6 +1206,9 @@ body.is-vertical .compass__n { font-size: 56px; }
 
 .modal__disc .disc__art {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   aspect-ratio: 1;
   background-size: cover;
   background-position: center;
@@ -1064,11 +1217,14 @@ body.is-vertical .compass__n { font-size: 56px; }
 }
 
 .modal__disc.disc--vinyl .disc__art { width: 40%; }
-.modal__disc.disc--cd .disc__art { width: 78%; opacity: .92; mix-blend-mode: luminosity; }
+
 
 .modal__disc::after {
   content: "";
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 11%;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -1078,100 +1234,120 @@ body.is-vertical .compass__n { font-size: 56px; }
 }
 
 .modal__disc.disc--cd::after {
-  width: 15%;
-  background: rgba(20, 16, 12, .92);
-  box-shadow: 0 0 0 5px rgba(232, 238, 242, .5);
+  width: 11%;
+  background: #2a2320;
+  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, .5),
+              0 0 0 2px rgba(0, 0, 0, .18);
 }
 
 .modal__title {
   position: relative;
   margin: 0;
-  font-family: var(--font-display);
-  font-weight: 600;
+  font-family: var(--font-ui);
+  font-weight: 700;
   font-size: 24px;
-  line-height: 1.15;
+  line-height: 1.16;
   letter-spacing: -.01em;
+  color: #2c2013;
 }
 
 .modal__artist {
   position: relative;
-  margin: 6px 0 0;
-  font-size: 14px;
-  color: rgba(59, 44, 30, .68);
-}
-
-.modal__place {
-  position: relative;
-  margin: 16px 0 22px;
-  font-size: 11px;
-  font-style: italic;
+  margin: 7px 0 0;
+  font-family: var(--font-stamp);
+  font-size: 15px;
   letter-spacing: .04em;
-  color: rgba(59, 44, 30, .5);
+  color: var(--ink-soft);
 }
 
-.modal__place::before,
-.modal__place::after {
-  content: "—";
-  padding: 0 .5em;
-  opacity: .5;
-}
-
+/* the link out — a plain play button */
 .modal__link {
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  padding: 11px 20px;
+  margin-top: 26px;
+  padding: 11px 22px 11px 18px;
   border-radius: 999px;
   background: #1c1c1e;
   color: #fff;
-  font-size: 13px;
+  font-family: var(--font-ui);
+  font-size: 15px;
   font-weight: 500;
+  letter-spacing: 0;
   text-decoration: none;
-  transition: transform .14s, box-shadow .2s;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, .32);
+  transition: background .16s, transform .12s;
 }
 
-.modal__link:hover { transform: translateY(-1px); box-shadow: 0 7px 20px rgba(0, 0, 0, .4); }
+.modal__link:hover { background: #333; }
+.modal__link:active { transform: translateY(1px); }
 .modal__link[hidden] { display: none; }
 
-.modal__link-mark {
-  width: 17px;
-  height: 17px;
-  border-radius: 4px;
-  background: linear-gradient(160deg, #fb5c74, #fa233b);
-  position: relative;
-}
-
-.modal__link-mark::after {
-  content: "";
-  position: absolute;
-  left: 5.5px;
-  top: 3.5px;
-  width: 5px;
-  height: 7px;
-  border-left: 1.6px solid #fff;
-  border-radius: 1px;
-  box-shadow: -1.6px 6px 0 -1.2px #fff;
+.modal__link-play {
+  width: 0;
+  height: 0;
+  flex: none;
+  border-style: solid;
+  border-width: 6px 0 6px 10px;
+  border-color: transparent transparent transparent currentColor;
 }
 
 .modal__pending {
   position: relative;
-  margin: 0;
-  font-size: 12px;
-  font-style: italic;
-  color: rgba(59, 44, 30, .45);
+  margin: 24px 0 0;
+  font-family: var(--font-stamp);
+  font-size: 13px;
+  letter-spacing: .03em;
+  color: var(--ink-soft);
 }
 
 /* --- the city view --- */
 
 /* the city view gets a wider panel — the photo is the point of it */
-.modal--city { width: min(94vw, 580px); }
+/* The photo popup is the one panel that isn't a piece of the map's own
+   paper: a plain white card, the picture edge to edge, and a deep chin
+   under it carrying the caption. Nothing else on it. */
+.modal__panel.modal--city {
+  width: min(94vw, 580px);
+  padding: 14px 14px 0;                    /* the print's own white margin */
+  overflow: hidden;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 34px 80px rgba(0, 0, 0, .62);
+}
+
+body.is-vertical .modal__panel.modal--city {
+  width: min(94vw, 460px);
+  padding: 12px 12px 0;
+}
+
+.modal--city::before { display: none; }      /* no grain on white stock */
+
+/* tucked inside the margin, over the top corner of the picture — so it
+   needs its own ground to stay legible against whatever it lands on */
+.modal--city .modal__close {
+  top: 22px;
+  right: 22px;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  font-size: 19px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .92);
+  color: #3a372f;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .28);
+}
+
+body.is-vertical .modal--city .modal__close { top: 20px; right: 20px; }
 
 .modal__photo {
   position: relative;
   margin: 0 0 22px;
 }
+
+.modal--city .modal__photo { margin: 0; }
 
 .modal__photo-paper {
   position: relative;
@@ -1184,6 +1360,14 @@ body.is-vertical .compass__n { font-size: 56px; }
     0 0 0 12px var(--photo-frame),
     0 0 0 13px rgba(0, 0, 0, .12);
   overflow: hidden;
+}
+
+.modal--city .modal__photo-paper,
+body.is-vertical .modal--city .modal__photo-paper {
+  width: 100%;
+  min-height: 0;
+  background: #fff;
+  box-shadow: none;
 }
 
 /* the ink drawing is the stand-in until a photo loads over it */
@@ -1221,52 +1405,30 @@ body.is-vertical .compass__n { font-size: 56px; }
 
 .modal__photo figcaption {
   margin-top: 22px;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 14px;
-  color: rgba(59, 44, 30, .62);
+  font-family: var(--font-stamp);
+  font-size: 15px;
+  letter-spacing: .03em;
+  color: var(--ink-soft);
 }
 
-/* ---------------------------------------------------------
-   Prototype-only controls
-   --------------------------------------------------------- */
-
-.devbar {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 9px 26px;
-  background: rgba(0, 0, 0, .34);
-  border-top: 1px solid rgba(244, 231, 206, .1);
-  color: rgba(244, 231, 206, .75);
-  font-size: 12px;
+/* the chin: far deeper than the margin around the picture, the way a
+   print's is */
+.modal--city .modal__photo figcaption,
+body.is-vertical .modal--city .modal__photo figcaption {
+  margin: 0;
+  padding: 24px 18px 30px;
+  background: #fff;
+  font-size: 15px;
+  color: #3a372f;
 }
 
-.devbar label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  font-size: 10px;
-}
-
-.devbar input {
-  font-family: var(--font-body);
-  font-size: 12px;
-  padding: 4px 7px;
-  border-radius: 2px;
-  border: 1px solid rgba(244, 231, 206, .25);
-  background: rgba(244, 231, 206, .08);
-  color: var(--cream);
-  color-scheme: dark;
-}
-
-.devbar__note {
-  margin-left: auto;
-  font-style: italic;
-  color: rgba(244, 231, 206, .35);
+.modal--city .modal__photo-paper img,
+body.is-vertical .modal--city .modal__photo-paper img {
+  width: 100%;
+  max-width: 100%;
+  max-height: min(64vh, 540px);
+  object-fit: cover;
+  margin: 0;
 }
 
 /* ---------------------------------------------------------
@@ -1279,3 +1441,112 @@ body.is-vertical .compass__n { font-size: 56px; }
   .door--today .door__perf { animation: none; opacity: .9; }
   .scroller { scroll-behavior: auto; }
 }
+
+/* ---------------------------------------------------------
+   The welcome
+
+   Shown once per device, before the card has been touched. Same paper
+   as the modal panels so it reads as part of the same object, but it
+   sits above everything and takes the whole screen's attention.
+   --------------------------------------------------------- */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.intro[hidden] { display: none; }
+
+.intro__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(14, 20, 23, .74);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.intro--in .intro__scrim { opacity: 1; }
+
+.intro__panel {
+  position: relative;
+  width: min(92vw, 460px);
+  max-height: 88vh;
+  overflow: auto;
+  padding: 34px 32px 30px;
+  text-align: center;
+  color: var(--ink);
+  border-radius: 2px;
+
+  background: linear-gradient(176deg, var(--paper), #e4d5b3);
+  box-shadow:
+    0 34px 80px rgba(0, 0, 0, .62),
+    0 0 0 1px var(--paper-edge),
+    inset 0 0 0 1px rgba(255, 252, 240, .5),
+    inset 0 0 0 5px var(--paper),
+    inset 0 0 0 6px rgba(120, 92, 48, .3);
+
+  opacity: 0;
+  transform: translateY(16px) scale(.97);
+  transition: opacity .3s cubic-bezier(.2, .8, .2, 1),
+              transform .3s cubic-bezier(.2, .8, .2, 1);
+}
+
+.intro--in .intro__panel { opacity: 1; transform: none; }
+
+.intro__panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  background-size: 300px 300px;
+  mix-blend-mode: multiply;
+  opacity: .3;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.intro__title {
+  position: relative;
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-size: 27px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--red-deep);
+}
+
+.intro__text {
+  position: relative;
+  margin: 0 0 26px;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.62;
+  color: var(--ink-soft);
+  text-align: left;
+}
+
+.intro__ok {
+  position: relative;
+  padding: 13px 34px;
+  font-size: 15px;
+  letter-spacing: .04em;
+  color: var(--paper);
+  background: var(--red-deep);
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .16s, transform .16s;
+}
+
+.intro__ok:hover { background: #6d2313; transform: translateY(-1px); }
+.intro__ok:active { transform: none; }
+
+body.is-vertical .intro__panel { padding: 30px 24px 26px; }
+body.is-vertical .intro__title { font-size: 24px; }
+body.is-vertical .intro__text { font-size: 14.5px; }

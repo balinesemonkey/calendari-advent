@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/calendar.css?v=5">
+<link rel="stylesheet" href="css/calendar.css?v=28">
 </head>
 <body>
 
@@ -20,9 +20,12 @@
   <div class="masthead__meta">
     <button class="btn btn--compass" id="jumpToday" aria-label="Avui" title="Avui">
       <svg viewBox="0 0 32 32" aria-hidden="true">
-        <circle cx="16" cy="16" r="12.5"/>
-        <circle cx="16" cy="16" r="8.5" opacity=".5"/>
-        <path class="btn--compass__needle" d="M16 6.5 L20 16 L16 25.5 L12 16 Z"/>
+        <circle cx="16" cy="16" r="13.5"/>
+        <circle cx="16" cy="16" r="10.5" opacity=".4"/>
+        <path d="M16 16 L23 9 M16 16 L23 23 M16 16 L9 23 M16 16 L9 9" opacity=".55"/>
+        <path d="M16 2.5 L18.2 13.8 L29.5 16 L18.2 18.2 L16 29.5 L13.8 18.2 L2.5 16 L13.8 13.8 Z"/>
+        <path class="btn--compass__needle" d="M16 2.5 L18.2 14 L16 16 L13.8 14 Z"/>
+        <circle cx="16" cy="16" r="2.3"/>
       </svg>
     </button>
   </div>
@@ -61,17 +64,26 @@
   </div>
 </div>
 
-<div class="devbar">
-  <label>Data de previsualització
-    <input type="date" id="devDate" min="2026-08-18" max="2026-12-20">
-  </label>
-  <button class="btn btn--ghost" id="devReset">Reinicia les obertes</button>
-  <span class="devbar__note">controls del prototip — no formen part del producte final</span>
+<div class="intro" id="intro" hidden>
+  <div class="intro__scrim"></div>
+  <div class="intro__panel" role="dialog" aria-modal="true"
+       aria-labelledby="introTitle">
+    <h2 class="intro__title" id="introTitle">Benvinguda al nostre viatge</h2>
+    <p class="intro__text">
+      Aquest calendari recorre el camí de Bali fins a Barcelona, un dia
+      cada dia. Cada matí s'obre una porta nova amb una cançó de les
+      nostres, i el mapa avança una mica més cap a casa. Només pots obrir
+      la porta d'avui: les que vindran es queden tancades fins que arribi
+      el seu dia, i les que ja has obert hi són sempre que les vulguis
+      tornar a escoltar. Toca les fotos del mapa per veure on som.
+    </p>
+    <button class="btn intro__ok" id="introOk">Entesos</button>
+  </div>
 </div>
 
-<script src="js/songs.js?v=5"></script>
-<script src="js/scenes.js?v=5"></script>
-<script src="js/map.js?v=5"></script>
-<script src="js/calendar.js?v=5"></script>
+<script src="js/songs.js?v=28"></script>
+<script src="js/scenes.js?v=28"></script>
+<script src="js/map.js?v=28"></script>
+<script src="js/calendar.js?v=28"></script>
 </body>
 </html>

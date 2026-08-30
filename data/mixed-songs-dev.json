@@ -1,302 +1,81 @@
 [
   {
-    "title": "Resistance",
-    "artist": "Muse",
-    "url": "https://music.apple.com/es/album/resistance/991509751?i=991509845&l=en-GB",
+    "title": "Lápiz y tinta",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/search?term=L%C3%A1piz%20y%20tinta%20El%20%C3%9Altimo%20de%20la%20Fila",
     "listened_by": [
-      "nil"
+      "nil",
+      "carla"
     ],
-    "nil_rank": 27,
-    "carla_rank": null,
-    "position": 97
+    "nil_rank": 77,
+    "carla_rank": 33,
+    "position": 17
   },
   {
-    "title": "Vivir Sin Aire (2019 Remaster)",
-    "artist": "Maná",
-    "url": "https://music.apple.com/es/album/vivir-sin-aire/257823076?i=257823107&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 18,
-    "carla_rank": null,
-    "position": 34
-  },
-  {
-    "title": "Vespre",
-    "artist": "Els Pets",
-    "url": "https://music.apple.com/es/album/vespre-remasteritzada-2025/1794078656?i=1794078659&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 67,
-    "carla_rank": null,
-    "position": 134
-  },
-  {
-    "title": "The Miracle (Of Joey Ramone)",
+    "title": "Sometimes You Can't Make It on Your Own",
     "artist": "U2",
-    "url": "https://music.apple.com/es/album/the-miracle-of-joey-ramone/1444749940?i=1444749981&l=en-GB",
+    "url": "https://music.apple.com/es/album/u218-singles-deluxe-edition/1440729856?i=1440730038&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 75,
+    "nil_rank": 90,
     "carla_rank": null,
-    "position": 76
+    "position": 84
   },
   {
-    "title": "Tutto Bene",
-    "artist": "Pole.",
-    "url": "https://music.apple.com/es/album/tutto-bene/1563307999?i=1563308000&l=en-GB",
+    "title": "Tango Suicida",
+    "artist": "Extremoduro",
+    "url": "https://music.apple.com/es/album/tango-suicida/436726144?i=436726149&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 44,
+    "carla_rank": null,
+    "position": 53
+  },
+  {
+    "title": "Amiga De Ningú",
+    "artist": "OQUES GRASSES",
+    "url": "https://music.apple.com/es/album/amiga-de-ning%C3%BA/1729835006?i=1729835019&l=en-GB",
     "listened_by": [
       "carla"
     ],
     "nil_rank": null,
-    "carla_rank": 7,
-    "position": 87
+    "carla_rank": 49,
+    "position": 117
   },
   {
-    "title": "Eres",
-    "artist": "Café Tacvba",
-    "url": "https://music.apple.com/es/album/eres/1444184083?i=1444184596&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 74,
-    "carla_rank": null,
-    "position": 143
-  },
-  {
-    "title": "Sin llaves",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/sin-llaves/1048590196?i=1048592406&l=en-GB",
-    "listened_by": [
-      "nil",
-      "carla"
-    ],
-    "nil_rank": 32,
-    "carla_rank": 41,
-    "position": 13
-  },
-  {
-    "title": "Llanto de Pasión",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/llanto-de-pasi%C3%B3n/1048590196?i=1048591864&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 22,
-    "position": 40
-  },
-  {
-    "title": "Canta por Mí (En Directo)",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/canta-por-m%C3%AD-en-directo/1048590196?i=1048592419&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 63,
-    "carla_rank": null,
-    "position": 66
-  },
-  {
-    "title": "Copenhague",
-    "artist": "Valeria Castro",
-    "url": "https://music.apple.com/es/album/copenhague/1494683879?i=1494683881&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 47,
-    "position": 115
-  },
-  {
-    "title": "Cercles",
-    "artist": "Sopa De Cabra",
-    "url": "https://music.apple.com/es/album/cercles/1046542078?i=1046542655&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 98,
-    "carla_rank": null,
-    "position": 161
-  },
-  {
-    "title": "Psycho",
-    "artist": "Muse",
-    "url": "https://music.apple.com/es/album/psycho/973555620?i=973556122&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 60,
-    "carla_rank": null,
-    "position": 128
-  },
-  {
-    "title": "Tu Me Salvaste",
+    "title": "Somos Mar y Arena",
     "artist": "Maná",
-    "url": "https://music.apple.com/es/album/tu-me-salvaste/219381180?i=219381334&l=en-GB",
+    "url": "https://music.apple.com/es/album/somos-mar-y-arena/219381180?i=219381388&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 28,
+    "nil_rank": 20,
     "carla_rank": null,
-    "position": 42
+    "position": 37
   },
   {
-    "title": "Como la cabeza al sombrero (2008 Remaster)",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/como-la-cabeza-al-sombrero-2008-remaster/1515547759?i=1515547766&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 67,
-    "position": 71
-  },
-  {
-    "title": "Si Te Vienes Conmigo",
-    "artist": "Manolo García",
-    "url": "https://music.apple.com/es/album/si-te-vienes-conmigo-gira-geometr%C3%ADa-del-rayo-concierto/1442014584?i=1442015415&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 40,
-    "position": 50
-  },
-  {
-    "title": "Soy un Truhán, Soy un Señor",
-    "artist": "Julio Iglesias",
-    "url": "https://music.apple.com/es/album/soy-un-truh%C3%A1n-soy-un-se%C3%B1or/171261208?i=171261242&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 61,
-    "position": 130
-  },
-  {
-    "title": "Solo Quiero Bailar",
-    "artist": "Zenttric",
-    "url": "https://music.apple.com/es/album/solo-quiero-bailar/732185013?i=732185024&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 55,
-    "position": 123
-  },
-  {
-    "title": "Si Te Vas…",
-    "artist": "Extremoduro",
-    "url": "https://music.apple.com/es/album/si-te-vas/436726144?i=436726148&l=en-GB",
-    "listened_by": [
-      "nil",
-      "carla"
-    ],
-    "nil_rank": 87,
-    "carla_rank": 11,
-    "position": 16
-  },
-  {
-    "title": "Michelle",
-    "artist": "The Beatles",
-    "url": "https://music.apple.com/es/album/michelle/1441164359?i=1441164629&l=en-GB",
+    "title": "The Angel (North London Forever)",
+    "artist": "Louis Dunford",
+    "url": "https://music.apple.com/es/album/the-angel-north-london-forever/1609653205?i=1609653538&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 71,
+    "nil_rank": 85,
     "carla_rank": null,
-    "position": 140
+    "position": 152
   },
   {
-    "title": "Aunque Es De Noche",
-    "artist": "ROSALÍA",
-    "url": "https://music.apple.com/es/album/aunque-es-de-noche/1444846102?i=1444846107&l=en-GB",
+    "title": "Huesos",
+    "artist": "Los Burros",
+    "url": "https://music.apple.com/es/album/huesos/100997864?i=100997744&l=en-GB",
     "listened_by": [
       "carla"
     ],
     "nil_rank": null,
-    "carla_rank": 23,
-    "position": 96
-  },
-  {
-    "title": "Estoy Alegre",
-    "artist": "Manolo García",
-    "url": "https://music.apple.com/es/album/estoy-alegre/473235325?i=473236053&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 50,
-    "carla_rank": null,
-    "position": 57
-  },
-  {
-    "title": "Un Año y Otro Año",
-    "artist": "Manolo García",
-    "url": "https://music.apple.com/es/album/un-a%C3%B1o-y-otro-a%C3%B1o/473235325?i=473235328&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 30,
-    "position": 44
-  },
-  {
-    "title": "Abril 74",
-    "artist": "Lluís Llach",
-    "url": "https://music.apple.com/es/album/abril-74-en-directe/1445777052?i=1445777075&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 70,
-    "carla_rank": null,
-    "position": 138
-  },
-  {
-    "title": "Laia",
-    "artist": "Sau",
-    "url": "https://music.apple.com/es/album/laia-directe-1996-concert-al-palau-desports/527168224?i=527168238&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 52,
-    "carla_rank": null,
-    "position": 119
-  },
-  {
-    "title": "A Fuego",
-    "artist": "Extremoduro",
-    "url": "https://music.apple.com/es/album/a-fuego/63836966?i=63836935&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 32,
-    "position": 46
-  },
-  {
-    "title": "My Love",
-    "artist": "Kovacs",
-    "url": "https://music.apple.com/es/album/my-love/962853725?i=962853727&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 78,
-    "carla_rank": null,
-    "position": 146
-  },
-  {
-    "title": "Lo Quiero Todo",
-    "artist": "Manolo García",
-    "url": "https://music.apple.com/es/album/lo-quiero-todo/473235325?i=473236050&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 36,
-    "position": 48
+    "carla_rank": 34,
+    "position": 102
   },
   {
     "title": "Magnificent",
@@ -306,53 +85,9 @@
       "nil",
       "carla"
     ],
-    "nil_rank": 38,
+    "nil_rank": 39,
     "carla_rank": 25,
     "position": 10
-  },
-  {
-    "title": "Cómo Será Vivir en el Campo (GALLERY SESSION)",
-    "artist": "Depresión Sonora",
-    "url": "https://music.apple.com/es/album/c%C3%B3mo-ser%C3%A1-vivir-en-el-campo-gallery-session/1870846368?i=1870846371&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 69,
-    "position": 137
-  },
-  {
-    "title": "Luna llena",
-    "artist": "Beny Jr",
-    "url": "https://music.apple.com/es/album/luna-llena/1730813243?i=1730813630&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 75,
-    "position": 144
-  },
-  {
-    "title": "Sometimes You Can't Make It on Your Own",
-    "artist": "U2",
-    "url": "https://music.apple.com/es/album/u218-singles-deluxe-edition/1440729856?i=1440730038&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 89,
-    "carla_rank": null,
-    "position": 84
-  },
-  {
-    "title": "Stand Up Comedy",
-    "artist": "U2",
-    "url": "https://music.apple.com/es/album/stand-up-comedy/1445858931?i=1445858942&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 31,
-    "carla_rank": null,
-    "position": 45
   },
   {
     "title": "No Line on the Horizon",
@@ -367,302 +102,70 @@
     "position": 1
   },
   {
-    "title": "Remando sobre el polvo",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/remando-sobre-el-polvo/1709024472?i=1709025082&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 59,
-    "position": 64
-  },
-  {
-    "title": "Hoy Te la Meto Hasta las Orejas",
-    "artist": "Extremoduro",
-    "url": "https://music.apple.com/es/album/hoy-te-la-meto-hasta-las-orejas/63836966?i=63836944&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 9,
-    "position": 26
-  },
-  {
-    "title": "Un Alma de Papel",
-    "artist": "Manolo García",
-    "url": "https://music.apple.com/es/album/un-alma-de-papel/473235325?i=473236049&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 78,
-    "position": 79
-  },
-  {
-    "title": "No me acostumbro (2008 Remaster)",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/no-me-acostumbro-2008-remaster/1515725981?i=1515725991&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 71,
-    "position": 73
-  },
-  {
-    "title": "Wonderwall",
-    "artist": "Oasis",
-    "url": "https://music.apple.com/es/album/wonderwall/1517449896?i=1517449902&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 51,
-    "position": 59
-  },
-  {
-    "title": "Tango Suicida",
-    "artist": "Extremoduro",
-    "url": "https://music.apple.com/es/album/tango-suicida/436726144?i=436726149&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 43,
-    "carla_rank": null,
-    "position": 53
-  },
-  {
-    "title": "Street Of Dreams",
+    "title": "I Will Follow",
     "artist": "U2",
-    "url": "https://music.apple.com/es/album/street-of-dreams/6774729762?i=6774729765&l=en-GB",
+    "url": "https://music.apple.com/es/album/i-will-follow/1443189101?i=1443189106&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 57,
+    "nil_rank": 82,
     "carla_rank": null,
-    "position": 62
+    "position": 81
   },
   {
-    "title": "El camino de las utopías",
-    "artist": "Extremoduro",
-    "url": "https://music.apple.com/es/album/el-camino-de-las-utop%C3%ADas/727042203?i=727042756&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 57,
-    "position": 63
-  },
-  {
-    "title": "Antes de Morirme (feat. ROSALÍA)",
-    "artist": "C. Tangana",
-    "url": "https://music.apple.com/es/album/antes-de-morirme-feat-rosal%C3%ADa/1540122284?i=1540122298&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 10,
-    "position": 88
-  },
-  {
-    "title": "Plan fatal",
-    "artist": "Dani Fernández",
-    "url": "https://music.apple.com/es/album/plan-fatal/1592551738?i=1592552168&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 35,
-    "position": 104
-  },
-  {
-    "title": "Song for Someone",
+    "title": "With or Without You",
     "artist": "U2",
-    "url": "https://music.apple.com/es/album/song-for-someone/1444749940?i=1444750184&l=en-GB",
+    "url": "https://music.apple.com/es/album/u218-singles-deluxe-edition/1440729856?i=1440729857&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 12,
+    "nil_rank": 78,
     "carla_rank": null,
-    "position": 29
+    "position": 78
   },
   {
-    "title": "BESO",
-    "artist": "ROSALÍA & Rauw Alejandro",
-    "url": "https://music.apple.com/es/album/beso/1676343408?i=1676343411&l=en-GB",
+    "title": "Dakota",
+    "artist": "Stereophonics",
+    "url": "https://music.apple.com/es/album/dakota/1443178381?i=1443178943&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 96,
+    "carla_rank": null,
+    "position": 159
+  },
+  {
+    "title": "Juguete de Amor",
+    "artist": "Extrechinato y Tú",
+    "url": "https://music.apple.com/es/album/jugete-de-amor/101108338?i=101107735&l=en-GB",
     "listened_by": [
       "carla"
     ],
     "nil_rank": null,
-    "carla_rank": 17,
-    "position": 91
+    "carla_rank": 46,
+    "position": 113
   },
   {
-    "title": "Puta",
-    "artist": "Extremoduro",
-    "url": "https://music.apple.com/es/album/p-a/63836966?i=63836958&l=en-GB",
+    "title": "Solo Quiero Bailar",
+    "artist": "Zenttric",
+    "url": "https://music.apple.com/es/album/solo-quiero-bailar/732185013?i=732185024&l=en-GB",
     "listened_by": [
       "carla"
     ],
     "nil_rank": null,
-    "carla_rank": 8,
-    "position": 24
-  },
-  {
-    "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)",
-    "artist": "ROSALÍA",
-    "url": "https://music.apple.com/es/album/pienso-en-tu-mir%C3%A1-cap-3-celos/1392446564?i=1392447206&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 56,
+    "carla_rank": 55,
     "position": 124
   },
   {
-    "title": "Agost",
-    "artist": "Els Pets",
-    "url": "https://music.apple.com/es/album/agost/279858942?i=279858969&l=en-GB",
+    "title": "Que No",
+    "artist": "Café Tacvba",
+    "url": "https://music.apple.com/es/album/que-no/1215750794?i=1215750879&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 80,
+    "nil_rank": 65,
     "carla_rank": null,
-    "position": 148
-  },
-  {
-    "title": "Toxic",
-    "artist": "Britney Spears",
-    "url": "https://music.apple.com/es/album/toxic/264025392?i=264025629&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 53,
-    "carla_rank": null,
-    "position": 120
-  },
-  {
-    "title": "Todos Amamos Desesperadamente",
-    "artist": "Manolo García",
-    "url": "https://music.apple.com/es/album/todos-amamos-desesperadamente/473235325?i=473235327&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 18,
-    "position": 35
-  },
-  {
-    "title": "Estimar-te com la terra",
-    "artist": "Ginestà",
-    "url": "https://music.apple.com/es/album/estimar-te-com-la-terra/1483347447?i=1483347449&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 51,
-    "carla_rank": null,
-    "position": 118
-  },
-  {
-    "title": "Ya no danzo al son de los tambores (2008 Remaster)",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/ya-no-danzo-al-son-de-los-tambores-2008-remaster/1515547759?i=1515547767&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 79,
-    "position": 80
-  },
-  {
-    "title": "Dios de la lluvia (2008 Remaster)",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/dios-de-la-lluvia-2008-remaster/1515547759?i=1515547760&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 72,
-    "position": 74
-  },
-  {
-    "title": "Born to Die",
-    "artist": "Lana Del Rey",
-    "url": "https://music.apple.com/es/album/born-to-die/1779781213?i=1779781768&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 68,
-    "position": 136
-  },
-  {
-    "title": "En una Playa Calma",
-    "artist": "Manolo García",
-    "url": "https://music.apple.com/es/album/en-una-playa-calma/276995639?i=276995690&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 65,
-    "position": 69
-  },
-  {
-    "title": "Canta por mí",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/canta-por-m%C3%AD/1048590196?i=1048592418&l=en-GB",
-    "listened_by": [
-      "nil",
-      "carla"
-    ],
-    "nil_rank": 25,
-    "carla_rank": 43,
-    "position": 12
-  },
-  {
-    "title": "Somewhere I Belong",
-    "artist": "LINKIN PARK",
-    "url": "https://music.apple.com/es/album/somewhere-i-belong/590423275?i=590423282&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 73,
-    "position": 142
-  },
-  {
-    "title": "¿Por Qué Te Vas? (2020 Remaster)",
-    "artist": "Maná",
-    "url": "https://music.apple.com/es/album/por-qu%C3%A9-te-vas/258905983?i=258906263&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 13,
-    "carla_rank": null,
-    "position": 30
-  },
-  {
-    "title": "Me & Mr. Jones",
-    "artist": "Amy Winehouse",
-    "url": "https://music.apple.com/es/album/me-mr-jones/1422677780?i=1422677783&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 35,
-    "carla_rank": null,
-    "position": 103
-  },
-  {
-    "title": "Desarraigo",
-    "artist": "Extremoduro",
-    "url": "https://music.apple.com/es/album/desarraigo/436726144?i=436726145&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 19,
-    "position": 37
+    "position": 134
   },
   {
     "title": "Dime Luna",
@@ -677,183 +180,26 @@
     "position": 9
   },
   {
-    "title": "Insurrección (2008 Remaster)",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/insurrecci%C3%B3n-2008-remaster/1515725981?i=1515725989&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 45,
-    "position": 55
-  },
-  {
-    "title": "Mariposa Traicionera (2020 Remaster)",
-    "artist": "Maná",
-    "url": "https://music.apple.com/es/album/mariposa-traicionera-2020-remasterizado/1492024334?i=1492024341&l=en-GB",
+    "title": "Stop Crying Your Heart Out",
+    "artist": "Oasis",
+    "url": "https://music.apple.com/es/album/stop-crying-your-heart-out/1517507851?i=1517508236&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 10,
+    "nil_rank": 84,
     "carla_rank": null,
-    "position": 27
+    "position": 82
   },
   {
-    "title": "Moment of Surrender",
-    "artist": "U2",
-    "url": "https://music.apple.com/es/album/moment-of-surrender/1442959667?i=1442959856&l=en-GB",
-    "listened_by": [
-      "nil",
-      "carla"
-    ],
-    "nil_rank": 1,
-    "carla_rank": 31,
-    "position": 6
-  },
-  {
-    "title": "Sara",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/sara/1048590196?i=1048592406&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 50,
-    "position": 58
-  },
-  {
-    "title": "Pájaros de Barro",
-    "artist": "Manolo García",
-    "url": "https://music.apple.com/es/album/p%C3%A1jaros-de-barro/1759137969?i=1759138568&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 38,
-    "position": 49
-  },
-  {
-    "title": "Somos Mar y Arena",
-    "artist": "Maná",
-    "url": "https://music.apple.com/es/album/somos-mar-y-arena/219381180?i=219381388&l=en-GB",
+    "title": "Corren",
+    "artist": "Gossos",
+    "url": "https://music.apple.com/es/album/corren/1764125039?i=1764125048&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 19,
+    "nil_rank": 94,
     "carla_rank": null,
-    "position": 36
-  },
-  {
-    "title": "¿Quién eres tú? (2008 Remaster)",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/qui%C3%A9n-eres-t%C3%BA-2008-remaster/1515725981?i=1515725986&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 77,
-    "position": 78
-  },
-  {
-    "title": "Guantanamera",
-    "artist": "Guitarricadelafuente",
-    "url": "https://music.apple.com/es/album/guantanamera/1753062808?i=1753062818&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 60,
-    "position": 129
-  },
-  {
-    "title": "Aviones Plateados",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/aviones-plateados/1048590196?i=1048592405&l=en-GB",
-    "listened_by": [
-      "nil",
-      "carla"
-    ],
-    "nil_rank": 15,
-    "carla_rank": 16,
-    "position": 4
-  },
-  {
-    "title": "Lejos de las leyes de los hombres",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/lejos-de-las-leyes-de-los-hombres-versi%C3%B3n-2023/1705893034?i=1705893259&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 74,
-    "position": 75
-  },
-  {
-    "title": "An Cat Dubh",
-    "artist": "U2",
-    "url": "https://music.apple.com/es/album/an-cat-dubh/1440793935?i=1440793939&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 41,
-    "carla_rank": null,
-    "position": 51
-  },
-  {
-    "title": "El Encuentro",
-    "artist": "Alizzz & Amaia",
-    "url": "https://music.apple.com/es/album/el-encuentro/1595142792?i=1595143187&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 82,
-    "position": 150
-  },
-  {
-    "title": "Standby",
-    "artist": "Extremoduro",
-    "url": "https://music.apple.com/es/album/standby/63836966?i=63836946&l=en-GB",
-    "listened_by": [
-      "nil",
-      "carla"
-    ],
-    "nil_rank": 48,
-    "carla_rank": 44,
-    "position": 15
-  },
-  {
-    "title": "Mediterrània (feat. El Diluvi & …)",
-    "artist": "La Fúmiga",
-    "url": "https://music.apple.com/es/album/mediterr%C3%A0nia-feat-el-diluvi-vadebo/1804711459?i=1804711796&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 58,
-    "carla_rank": null,
-    "position": 125
-  },
-  {
-    "title": "El Rey Tiburón",
-    "artist": "Maná",
-    "url": "https://music.apple.com/es/album/el-rey-tibur%C3%B3n/1488157748?i=1488157879&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 66,
-    "carla_rank": null,
-    "position": 70
-  },
-  {
-    "title": "I'll Go Crazy If I Don't Go Crazy Tonight",
-    "artist": "U2",
-    "url": "https://music.apple.com/es/album/ill-go-crazy-if-i-dont-go-crazy-tonight-single-version/1635130614?i=1635130616&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 69,
-    "carla_rank": null,
-    "position": 72
+    "position": 158
   },
   {
     "title": "La piedra redonda (2008 Remaster)",
@@ -867,116 +213,26 @@
     "position": 52
   },
   {
-    "title": "All The Things She Said",
-    "artist": "t.A.T.u.",
-    "url": "https://music.apple.com/es/album/all-the-things-she-said/1440811998?i=1440812146&l=en-GB",
+    "title": "Shape Of My Heart",
+    "artist": "Sting",
+    "url": "https://music.apple.com/es/album/shape-of-my-heart/1486682685?i=1486683136&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 68,
+    "nil_rank": 40,
     "carla_rank": null,
-    "position": 135
+    "position": 109
   },
   {
-    "title": "Lápiz y tinta",
+    "title": "Canta por Mí (En Directo)",
     "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/search?term=L%C3%A1piz%20y%20tinta%20El%20%C3%9Altimo%20de%20la%20Fila",
-    "listened_by": [
-      "nil",
-      "carla"
-    ],
-    "nil_rank": 76,
-    "carla_rank": 33,
-    "position": 17
-  },
-  {
-    "title": "Huesos",
-    "artist": "Los Burros",
-    "url": "https://music.apple.com/es/album/huesos/100997864?i=100997744&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 34,
-    "position": 102
-  },
-  {
-    "title": "Nada que perder",
-    "artist": "Robe",
-    "url": "https://music.apple.com/es/album/nada-que-perder/1714878288?i=1714878292&l=en-GB",
+    "url": "https://music.apple.com/es/album/canta-por-m%C3%AD-en-directo/1048590196?i=1048592419&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 17,
+    "nil_rank": 64,
     "carla_rank": null,
-    "position": 90
-  },
-  {
-    "title": "En el Muelle de San Blás",
-    "artist": "Maná",
-    "url": "https://music.apple.com/es/album/en-el-muelle-de-san-bl%C3%A1s/306124292?i=306124419&l=en-GB",
-    "listened_by": [
-      "nil",
-      "carla"
-    ],
-    "nil_rank": 3,
-    "carla_rank": 62,
-    "position": 11
-  },
-  {
-    "title": "Acabo de Llegar",
-    "artist": "Fito y Fitipaldis",
-    "url": "https://music.apple.com/es/album/acabo-de-llegar/1287722493?i=1287723044&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 96,
-    "carla_rank": null,
-    "position": 159
-  },
-  {
-    "title": "Some Might Say",
-    "artist": "Oasis",
-    "url": "https://music.apple.com/es/album/some-might-say/1517476161?i=1517476169&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 94,
-    "carla_rank": null,
-    "position": 85
-  },
-  {
-    "title": "You Know I'm No Good",
-    "artist": "Amy Winehouse",
-    "url": "https://music.apple.com/es/album/you-know-im-no-good/1440856219?i=1440856222&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 21,
-    "carla_rank": null,
-    "position": 92
-  },
-  {
-    "title": "Supermassive Black Hole",
-    "artist": "Muse",
-    "url": "https://music.apple.com/es/album/supermassive-black-hole/992221994?i=992221997&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 33,
-    "carla_rank": null,
-    "position": 100
-  },
-  {
-    "title": "El Polvo de los Días Raros",
-    "artist": "Leiva",
-    "url": "https://music.apple.com/es/album/el-polvo-de-los-d%C3%ADas-raros/1792254275?i=1792254540&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 64,
-    "position": 133
+    "position": 67
   },
   {
     "title": "Mystery of Love",
@@ -990,72 +246,6 @@
     "position": 126
   },
   {
-    "title": "Creep",
-    "artist": "Radiohead",
-    "url": "https://music.apple.com/es/album/creep/1679849414?i=1679849415&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 62,
-    "carla_rank": null,
-    "position": 131
-  },
-  {
-    "title": "Miss Sarajevo (feat. Luciano Pavarotti)",
-    "artist": "Passengers",
-    "url": "https://music.apple.com/es/album/miss-sarajevo-feat-luciano-pavarotti-single-radio-edit/1440655963?i=1440655981&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 45,
-    "carla_rank": null,
-    "position": 111
-  },
-  {
-    "title": "FEZ – Being Born",
-    "artist": "U2",
-    "url": "https://music.apple.com/es/album/fez-being-born/1445858931?i=1445858943&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 88,
-    "carla_rank": null,
-    "position": 83
-  },
-  {
-    "title": "Don't Look Back in Anger",
-    "artist": "Oasis",
-    "url": "https://music.apple.com/es/album/dont-look-back-in-anger/1517447039?i=1517447336&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 48,
-    "position": 56
-  },
-  {
-    "title": "Time Is Running Out",
-    "artist": "Muse",
-    "url": "https://music.apple.com/es/album/time-is-running-out/1716096819?i=1716096823&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 47,
-    "carla_rank": null,
-    "position": 114
-  },
-  {
-    "title": "Eres Mi Religión (2020 Remaster)",
-    "artist": "Maná",
-    "url": "https://music.apple.com/es/album/eres-mi-religi%C3%B3n-2020-remasterizado/1492024334?i=1492024343&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 61,
-    "carla_rank": null,
-    "position": 65
-  },
-  {
     "title": "Jesucristo García",
     "artist": "Extremoduro",
     "url": "https://music.apple.com/es/album/jesucristo-garc%C3%ADa/403720861?i=403720917&l=en-GB",
@@ -1064,7 +254,317 @@
     ],
     "nil_rank": null,
     "carla_rank": 20,
-    "position": 39
+    "position": 38
+  },
+  {
+    "title": "Nada que perder",
+    "artist": "Robe",
+    "url": "https://music.apple.com/es/album/nada-que-perder/1714878288?i=1714878292&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 18,
+    "carla_rank": null,
+    "position": 92
+  },
+  {
+    "title": "Canta por mí",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/album/canta-por-m%C3%AD/1048590196?i=1048592418&l=en-GB",
+    "listened_by": [
+      "nil",
+      "carla"
+    ],
+    "nil_rank": 26,
+    "carla_rank": 43,
+    "position": 12
+  },
+  {
+    "title": "Dios de la lluvia (2008 Remaster)",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/album/dios-de-la-lluvia-2008-remaster/1515547759?i=1515547760&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 72,
+    "position": 74
+  },
+  {
+    "title": "Bendita Tu Luz",
+    "artist": "Maná",
+    "url": "https://music.apple.com/es/album/bendita-tu-luz/219381180?i=219381317&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 27,
+    "carla_rank": null,
+    "position": 41
+  },
+  {
+    "title": "Mariposa Traicionera (2020 Remaster)",
+    "artist": "Maná",
+    "url": "https://music.apple.com/es/album/mariposa-traicionera-2020-remasterizado/1492024334?i=1492024341&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 11,
+    "carla_rank": null,
+    "position": 27
+  },
+  {
+    "title": "Ya no hay verano",
+    "artist": "Carolina Durante & Depresión Sonora",
+    "url": "https://music.apple.com/es/album/ya-no-hay-verano/1693853634?i=1693853645&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 27,
+    "position": 98
+  },
+  {
+    "title": "Swing Lynn",
+    "artist": "Harmless",
+    "url": "https://music.apple.com/es/album/swing-lynn/1600668674?i=1600668689&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 15,
+    "position": 90
+  },
+  {
+    "title": "Fake Plastic Trees",
+    "artist": "Radiohead",
+    "url": "https://music.apple.com/es/album/fake-plastic-trees/1097862703?i=1097862845&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 73,
+    "carla_rank": null,
+    "position": 142
+  },
+  {
+    "title": "Street Of Dreams",
+    "artist": "U2",
+    "url": "https://music.apple.com/es/album/street-of-dreams/6774729762?i=6774729765&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 58,
+    "carla_rank": null,
+    "position": 63
+  },
+  {
+    "title": "Soy un Truhán, Soy un Señor",
+    "artist": "Julio Iglesias",
+    "url": "https://music.apple.com/es/album/soy-un-truh%C3%A1n-soy-un-se%C3%B1or/171261208?i=171261242&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 61,
+    "position": 131
+  },
+  {
+    "title": "You Know I'm No Good",
+    "artist": "Amy Winehouse",
+    "url": "https://music.apple.com/es/album/you-know-im-no-good/1440856219?i=1440856222&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 22,
+    "carla_rank": null,
+    "position": 94
+  },
+  {
+    "title": "She Will Be Loved",
+    "artist": "Maroon 5",
+    "url": "https://music.apple.com/es/album/she-will-be-loved/1442958599?i=1442958606&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 91,
+    "carla_rank": null,
+    "position": 155
+  },
+  {
+    "title": "La Vereda de la Puerta de Atrás",
+    "artist": "Extremoduro",
+    "url": "https://music.apple.com/es/album/la-vereda-de-la-puerta-de-atras/63836966?i=63836937&l=en-GB",
+    "listened_by": [
+      "nil",
+      "carla"
+    ],
+    "nil_rank": 30,
+    "carla_rank": 2,
+    "position": 6
+  },
+  {
+    "title": "El camino de las utopías",
+    "artist": "Extremoduro",
+    "url": "https://music.apple.com/es/album/el-camino-de-las-utop%C3%ADas/727042203?i=727042756&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 57,
+    "position": 62
+  },
+  {
+    "title": "My Love",
+    "artist": "Kovacs",
+    "url": "https://music.apple.com/es/album/my-love/962853725?i=962853727&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 79,
+    "carla_rank": null,
+    "position": 147
+  },
+  {
+    "title": "Unknown Caller",
+    "artist": "U2",
+    "url": "https://music.apple.com/es/album/unknown-caller/1445858931?i=1445858938&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 45,
+    "carla_rank": null,
+    "position": 54
+  },
+  {
+    "title": "Flashed Junk Mind",
+    "artist": "Milky Chance",
+    "url": "https://music.apple.com/es/song/1608587632?l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 76,
+    "position": 146
+  },
+  {
+    "title": "Time Is Running Out",
+    "artist": "Muse",
+    "url": "https://music.apple.com/es/album/time-is-running-out/1716096819?i=1716096823&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 48,
+    "carla_rank": null,
+    "position": 116
+  },
+  {
+    "title": "Puta",
+    "artist": "Extremoduro",
+    "url": "https://music.apple.com/es/album/p-a/63836966?i=63836958&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 8,
+    "position": 24
+  },
+  {
+    "title": "És que m'agrades molt",
+    "artist": "Ginestà",
+    "url": "https://music.apple.com/es/album/%C3%A9s-que-magrades-molt/1604435863?i=1604436319",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 10,
+    "carla_rank": null,
+    "position": 88
+  },
+  {
+    "title": "All The Things She Said",
+    "artist": "t.A.T.u.",
+    "url": "https://music.apple.com/es/album/all-the-things-she-said/1440811998?i=1440812146&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 69,
+    "carla_rank": null,
+    "position": 137
+  },
+  {
+    "title": "Insurrección (2008 Remaster)",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/album/insurrecci%C3%B3n-2008-remaster/1515725981?i=1515725989&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 45,
+    "position": 55
+  },
+  {
+    "title": "Vivir Sin Aire (2019 Remaster)",
+    "artist": "Maná",
+    "url": "https://music.apple.com/es/album/vivir-sin-aire/257823076?i=257823107&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 19,
+    "carla_rank": null,
+    "position": 35
+  },
+  {
+    "title": "Abril 74",
+    "artist": "Lluís Llach",
+    "url": "https://music.apple.com/es/album/abril-74-en-directe/1445777052?i=1445777075&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 71,
+    "carla_rank": null,
+    "position": 140
+  },
+  {
+    "title": "El Rey Tiburón",
+    "artist": "Maná",
+    "url": "https://music.apple.com/es/album/el-rey-tibur%C3%B3n/1488157748?i=1488157879&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 67,
+    "carla_rank": null,
+    "position": 70
+  },
+  {
+    "title": "Braque",
+    "artist": "Los Rápidos",
+    "url": "https://music.apple.com/es/album/braque/1048590196?i=1048591136&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 6,
+    "position": 86
+  },
+  {
+    "title": "La Meva Sort",
+    "artist": "Ginestà",
+    "url": "https://music.apple.com/es/album/la-meva-sort/1726449209?i=1726449843&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 23,
+    "carla_rank": null,
+    "position": 95
+  },
+  {
+    "title": "Tu Me Salvaste",
+    "artist": "Maná",
+    "url": "https://music.apple.com/es/album/tu-me-salvaste/219381180?i=219381334&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 29,
+    "carla_rank": null,
+    "position": 43
   },
   {
     "title": "Adicto a Tu Amor (2020 Remaster)",
@@ -1073,31 +573,187 @@
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 11,
+    "nil_rank": 12,
     "carla_rank": null,
     "position": 28
   },
   {
-    "title": "Salir",
-    "artist": "Extremoduro",
-    "url": "https://music.apple.com/es/album/salir/403729813?i=403729816&l=en-GB",
+    "title": "Esta Vez",
+    "artist": "Café Tacvba",
+    "url": "https://music.apple.com/es/album/esta-vez/1446020426?i=1446021539&l=en-GB",
     "listened_by": [
-      "carla"
+      "nil"
     ],
-    "nil_rank": null,
-    "carla_rank": 3,
-    "position": 20
+    "nil_rank": 38,
+    "carla_rank": null,
+    "position": 107
   },
   {
-    "title": "Juguete de Amor",
-    "artist": "Extrechinato y Tú",
-    "url": "https://music.apple.com/es/album/jugete-de-amor/101108338?i=101107735&l=en-GB",
+    "title": "Plan fatal",
+    "artist": "Dani Fernández",
+    "url": "https://music.apple.com/es/album/plan-fatal/1592551738?i=1592552168&l=en-GB",
     "listened_by": [
       "carla"
     ],
     "nil_rank": null,
-    "carla_rank": 46,
-    "position": 113
+    "carla_rank": 35,
+    "position": 104
+  },
+  {
+    "title": "Stand Up Comedy",
+    "artist": "U2",
+    "url": "https://music.apple.com/es/album/stand-up-comedy/1445858931?i=1445858942&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 32,
+    "carla_rank": null,
+    "position": 45
+  },
+  {
+    "title": "Sara",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/album/sara/1048590196?i=1048592406&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 50,
+    "position": 57
+  },
+  {
+    "title": "¿Quién eres tú? (2008 Remaster)",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/album/qui%C3%A9n-eres-t%C3%BA-2008-remaster/1515725981?i=1515725986&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 77,
+    "position": 77
+  },
+  {
+    "title": "Si Te Vas…",
+    "artist": "Extremoduro",
+    "url": "https://music.apple.com/es/album/si-te-vas/436726144?i=436726148&l=en-GB",
+    "listened_by": [
+      "nil",
+      "carla"
+    ],
+    "nil_rank": 88,
+    "carla_rank": 11,
+    "position": 16
+  },
+  {
+    "title": "Si Te Vienes Conmigo",
+    "artist": "Manolo García",
+    "url": "https://music.apple.com/es/album/si-te-vienes-conmigo-gira-geometr%C3%ADa-del-rayo-concierto/1442014584?i=1442015415&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 40,
+    "position": 50
+  },
+  {
+    "title": "Song for Someone",
+    "artist": "U2",
+    "url": "https://music.apple.com/es/album/song-for-someone/1444749940?i=1444750184&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 13,
+    "carla_rank": null,
+    "position": 29
+  },
+  {
+    "title": "Miss Sarajevo (feat. Luciano Pavarotti)",
+    "artist": "Passengers",
+    "url": "https://music.apple.com/es/album/miss-sarajevo-feat-luciano-pavarotti-single-radio-edit/1440655963?i=1440655981&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 46,
+    "carla_rank": null,
+    "position": 112
+  },
+  {
+    "title": "Pájaros de Barro",
+    "artist": "Manolo García",
+    "url": "https://music.apple.com/es/album/p%C3%A1jaros-de-barro/1759137969?i=1759138568&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 38,
+    "position": 49
+  },
+  {
+    "title": "Un Giro Teatral",
+    "artist": "Manolo García",
+    "url": "https://music.apple.com/es/album/un-giro-teatral/473235325?i=473236051&l=en-GB",
+    "listened_by": [
+      "nil",
+      "carla"
+    ],
+    "nil_rank": 31,
+    "carla_rank": 24,
+    "position": 8
+  },
+  {
+    "title": "Llanto de Pasión",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/album/llanto-de-pasi%C3%B3n/1048590196?i=1048591864&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 22,
+    "position": 40
+  },
+  {
+    "title": "Psycho",
+    "artist": "Muse",
+    "url": "https://music.apple.com/es/album/psycho/973555620?i=973556122&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 61,
+    "carla_rank": null,
+    "position": 130
+  },
+  {
+    "title": "Estimar-te com la terra",
+    "artist": "Ginestà",
+    "url": "https://music.apple.com/es/album/estimar-te-com-la-terra/1483347447?i=1483347449&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 52,
+    "carla_rank": null,
+    "position": 119
+  },
+  {
+    "title": "Al mar!",
+    "artist": "Manel",
+    "url": "https://music.apple.com/es/album/al-mar/1443959128?i=1443959404&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 41,
+    "carla_rank": null,
+    "position": 110
+  },
+  {
+    "title": "Me & Mr. Jones",
+    "artist": "Amy Winehouse",
+    "url": "https://music.apple.com/es/album/me-mr-jones/1422677780?i=1422677783&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 36,
+    "carla_rank": null,
+    "position": 105
   },
   {
     "title": "Don't Stop 'Til You Get Enough",
@@ -1106,20 +762,31 @@
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 54,
+    "nil_rank": 55,
     "carla_rank": null,
-    "position": 122
+    "position": 123
   },
   {
-    "title": "Nada Valgo Sin Tu Amor",
-    "artist": "Juanes",
-    "url": "https://music.apple.com/es/album/nada-valgo-sin-tu-amor/1440652099?i=1440652267&l=en-GB",
+    "title": "I'll Go Crazy If I Don't Go Crazy Tonight",
+    "artist": "U2",
+    "url": "https://music.apple.com/es/album/ill-go-crazy-if-i-dont-go-crazy-tonight-single-version/1635130614?i=1635130616&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 85,
+    "nil_rank": 70,
     "carla_rank": null,
-    "position": 152
+    "position": 72
+  },
+  {
+    "title": "Lo Quiero Todo",
+    "artist": "Manolo García",
+    "url": "https://music.apple.com/es/album/lo-quiero-todo/473235325?i=473236050&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 36,
+    "position": 47
   },
   {
     "title": "Segundo Movimiento: Lo de Fuera",
@@ -1129,42 +796,131 @@
       "nil",
       "carla"
     ],
-    "nil_rank": 16,
+    "nil_rank": 17,
     "carla_rank": 5,
     "position": 3
   },
   {
-    "title": "Es lunes me tengo que ir",
-    "artist": "Diegales",
-    "url": "https://music.apple.com/es/album/es-lunes-me-tengo-que-ir/6791286002?i=6791286008&l=en-GB",
+    "title": "Video Games",
+    "artist": "Lana Del Rey",
+    "url": "https://music.apple.com/es/album/video-games-radio-edit/1667369849?i=1667370136&l=en-GB",
     "listened_by": [
       "carla"
     ],
     "nil_rank": null,
-    "carla_rank": 70,
-    "position": 139
+    "carla_rank": 53,
+    "position": 121
   },
   {
-    "title": "Bendita Tu Luz",
-    "artist": "Maná",
-    "url": "https://music.apple.com/es/album/bendita-tu-luz/219381180?i=219381317&l=en-GB",
+    "title": "Born to Die",
+    "artist": "Lana Del Rey",
+    "url": "https://music.apple.com/es/album/born-to-die/1779781213?i=1779781768&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 68,
+    "position": 136
+  },
+  {
+    "title": "Ya no danzo al son de los tambores (2008 Remaster)",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/album/ya-no-danzo-al-son-de-los-tambores-2008-remaster/1515547759?i=1515547767&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 79,
+    "position": 80
+  },
+  {
+    "title": "Madness",
+    "artist": "Muse",
+    "url": "https://music.apple.com/es/album/madness/550281623?i=550281684&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 26,
+    "nil_rank": 50,
     "carla_rank": null,
-    "position": 41
+    "position": 118
   },
   {
-    "title": "I Will Follow",
+    "title": "Acabo de Llegar",
+    "artist": "Fito y Fitipaldis",
+    "url": "https://music.apple.com/es/album/acabo-de-llegar/1287722493?i=1287723044&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 97,
+    "carla_rank": null,
+    "position": 160
+  },
+  {
+    "title": "No me acostumbro (2008 Remaster)",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/album/no-me-acostumbro-2008-remaster/1515725981?i=1515725991&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 71,
+    "position": 73
+  },
+  {
+    "title": "FEZ – Being Born",
     "artist": "U2",
-    "url": "https://music.apple.com/es/album/i-will-follow/1443189101?i=1443189106&l=en-GB",
+    "url": "https://music.apple.com/es/album/fez-being-born/1445858931?i=1445858943&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 89,
+    "carla_rank": null,
+    "position": 83
+  },
+  {
+    "title": "Golfa",
+    "artist": "Extremoduro",
+    "url": "https://music.apple.com/es/album/golfa/403729813?i=403729822&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 4,
+    "position": 22
+  },
+  {
+    "title": "Agost",
+    "artist": "Els Pets",
+    "url": "https://music.apple.com/es/album/agost/279858942?i=279858969&l=en-GB",
     "listened_by": [
       "nil"
     ],
     "nil_rank": 81,
     "carla_rank": null,
-    "position": 81
+    "position": 149
+  },
+  {
+    "title": "Sin llaves",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/album/sin-llaves/1048590196?i=1048592406&l=en-GB",
+    "listened_by": [
+      "nil",
+      "carla"
+    ],
+    "nil_rank": 33,
+    "carla_rank": 41,
+    "position": 14
+  },
+  {
+    "title": "Tutto Bene",
+    "artist": "Pole.",
+    "url": "https://music.apple.com/es/album/tutto-bene/1563307999?i=1563308000&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 7,
+    "position": 87
   },
   {
     "title": "Arráncame el Corazón",
@@ -1178,71 +934,270 @@
     "position": 21
   },
   {
-    "title": "Mar antiguo",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/mar-antiguo/1709024472?i=1709025097&l=en-GB",
-    "listened_by": [
-      "nil",
-      "carla"
-    ],
-    "nil_rank": 56,
-    "carla_rank": 80,
-    "position": 18
-  },
-  {
-    "title": "Starlight",
-    "artist": "Muse",
-    "url": "https://music.apple.com/es/album/starlight/992221994?i=992221996&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 91,
-    "carla_rank": null,
-    "position": 155
-  },
-  {
-    "title": "Dakota",
-    "artist": "Stereophonics",
-    "url": "https://music.apple.com/es/album/dakota/1443178381?i=1443178943&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 95,
-    "carla_rank": null,
-    "position": 158
-  },
-  {
-    "title": "Querida Milagros (2008 Remaster)",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/querida-milagros-2008-remaster/1515725981?i=1515725984&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 63,
-    "position": 67
-  },
-  {
     "title": "Mi Verdad (feat. Shakira) [2015]",
     "artist": "Maná",
     "url": "https://music.apple.com/es/album/mi-verdad-feat-shakira-2019-remasterizado/1769493982?i=1769494168&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 65,
+    "nil_rank": 66,
     "carla_rank": null,
-    "position": 68
+    "position": 69
   },
   {
-    "title": "La Meva Sort",
-    "artist": "Ginestà",
-    "url": "https://music.apple.com/es/album/la-meva-sort/1726449209?i=1726449843&l=en-GB",
+    "title": "An Cat Dubh",
+    "artist": "U2",
+    "url": "https://music.apple.com/es/album/an-cat-dubh/1440793935?i=1440793939&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 22,
+    "nil_rank": 42,
     "carla_rank": null,
-    "position": 94
+    "position": 51
+  },
+  {
+    "title": "Nada Valgo Sin Tu Amor",
+    "artist": "Juanes",
+    "url": "https://music.apple.com/es/album/nada-valgo-sin-tu-amor/1440652099?i=1440652267&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 86,
+    "carla_rank": null,
+    "position": 153
+  },
+  {
+    "title": "En una Playa Calma",
+    "artist": "Manolo García",
+    "url": "https://music.apple.com/es/album/en-una-playa-calma/276995639?i=276995690&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 65,
+    "position": 68
+  },
+  {
+    "title": "Eres",
+    "artist": "Café Tacvba",
+    "url": "https://music.apple.com/es/album/eres/1444184083?i=1444184596&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 75,
+    "carla_rank": null,
+    "position": 144
+  },
+  {
+    "title": "Don't Look Back in Anger",
+    "artist": "Oasis",
+    "url": "https://music.apple.com/es/album/dont-look-back-in-anger/1517447039?i=1517447336&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 48,
+    "position": 56
+  },
+  {
+    "title": "Como un Burro Amarrado en la Puerta del Baile",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/album/como-un-burro-amarrado-en-la-puerta-del-baile/1709024472?i=1709025089&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 13,
+    "position": 30
+  },
+  {
+    "title": "Envia'm un Àngel",
+    "artist": "Sau",
+    "url": "https://music.apple.com/es/album/enviam-un-%C3%A0ngel/985613888?i=985614236&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 83,
+    "carla_rank": null,
+    "position": 151
+  },
+  {
+    "title": "Aunque Es De Noche",
+    "artist": "ROSALÍA",
+    "url": "https://music.apple.com/es/album/aunque-es-de-noche/1444846102?i=1444846107&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 23,
+    "position": 96
+  },
+  {
+    "title": "Resistance",
+    "artist": "Muse",
+    "url": "https://music.apple.com/es/album/resistance/991509751?i=991509845&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 28,
+    "carla_rank": null,
+    "position": 99
+  },
+  {
+    "title": "Desarraigo",
+    "artist": "Extremoduro",
+    "url": "https://music.apple.com/es/album/desarraigo/436726144?i=436726145&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 19,
+    "position": 36
+  },
+  {
+    "title": "The Fate of Ophelia",
+    "artist": "Taylor Swift",
+    "url": "https://music.apple.com/es/album/the-fate-of-ophelia/1838810949?i=1838810951&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 43,
+    "carla_rank": null,
+    "position": 111
+  },
+  {
+    "title": "Skyfall",
+    "artist": "Adele",
+    "url": "https://music.apple.com/es/album/skyfall/566322358?i=566322365&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 98,
+    "carla_rank": null,
+    "position": 161
+  },
+  {
+    "title": "End of Beginning",
+    "artist": "Djo",
+    "url": "https://music.apple.com/es/album/end-of-beginning/1759259193?i=1759259453&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 35,
+    "carla_rank": null,
+    "position": 103
+  },
+  {
+    "title": "Combatiente",
+    "artist": "Maná",
+    "url": "https://music.apple.com/es/album/combatiente/219381180?i=219381356&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 21,
+    "carla_rank": null,
+    "position": 39
+  },
+  {
+    "title": "Standby",
+    "artist": "Extremoduro",
+    "url": "https://music.apple.com/es/album/standby/63836966?i=63836946&l=en-GB",
+    "listened_by": [
+      "nil",
+      "carla"
+    ],
+    "nil_rank": 49,
+    "carla_rank": 44,
+    "position": 15
+  },
+  {
+    "title": "Labios Compartidos",
+    "artist": "Maná",
+    "url": "https://music.apple.com/es/song/219381245?l=en-GB",
+    "listened_by": [
+      "nil",
+      "carla"
+    ],
+    "nil_rank": 8,
+    "carla_rank": 66,
+    "position": 13
+  },
+  {
+    "title": "Can I Call You Tonight?",
+    "artist": "Dayglow",
+    "url": "https://music.apple.com/es/album/can-i-call-you-tonight/1482950619?i=1482950632&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 37,
+    "position": 106
+  },
+  {
+    "title": "back to friends",
+    "artist": "sombr",
+    "url": "https://music.apple.com/es/album/back-to-friends/1786481196?i=1786481197&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 93,
+    "carla_rank": null,
+    "position": 157
+  },
+  {
+    "title": "¿Por Qué Te Vas? (2020 Remaster)",
+    "artist": "Maná",
+    "url": "https://music.apple.com/es/album/por-qu%C3%A9-te-vas/258905983?i=258906263&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 14,
+    "carla_rank": null,
+    "position": 31
+  },
+  {
+    "title": "Disneylandia",
+    "artist": "Los Burros",
+    "url": "https://music.apple.com/es/album/disneylandia/1048590196?i=1048591665&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 21,
+    "position": 93
+  },
+  {
+    "title": "a la freSKa",
+    "artist": "Figa Flawas",
+    "url": "https://music.apple.com/es/album/a-la-freska/1822230120?i=1822230135&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 87,
+    "carla_rank": null,
+    "position": 154
+  },
+  {
+    "title": "Cannock Chase",
+    "artist": "Labi Siffre",
+    "url": "https://music.apple.com/es/album/cannock-chase/1009327152?i=1009327159&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 39,
+    "position": 108
+  },
+  {
+    "title": "Como la cabeza al sombrero (2008 Remaster)",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/album/como-la-cabeza-al-sombrero-2008-remaster/1515547759?i=1515547766&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 67,
+    "position": 71
   },
   {
     "title": "Manda una Señal",
@@ -1257,256 +1212,9 @@
     "position": 2
   },
   {
-    "title": "back to friends",
-    "artist": "sombr",
-    "url": "https://music.apple.com/es/album/back-to-friends/1786481196?i=1786481197&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 92,
-    "carla_rank": null,
-    "position": 156
-  },
-  {
-    "title": "PAÍS ESTRANY",
-    "artist": "Els Catarres & Roger Mas",
-    "url": "https://music.apple.com/es/album/pa%C3%ADs-estrany/1803813148?i=1803813159&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 59,
-    "carla_rank": null,
-    "position": 127
-  },
-  {
-    "title": "Golfa",
-    "artist": "Extremoduro",
-    "url": "https://music.apple.com/es/album/golfa/403729813?i=403729822&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 4,
-    "position": 22
-  },
-  {
-    "title": "Clavado en un Bar",
-    "artist": "Maná",
-    "url": "https://music.apple.com/es/album/clavado-en-un-bar/257823076?i=257823189&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 36,
-    "carla_rank": null,
-    "position": 47
-  },
-  {
-    "title": "Disneylandia",
-    "artist": "Los Burros",
-    "url": "https://music.apple.com/es/album/disneylandia/1048590196?i=1048591665&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 21,
-    "position": 93
-  },
-  {
-    "title": "Need You Now",
-    "artist": "Lady A",
-    "url": "https://music.apple.com/es/album/need-you-now/716298939?i=716299227&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 46,
-    "carla_rank": null,
-    "position": 112
-  },
-  {
-    "title": "The Fate of Ophelia",
-    "artist": "Taylor Swift",
-    "url": "https://music.apple.com/es/album/the-fate-of-ophelia/1838810949?i=1838810951&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 42,
-    "carla_rank": null,
-    "position": 110
-  },
-  {
-    "title": "Labios Compartidos",
-    "artist": "Maná",
-    "url": "https://music.apple.com/es/song/219381245?l=en-GB",
-    "listened_by": [
-      "nil",
-      "carla"
-    ],
-    "nil_rank": 8,
-    "carla_rank": 66,
-    "position": 14
-  },
-  {
-    "title": "a la freSKa",
-    "artist": "Figa Flawas",
-    "url": "https://music.apple.com/es/album/a-la-freska/1822230120?i=1822230135&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 86,
-    "carla_rank": null,
-    "position": 153
-  },
-  {
-    "title": "Envia'm un Àngel",
-    "artist": "Sau",
-    "url": "https://music.apple.com/es/album/enviam-un-%C3%A0ngel/985613888?i=985614236&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 82,
-    "carla_rank": null,
-    "position": 149
-  },
-  {
-    "title": "Unknown Caller",
-    "artist": "U2",
-    "url": "https://music.apple.com/es/album/unknown-caller/1445858931?i=1445858938&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 44,
-    "carla_rank": null,
-    "position": 54
-  },
-  {
-    "title": "Un Giro Teatral",
-    "artist": "Manolo García",
-    "url": "https://music.apple.com/es/album/un-giro-teatral/473235325?i=473236051&l=en-GB",
-    "listened_by": [
-      "nil",
-      "carla"
-    ],
-    "nil_rank": 30,
-    "carla_rank": 24,
-    "position": 8
-  },
-  {
-    "title": "Amiga De Ningú",
-    "artist": "OQUES GRASSES",
-    "url": "https://music.apple.com/es/album/amiga-de-ning%C3%BA/1729835006?i=1729835019&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 49,
-    "position": 117
-  },
-  {
-    "title": "Tengo Muchas Alas",
-    "artist": "Maná",
-    "url": "https://music.apple.com/es/album/tengo-muchas-alas/219381180?i=219381301&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 14,
-    "carla_rank": null,
-    "position": 32
-  },
-  {
-    "title": "Dulce Introducción al Caos",
-    "artist": "Extremoduro",
-    "url": "https://music.apple.com/es/album/dulce-introducci%C3%B3n-al-caos/1596903953?i=1596904684&l=en-GB",
-    "listened_by": [
-      "nil",
-      "carla"
-    ],
-    "nil_rank": 24,
-    "carla_rank": 26,
-    "position": 7
-  },
-  {
-    "title": "The Angel (North London Forever)",
-    "artist": "Louis Dunford",
-    "url": "https://music.apple.com/es/album/the-angel-north-london-forever/1609653205?i=1609653538&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 84,
-    "carla_rank": null,
-    "position": 151
-  },
-  {
-    "title": "Every Breaking Wave",
-    "artist": "U2",
-    "url": "https://music.apple.com/es/album/every-breaking-wave/1444749940?i=1444749997&l=en-GB",
-    "listened_by": [
-      "nil",
-      "carla"
-    ],
-    "nil_rank": 73,
-    "carla_rank": 81,
-    "position": 19
-  },
-  {
-    "title": "Combatiente",
-    "artist": "Maná",
-    "url": "https://music.apple.com/es/album/combatiente/219381180?i=219381356&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 20,
-    "carla_rank": null,
-    "position": 38
-  },
-  {
-    "title": "Braque",
-    "artist": "Los Rápidos",
-    "url": "https://music.apple.com/es/album/braque/1048590196?i=1048591136&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 6,
-    "position": 86
-  },
-  {
-    "title": "With or Without You",
-    "artist": "U2",
-    "url": "https://music.apple.com/es/album/u218-singles-deluxe-edition/1440729856?i=1440729857&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 77,
-    "carla_rank": null,
-    "position": 77
-  },
-  {
-    "title": "La Vereda de la Puerta de Atrás",
-    "artist": "Extremoduro",
-    "url": "https://music.apple.com/es/album/la-vereda-de-la-puerta-de-atras/63836966?i=63836937&l=en-GB",
-    "listened_by": [
-      "nil",
-      "carla"
-    ],
-    "nil_rank": 29,
-    "carla_rank": 2,
-    "position": 5
-  },
-  {
-    "title": "I Still Haven't Found What I'm Looking For",
-    "artist": "U2",
-    "url": "https://music.apple.com/es/album/u218-singles-deluxe-edition/1440729856?i=1440729857&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 55,
-    "carla_rank": null,
-    "position": 61
-  },
-  {
-    "title": "End of Beginning",
-    "artist": "Djo",
-    "url": "https://music.apple.com/es/album/end-of-beginning/1759259193?i=1759259453&l=en-GB",
+    "title": "Supermassive Black Hole",
+    "artist": "Muse",
+    "url": "https://music.apple.com/es/album/supermassive-black-hole/992221994?i=992221997&l=en-GB",
     "listened_by": [
       "nil"
     ],
@@ -1515,114 +1223,271 @@
     "position": 101
   },
   {
-    "title": "Video Games",
-    "artist": "Lana Del Rey",
-    "url": "https://music.apple.com/es/album/video-games-radio-edit/1667369849?i=1667370136&l=en-GB",
+    "title": "Vespre",
+    "artist": "Els Pets",
+    "url": "https://music.apple.com/es/album/vespre-remasteritzada-2025/1794078656?i=1794078659&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 68,
+    "carla_rank": null,
+    "position": 135
+  },
+  {
+    "title": "Salir",
+    "artist": "Extremoduro",
+    "url": "https://music.apple.com/es/album/salir/403729813?i=403729816&l=en-GB",
     "listened_by": [
       "carla"
     ],
     "nil_rank": null,
-    "carla_rank": 53,
-    "position": 121
+    "carla_rank": 3,
+    "position": 20
   },
   {
-    "title": "Esta Vez",
-    "artist": "Café Tacvba",
-    "url": "https://music.apple.com/es/album/esta-vez/1446020426?i=1446021539&l=en-GB",
+    "title": "El Encuentro",
+    "artist": "Alizzz & Amaia",
+    "url": "https://music.apple.com/es/album/el-encuentro/1595142792?i=1595143187&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 82,
+    "position": 150
+  },
+  {
+    "title": "Mediterrània (feat. El Diluvi & …)",
+    "artist": "La Fúmiga",
+    "url": "https://music.apple.com/es/album/mediterr%C3%A0nia-feat-el-diluvi-vadebo/1804711459?i=1804711796&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 59,
+    "carla_rank": null,
+    "position": 127
+  },
+  {
+    "title": "El Polvo de los Días Raros",
+    "artist": "Leiva",
+    "url": "https://music.apple.com/es/album/el-polvo-de-los-d%C3%ADas-raros/1792254275?i=1792254540&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 64,
+    "position": 133
+  },
+  {
+    "title": "Clavado en un Bar",
+    "artist": "Maná",
+    "url": "https://music.apple.com/es/album/clavado-en-un-bar/257823076?i=257823189&l=en-GB",
     "listened_by": [
       "nil"
     ],
     "nil_rank": 37,
     "carla_rank": null,
-    "position": 105
+    "position": 48
   },
   {
-    "title": "Cannock Chase",
-    "artist": "Labi Siffre",
-    "url": "https://music.apple.com/es/album/cannock-chase/1009327152?i=1009327159&l=en-GB",
+    "title": "Copenhague",
+    "artist": "Valeria Castro",
+    "url": "https://music.apple.com/es/album/copenhague/1494683879?i=1494683881&l=en-GB",
     "listened_by": [
       "carla"
     ],
     "nil_rank": null,
-    "carla_rank": 39,
-    "position": 108
+    "carla_rank": 47,
+    "position": 115
   },
   {
-    "title": "Skyfall",
-    "artist": "Adele",
-    "url": "https://music.apple.com/es/album/skyfall/566322358?i=566322365&l=en-GB",
+    "title": "Aviones Plateados",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/album/aviones-plateados/1048590196?i=1048592405&l=en-GB",
+    "listened_by": [
+      "nil",
+      "carla"
+    ],
+    "nil_rank": 16,
+    "carla_rank": 16,
+    "position": 5
+  },
+  {
+    "title": "Desembre",
+    "artist": "The Tyets",
+    "url": "https://music.apple.com/es/album/desembre/1671855145?i=1671855864&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 97,
+    "nil_rank": 24,
     "carla_rank": null,
-    "position": 160
+    "position": 97
   },
   {
-    "title": "Que No",
-    "artist": "Café Tacvba",
-    "url": "https://music.apple.com/es/album/que-no/1215750794?i=1215750879&l=en-GB",
+    "title": "Tengo Muchas Alas",
+    "artist": "Maná",
+    "url": "https://music.apple.com/es/album/tengo-muchas-alas/219381180?i=219381301&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 64,
+    "nil_rank": 15,
+    "carla_rank": null,
+    "position": 33
+  },
+  {
+    "title": "Need You Now",
+    "artist": "Lady A",
+    "url": "https://music.apple.com/es/album/need-you-now/716298939?i=716299227&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 47,
+    "carla_rank": null,
+    "position": 114
+  },
+  {
+    "title": "Guantanamera",
+    "artist": "Guitarricadelafuente",
+    "url": "https://music.apple.com/es/album/guantanamera/1753062808?i=1753062818&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 60,
+    "position": 129
+  },
+  {
+    "title": "Antes de Morirme (feat. ROSALÍA)",
+    "artist": "C. Tangana",
+    "url": "https://music.apple.com/es/album/antes-de-morirme-feat-rosal%C3%ADa/1540122284?i=1540122298&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 10,
+    "position": 89
+  },
+  {
+    "title": "Laia",
+    "artist": "Sau",
+    "url": "https://music.apple.com/es/album/laia-directe-1996-concert-al-palau-desports/527168224?i=527168238&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 53,
+    "carla_rank": null,
+    "position": 120
+  },
+  {
+    "title": "Some Might Say",
+    "artist": "Oasis",
+    "url": "https://music.apple.com/es/album/some-might-say/1517476161?i=1517476169&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 95,
+    "carla_rank": null,
+    "position": 85
+  },
+  {
+    "title": "Creep",
+    "artist": "Radiohead",
+    "url": "https://music.apple.com/es/album/creep/1679849414?i=1679849415&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 63,
     "carla_rank": null,
     "position": 132
   },
   {
-    "title": "Flashed Junk Mind",
-    "artist": "Milky Chance",
-    "url": "https://music.apple.com/es/song/1608587632?l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 76,
-    "position": 145
-  },
-  {
-    "title": "Ojalá Pudiera Borrarte",
-    "artist": "Maná",
-    "url": "https://music.apple.com/es/album/ojal%C3%A1-pudiera-borrarte/219381180?i=219381270&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 9,
-    "carla_rank": null,
-    "position": 25
-  },
-  {
-    "title": "Madness",
-    "artist": "Muse",
-    "url": "https://music.apple.com/es/album/madness/550281623?i=550281684&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 49,
-    "carla_rank": null,
-    "position": 116
-  },
-  {
-    "title": "Swing Lynn",
-    "artist": "Harmless",
-    "url": "https://music.apple.com/es/album/swing-lynn/1600668674?i=1600668689&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 15,
-    "position": 89
-  },
-  {
-    "title": "Ama, Ama, Ama y Ensancha el Alma",
+    "title": "Hoy Te la Meto Hasta las Orejas",
     "artist": "Extremoduro",
-    "url": "https://music.apple.com/es/album/ama-ama-ama-y-ensancha-el-alma/42019175?i=42019228&l=en-GB",
+    "url": "https://music.apple.com/es/album/hoy-te-la-meto-hasta-las-orejas/63836966?i=63836944&l=en-GB",
     "listened_by": [
       "carla"
     ],
     "nil_rank": null,
-    "carla_rank": 28,
-    "position": 43
+    "carla_rank": 9,
+    "position": 26
+  },
+  {
+    "title": "Mar antiguo",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/album/mar-antiguo/1709024472?i=1709025097&l=en-GB",
+    "listened_by": [
+      "nil",
+      "carla"
+    ],
+    "nil_rank": 57,
+    "carla_rank": 80,
+    "position": 18
+  },
+  {
+    "title": "PAÍS ESTRANY",
+    "artist": "Els Catarres & Roger Mas",
+    "url": "https://music.apple.com/es/album/pa%C3%ADs-estrany/1803813148?i=1803813159&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 60,
+    "carla_rank": null,
+    "position": 128
+  },
+  {
+    "title": "Eres Mi Religión (2020 Remaster)",
+    "artist": "Maná",
+    "url": "https://music.apple.com/es/album/eres-mi-religi%C3%B3n-2020-remasterizado/1492024334?i=1492024343&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 62,
+    "carla_rank": null,
+    "position": 65
+  },
+  {
+    "title": "En el Muelle de San Blás",
+    "artist": "Maná",
+    "url": "https://music.apple.com/es/album/en-el-muelle-de-san-bl%C3%A1s/306124292?i=306124419&l=en-GB",
+    "listened_by": [
+      "nil",
+      "carla"
+    ],
+    "nil_rank": 3,
+    "carla_rank": 62,
+    "position": 11
+  },
+  {
+    "title": "DIUMENGE SENSE DRAMA",
+    "artist": "Els Catarres",
+    "url": "https://music.apple.com/es/album/diumenge-sense-drama/6766545290?i=6766545293&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 80,
+    "carla_rank": null,
+    "position": 148
+  },
+  {
+    "title": "Todos Amamos Desesperadamente",
+    "artist": "Manolo García",
+    "url": "https://music.apple.com/es/album/todos-amamos-desesperadamente/473235325?i=473235327&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 18,
+    "position": 34
+  },
+  {
+    "title": "Cercles",
+    "artist": "Sopa De Cabra",
+    "url": "https://music.apple.com/es/album/cercles/1046542078?i=1046542655&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 99,
+    "carla_rank": null,
+    "position": 162
   },
   {
     "title": "Cuando el mar te tenga",
@@ -1636,31 +1501,87 @@
     "position": 60
   },
   {
-    "title": "Desembre",
-    "artist": "The Tyets",
-    "url": "https://music.apple.com/es/album/desembre/1671855145?i=1671855864&l=en-GB",
+    "title": "Mi Espíritu Imperecedero",
+    "artist": "Extremoduro",
+    "url": "https://music.apple.com/es/album/mi-esp%C3%ADritu-imperecedero/436726144?i=436726146&l=en-GB",
     "listened_by": [
-      "nil"
+      "carla"
     ],
-    "nil_rank": 23,
-    "carla_rank": null,
-    "position": 95
+    "nil_rank": null,
+    "carla_rank": 14,
+    "position": 32
   },
   {
-    "title": "Shape Of My Heart",
-    "artist": "Sting",
-    "url": "https://music.apple.com/es/album/shape-of-my-heart/1486682685?i=1486683136&l=en-GB",
+    "title": "Remando sobre el polvo",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/album/remando-sobre-el-polvo/1709024472?i=1709025082&l=en-GB",
     "listened_by": [
-      "nil"
+      "carla"
     ],
-    "nil_rank": 39,
-    "carla_rank": null,
-    "position": 107
+    "nil_rank": null,
+    "carla_rank": 59,
+    "position": 64
   },
   {
-    "title": "Fake Plastic Trees",
-    "artist": "Radiohead",
-    "url": "https://music.apple.com/es/album/fake-plastic-trees/1097862703?i=1097862845&l=en-GB",
+    "title": "Every Breaking Wave",
+    "artist": "U2",
+    "url": "https://music.apple.com/es/album/every-breaking-wave/1444749940?i=1444749997&l=en-GB",
+    "listened_by": [
+      "nil",
+      "carla"
+    ],
+    "nil_rank": 74,
+    "carla_rank": 81,
+    "position": 19
+  },
+  {
+    "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)",
+    "artist": "ROSALÍA",
+    "url": "https://music.apple.com/es/album/pienso-en-tu-mir%C3%A1-cap-3-celos/1392446564?i=1392447206&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 56,
+    "position": 125
+  },
+  {
+    "title": "Un Año y Otro Año",
+    "artist": "Manolo García",
+    "url": "https://music.apple.com/es/album/un-a%C3%B1o-y-otro-a%C3%B1o/473235325?i=473235328&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 30,
+    "position": 44
+  },
+  {
+    "title": "Wonderwall",
+    "artist": "Oasis",
+    "url": "https://music.apple.com/es/album/wonderwall/1517449896?i=1517449902&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 51,
+    "position": 59
+  },
+  {
+    "title": "Querida Milagros (2008 Remaster)",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/album/querida-milagros-2008-remaster/1515725981?i=1515725984&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 63,
+    "position": 66
+  },
+  {
+    "title": "Michelle",
+    "artist": "The Beatles",
+    "url": "https://music.apple.com/es/album/michelle/1441164359?i=1441164629&l=en-GB",
     "listened_by": [
       "nil"
     ],
@@ -1669,48 +1590,149 @@
     "position": 141
   },
   {
-    "title": "Stop Crying Your Heart Out",
-    "artist": "Oasis",
-    "url": "https://music.apple.com/es/album/stop-crying-your-heart-out/1517507851?i=1517508236&l=en-GB",
+    "title": "Toxic",
+    "artist": "Britney Spears",
+    "url": "https://music.apple.com/es/album/toxic/264025392?i=264025629&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 83,
+    "nil_rank": 54,
     "carla_rank": null,
-    "position": 82
+    "position": 122
   },
   {
-    "title": "DIUMENGE SENSE DRAMA",
-    "artist": "Els Catarres",
-    "url": "https://music.apple.com/es/album/diumenge-sense-drama/6766545290?i=6766545293&l=en-GB",
-    "listened_by": [
-      "nil"
-    ],
-    "nil_rank": 79,
-    "carla_rank": null,
-    "position": 147
-  },
-  {
-    "title": "Can I Call You Tonight?",
-    "artist": "Dayglow",
-    "url": "https://music.apple.com/es/album/can-i-call-you-tonight/1482950619?i=1482950632&l=en-GB",
+    "title": "A Fuego",
+    "artist": "Extremoduro",
+    "url": "https://music.apple.com/es/album/a-fuego/63836966?i=63836935&l=en-GB",
     "listened_by": [
       "carla"
     ],
     "nil_rank": null,
-    "carla_rank": 37,
-    "position": 106
+    "carla_rank": 32,
+    "position": 46
   },
   {
-    "title": "Al mar!",
-    "artist": "Manel",
-    "url": "https://music.apple.com/es/album/al-mar/1443959128?i=1443959404&l=en-GB",
+    "title": "I Still Haven't Found What I'm Looking For",
+    "artist": "U2",
+    "url": "https://music.apple.com/es/album/u218-singles-deluxe-edition/1440729856?i=1440729857&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 40,
+    "nil_rank": 56,
     "carla_rank": null,
-    "position": 109
+    "position": 61
+  },
+  {
+    "title": "Un Alma de Papel",
+    "artist": "Manolo García",
+    "url": "https://music.apple.com/es/album/un-alma-de-papel/473235325?i=473236049&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 78,
+    "position": 79
+  },
+  {
+    "title": "Dulce Introducción al Caos",
+    "artist": "Extremoduro",
+    "url": "https://music.apple.com/es/album/dulce-introducci%C3%B3n-al-caos/1596903953?i=1596904684&l=en-GB",
+    "listened_by": [
+      "nil",
+      "carla"
+    ],
+    "nil_rank": 25,
+    "carla_rank": 26,
+    "position": 7
+  },
+  {
+    "title": "Es lunes me tengo que ir",
+    "artist": "Diegales",
+    "url": "https://music.apple.com/es/album/es-lunes-me-tengo-que-ir/6791286002?i=6791286008&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 70,
+    "position": 139
+  },
+  {
+    "title": "Ama, Ama, Ama y Ensancha el Alma",
+    "artist": "Extremoduro",
+    "url": "https://music.apple.com/es/album/ama-ama-ama-y-ensancha-el-alma/42019175?i=42019228&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 28,
+    "position": 42
+  },
+  {
+    "title": "Moment of Surrender",
+    "artist": "U2",
+    "url": "https://music.apple.com/es/album/moment-of-surrender/1442959667?i=1442959856&l=en-GB",
+    "listened_by": [
+      "nil",
+      "carla"
+    ],
+    "nil_rank": 1,
+    "carla_rank": 31,
+    "position": 4
+  },
+  {
+    "title": "BESO",
+    "artist": "ROSALÍA & Rauw Alejandro",
+    "url": "https://music.apple.com/es/album/beso/1676343408?i=1676343411&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 17,
+    "position": 91
+  },
+  {
+    "title": "Luna llena",
+    "artist": "Beny Jr",
+    "url": "https://music.apple.com/es/album/luna-llena/1730813243?i=1730813630&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 75,
+    "position": 145
+  },
+  {
+    "title": "Estoy Alegre",
+    "artist": "Manolo García",
+    "url": "https://music.apple.com/es/album/estoy-alegre/473235325?i=473236053&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 51,
+    "carla_rank": null,
+    "position": 58
+  },
+  {
+    "title": "The Miracle (Of Joey Ramone)",
+    "artist": "U2",
+    "url": "https://music.apple.com/es/album/the-miracle-of-joey-ramone/1444749940?i=1444749981&l=en-GB",
+    "listened_by": [
+      "nil"
+    ],
+    "nil_rank": 76,
+    "carla_rank": null,
+    "position": 76
+  },
+  {
+    "title": "Somewhere I Belong",
+    "artist": "LINKIN PARK",
+    "url": "https://music.apple.com/es/album/somewhere-i-belong/590423275?i=590423282&l=en-GB",
+    "listened_by": [
+      "carla"
+    ],
+    "nil_rank": null,
+    "carla_rank": 73,
+    "position": 143
   },
   {
     "title": "Supersubmarina",
@@ -1721,40 +1743,40 @@
     ],
     "nil_rank": null,
     "carla_rank": 29,
-    "position": 99
+    "position": 100
   },
   {
-    "title": "Mi Espíritu Imperecedero",
-    "artist": "Extremoduro",
-    "url": "https://music.apple.com/es/album/mi-esp%C3%ADritu-imperecedero/436726144?i=436726146&l=en-GB",
+    "title": "Lejos de las leyes de los hombres",
+    "artist": "El Último de la Fila",
+    "url": "https://music.apple.com/es/album/lejos-de-las-leyes-de-los-hombres-versi%C3%B3n-2023/1705893034?i=1705893259&l=en-GB",
     "listened_by": [
       "carla"
     ],
     "nil_rank": null,
-    "carla_rank": 14,
-    "position": 33
+    "carla_rank": 74,
+    "position": 75
   },
   {
-    "title": "Corren",
-    "artist": "Gossos",
-    "url": "https://music.apple.com/es/album/corren/1764125039?i=1764125048&l=en-GB",
+    "title": "Ojalá Pudiera Borrarte",
+    "artist": "Maná",
+    "url": "https://music.apple.com/es/album/ojal%C3%A1-pudiera-borrarte/219381180?i=219381270&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 93,
+    "nil_rank": 9,
     "carla_rank": null,
-    "position": 157
+    "position": 25
   },
   {
-    "title": "Ya no hay verano",
-    "artist": "Carolina Durante & Depresión Sonora",
-    "url": "https://music.apple.com/es/album/ya-no-hay-verano/1693853634?i=1693853645&l=en-GB",
+    "title": "Cómo Será Vivir en el Campo (GALLERY SESSION)",
+    "artist": "Depresión Sonora",
+    "url": "https://music.apple.com/es/album/c%C3%B3mo-ser%C3%A1-vivir-en-el-campo-gallery-session/1870846368?i=1870846371&l=en-GB",
     "listened_by": [
       "carla"
     ],
     "nil_rank": null,
-    "carla_rank": 27,
-    "position": 98
+    "carla_rank": 69,
+    "position": 138
   },
   {
     "title": "White As Snow",
@@ -1768,25 +1790,14 @@
     "position": 23
   },
   {
-    "title": "Como un Burro Amarrado en la Puerta del Baile",
-    "artist": "El Último de la Fila",
-    "url": "https://music.apple.com/es/album/como-un-burro-amarrado-en-la-puerta-del-baile/1709024472?i=1709025089&l=en-GB",
-    "listened_by": [
-      "carla"
-    ],
-    "nil_rank": null,
-    "carla_rank": 13,
-    "position": 31
-  },
-  {
-    "title": "She Will Be Loved",
-    "artist": "Maroon 5",
-    "url": "https://music.apple.com/es/album/she-will-be-loved/1442958599?i=1442958606&l=en-GB",
+    "title": "Starlight",
+    "artist": "Muse",
+    "url": "https://music.apple.com/es/album/starlight/992221994?i=992221996&l=en-GB",
     "listened_by": [
       "nil"
     ],
-    "nil_rank": 90,
+    "nil_rank": 92,
     "carla_rank": null,
-    "position": 154
+    "position": 156
   }
 ]

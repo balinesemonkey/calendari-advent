@@ -114,3 +114,21 @@ Please do not upload an updated image here without consultation with the Author.
 - **L'Alborz** — Alborz · `Aerial_View_of_Damavand_26.11.2008_04-23-59.JPG` · Hansueli Krapf · CC BY-SA 3.0
 - **La Camarga** — Camargue horse · `Camargue_Horse_(26645657776).jpg` · Bernard DUPONT from FRANCE · CC BY-SA 2.0
 - **Kuta** — Kuta, Bali · `Kuta_Beach_(6924448550).jpg` · Simon_sees from Australia · CC BY 2.0
+
+## Replacements (hand-picked from Wikimedia Commons)
+
+The fetch script had pulled a map, a logo or a satellite frame for these;
+swapped for real ground-level photographs.
+
+- **Torres Petronas** (photos/kuala-lumpur.jpg) — `Petronas twin towers at night.jpg` · Bruce Poon · CC BY-SA 4.0
+- **Els arrossars** — `Tegallalang Rice Terraces Bali.jpg` · Philip Nalangan · CC BY 4.0
+- **El Bòsfor** — `PXL 20241210 122905199.MP Istanbul Cityscape from Bosphorus Strait Cruise Türkiye 42 Bosphorus Bridge.jpg` · Sourabh.biswas003 · CC BY-SA 4.0
+- **L'estret de Malaca** — `Islands and ship, Strait of Malacca.jpg` · ---=XEON=--- · CC BY 3.0
+- **La mar Càspia** — `Caspian Sea Novxani beach e-citizen.jpg` · Moonsun1981 · CC BY-SA 3.0
+- **El llac Van** — `Van Altınsaç koyları.jpg` · Hasim syn · CC BY-SA 4.0
+- **Els Alps** — `Panorama vom Gornergrat-Zermatt.jpg` · Tobi 87 · CC BY-SA 3.0
+- **Els Zagros** — `Char chel 01.jpg` · Khoshhat · CC BY 4.0
+- **L'Irauadi** — `003 Sunset over Boat on the Ayerwaddy River, Bagan (8995436872).jpg` · Photo Dharma, Sadao Thailand · CC BY 2.0
+- **El Krakatau** — `Anak Krakatau-2.JPG` · Lord Mountbatten · CC BY-SA 3.0
+- **La plana gangètica** — `A view of landscape pre with harvest wheat crop in Punjab.jpg` · Harvinder Chandigarh · CC BY-SA 4.0
+- **El delta del Ganges** — `The Sundarban forest river channel, Bangladesh.jpg` · Syed sajidul islam · CC BY-SA 4.0

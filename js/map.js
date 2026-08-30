@@ -87,9 +87,9 @@ const X = t => t * JOURNEY;
    label hierarchy in calendar.css. */
 const TYPE = VERTICAL
   ? { country: 118, countryTrack: 28, region: 62, regionTrack: 17,
-      city: 76, town: 54, cityTrack: 2 }
+      city: 92, town: 66, cityTrack: 2 }
   : { country: 300, countryTrack: 96, region: 150, regionTrack: 46,
-      city: 118, town: 78, cityTrack: 2 };
+      city: 142, town: 94, cityTrack: 2 };
 
 /* A door's share of the path. It has to be wider than the door itself:
    an opened flap swings back over the preceding stretch, so the gap in
@@ -540,14 +540,33 @@ function buildLand() {
     const g0 = i === 0 ? 0 : STRAIT / 2;
     const g1 = STRAIT / 2;
 
+    /* …but never let that channel bite inland of the island's own
+       cities. A city sits at a point on the route, and that point has
+       to be on land — the crossing goes in the water between islands,
+       not under a city that happens to fall near the tip. Where an end
+       has to reach out to a city, it also closes off bluntly rather
+       than tapering, so the city sits on solid ground, not a spit. */
+    const shore = 460;
+    const mine = CITIES
+      .map((c, ci) => (areaOf(c) === name ? CITY_U[ci] : null))
+      .filter(u => u != null);
+
+    let u0 = sp.u0 + g0, u1 = sp.u1 - g1;
+    let capL = g0 ? 700 : 2600, capR = 700;
+    if (mine.length) {
+      const first = Math.min(...mine), last = Math.max(...mine);
+      if (first - shore < u0) { u0 = first - shore; capL = 360; }
+      if (last + shore > u1)  { u1 = last + shore;  capR = 360; }
+    }
+
     const iN = wobbler(200 + i * 3, 5200, 150, 3);
     const iS = wobbler(400 + i * 3, 4600, 165, 3);
 
     BODIES.push(body({
-      u0: sp.u0 + g0, u1: sp.u1 - g1,
+      u0, u1,
       n: u => a.cv - a.rv + iN(u),
       s: u => a.cv + a.rv + iS(u),
-      capL: g0 ? 700 : 2600, capR: 700,
+      capL, capR,
       biome: a.biome, kind: "island",
     }));
 
@@ -798,67 +817,70 @@ const iconOf = c => ICONS[c.icon] || ICONS.arch;
    --------------------------------------------------------- */
 
 const GLYPHS = {
-  palm: `<path d="M0 0 Q-6 -34 -2 -62 M-2 -62 Q-30 -76 -50 -62 M-2 -62 Q-30 -92 -52 -88
-                  M-2 -62 Q22 -88 46 -80 M-2 -62 Q26 -74 48 -58 M-2 -62 Q0 -84 -14 -96"/>`,
+  palm: `<path d="M4 0 Q-2 -28 -5 -54"/>
+         <path d="M-5 -54 Q-25.9 -71.5 -43 -57 M-5 -54 Q-19.9 -80.8 -32 -75 M-5 -54 Q12.6 -79.5 27 -71 M-5 -54 Q17 -67.3 35 -52 M-5 -54 Q-7.8 -77.2 -10 -79"/>`,
 
-  banana: `<path d="M0 0 L0 -28 M0 -28 Q-34 -38 -46 -64 M0 -28 Q-16 -56 -32 -78
-                    M0 -28 Q26 -44 36 -70 M0 -28 Q12 -58 4 -84"/>`,
+  banana: `<path d="M1 0 Q0 -12 0 -24"/>
+           <path d="M0 -24 Q-19.8 -52.3 -36 -42 M0 -24 Q-11.6 -65 -21 -64 M0 -24 Q16 -58 29 -51 M0 -24 Q5 -67.1 9 -70"/>`,
 
-  bamboo: `<path d="M-15 0 L-18 -72 M0 0 L0 -94 M15 0 L19 -64
-                    M-21 -28 L-12 -28 M-20 -52 L-13 -52 M-4 -38 L4 -38 M-3 -68 L3 -68
-                    M13 -26 L21 -26 M14 -48 L21 -48"/>`,
+  bamboo: `<path d="M-15 0 Q-17 -30 -19 -60 M1 0 Q0 -40 -1 -80 M15 0 Q17 -26 19 -52"/>
+           <path d="M-21 -22 L-13 -23 M-20 -43 L-13 -44 M-4 -31 L4 -32 M-3 -57 L4 -58 M13 -20 L21 -21 M14 -38 L21 -39" stroke-width="2.3" opacity=".65"/>`,
 
-  paddy: `<path d="M-48 0 Q0 -13 48 0 M-42 -17 Q0 -30 42 -17
-                   M-33 -34 Q0 -46 33 -34 M-23 -50 Q0 -60 23 -50"/>`,
+  paddy: `<path d="M-44 0 Q3.7 -12.8 44 -1.6 M-41 -14 Q-3.2 -25.8 41 -15.7 M-38 -28 Q4.6 -39.9 38 -28.7 M-35 -42 Q-4.5 -54.3 35 -42.8"/>`,
 
-  tree: `<path d="M0 0 L0 -30"/>
-         <path d="M0 -30 Q-30 -34 -26 -58 Q-24 -84 0 -86 Q24 -84 26 -58 Q30 -34 0 -30 Z"
-               fill="currentColor" fill-opacity=".2"/>`,
+  /* a round clumpy canopy on a short trunk — the lollipop of every
+     hand-drawn map, its edge scalloped rather than a plain circle */
+  tree: `<path d="M-23 0 Q-21.8 -7.2 -23 -9.2 M0 0 Q0.1 -12.6 0 -20.6 M23 0 Q23.9 -6.8 23 -8.2"/>
+         <path d="M-23 -28.2 Q-15.5 -29.1 -12.3 -22.2 Q-8.2 -16 -14 -10.8 Q-14.7 -1.7 -23 -4.5 Q-29.2 -5.2 -33.3 -10.1 Q-37.4 -16 -32.8 -21.6 Q-30.4 -28.8 -23 -28.2 Z M0 -41.3 Q8.4 -42.5 9.5 -33.5 Q16.1 -28 9.3 -22.6 Q7.2 -15.5 0 -15.4 Q-8.8 -12.7 -11.4 -21.4 Q-16.6 -28 -9.4 -33.4 Q-7.8 -41.5 0 -41.3 Z M23 -25 Q29.4 -26 31.5 -19.9 Q36.7 -15 33.8 -8.8 Q30.1 -2.8 23 -3.4 Q16.8 -4.3 14.2 -9.9 Q8.6 -15 12.3 -21.2 Q16.1 -27 23 -25 Z" fill="currentColor" fill-opacity=".12"/>`,
 
-  pine: `<path d="M0 0 L0 -20"/>
-         <path d="M0 -20 L-23 -20 L-13 -46 L-19 -46 L-8 -72 L-13 -72 L0 -102
-                  L13 -72 L8 -72 L19 -46 L13 -46 L23 -20 Z"
-               fill="currentColor" fill-opacity=".2"/>`,
+  pine: `<path d="M-21 0 L-21 -5 M2 0 L2 -6 M22 0 L22 -4"/>
+         <path d="M-21 -38 Q-23.3 -29.8 -24.7 -25.3 Q-22.6 -22.8 -21 -24.3 Q-19.4 -22.8 -17.3 -25.3 Q-18.7 -29.8 -21 -38 Z M-21 -25.3 Q-25.5 -17.1 -28.3 -12.7 Q-24.3 -10.2 -21 -11.7 Q-17.7 -10.2 -13.7 -12.7 Q-16.5 -17.1 -21 -25.3 Z M-21 -12.7 Q-27.8 -4.4 -32 -0 Q-25.9 2.5 -21 1 Q-16.1 2.5 -10 -0 Q-14.2 -4.4 -21 -12.7 Z M2 -52 Q-0.7 -40.7 -2.3 -34.7 Q0.1 -32.2 2 -33.7 Q4 -32.2 6.3 -34.7 Q4.7 -40.7 2 -52 Z M2 -34.7 Q-3.4 -23.4 -6.7 -17.3 Q-1.9 -14.8 2 -16.3 Q5.9 -14.8 10.7 -17.3 Q7.4 -23.4 2 -34.7 Z M2 -17.3 Q-6.1 -6.1 -11 -0 Q-3.9 2.5 2 1 Q7.9 2.5 15 -0 Q10.1 -6.1 2 -17.3 Z M22 -33 Q19.9 -25.9 18.7 -22 Q20.5 -19.5 22 -21 Q23.5 -19.5 25.3 -22 Q24.1 -25.9 22 -33 Z M22 -22 Q17.9 -14.9 15.3 -11 Q19 -8.5 22 -10 Q25 -8.5 28.7 -11 Q26.1 -14.9 22 -22 Z M22 -11 Q15.8 -3.9 12 -0 Q17.5 2.5 22 1 Q26.5 2.5 32 -0 Q28.2 -3.9 22 -11 Z" fill="currentColor" fill-opacity=".12"/>`,
 
-  cypress: `<path d="M0 0 L0 -22"/>
-            <path d="M0 -22 Q-15 -30 -13 -62 Q-11 -94 0 -104 Q11 -94 13 -62 Q15 -30 0 -22 Z"
-                  fill="currentColor" fill-opacity=".2"/>`,
+  cypress: `<path d="M-17 0 L-17 -9 M1 0 L1 -11 M18 0 L18 -8"/>
+            <path d="M-17 -44 Q-25 -26.4 -22 -8.8 Q-19.1 -0.9 -17 -1.3 Q-14.9 -0.9 -12 -8.8 Q-9 -26.4 -17 -44 Z M1 -60 Q-8 -36 -4.6 -12 Q-1.3 -1.2 1 -1.8 Q3.3 -1.2 6.6 -12 Q10 -36 1 -60 Z M18 -38 Q11 -22.8 13.7 -7.6 Q16.2 -0.8 18 -1.1 Q19.8 -0.8 22.3 -7.6 Q25 -22.8 18 -38 Z" fill="currentColor" fill-opacity=".12"/>`,
 
-  olive: `<path d="M0 0 L0 -26 M0 -19 L-11 -31 M0 -23 L12 -35"/>
-          <path d="M0 -26 Q-29 -30 -27 -50 Q-25 -71 0 -71 Q25 -71 27 -50 Q29 -30 0 -26 Z"
-                fill="currentColor" fill-opacity=".2"/>`,
+  olive: `<path d="M-13 0 Q-13.6 -8.6 -13 -11.6 M13 0 Q13.5 -7.7 13 -10.2"/>
+          <path d="M-13 -31.6 Q-5.9 -31.4 -1.5 -25.6 Q2 -19 -3.4 -13.5 Q-5.6 -6.2 -13 -5.3 Q-20.6 -5.8 -22.9 -13.3 Q-28.8 -19 -24.7 -25.8 Q-20.9 -32.6 -13 -31.6 Z M13 -26.9 Q19.5 -28.3 22 -22.2 Q28.5 -17 23.9 -10.7 Q20.3 -4.3 13 -7.3 Q4.9 -2.9 3 -11.2 Q-3.4 -17 2.7 -22.9 Q4.9 -31 13 -26.9 Z" fill="currentColor" fill-opacity=".12"/>`,
 
   /* rows of vines on their wires, seen along the row */
-  vine: `<path d="M-56 2 Q0 -10 56 2 M-50 -20 Q0 -31 50 -20"/>
-         <path d="M-38 0 L-38 -16 M-13 -3 L-13 -19 M13 -3 L13 -19 M38 0 L38 -16
-                  M-26 -22 L-26 -38 M0 -25 L0 -41 M26 -22 L26 -38"/>`,
+  vine: `<path d="M-52 3 Q0 -9 53 2 M-45 -19 Q1 -30 47 -20"/>
+         <path d="M-34 -12.1 Q-28.4 -12.2 -27.1 -6.7 Q-25.6 -1.7 -29.4 1.9 Q-34 3.1 -38.5 1.8 Q-42.9 -1.5 -39.7 -6.3 Q-40 -12.7 -34 -12.1 Z M-11 -13.3 Q-5.1 -15.4 -5.3 -9.1 Q-1.7 -4.2 -7 -1.8 Q-11 2 -15 -1.7 Q-18.6 -4.8 -17.5 -9.3 Q-15.8 -13.8 -11 -13.3 Z M12 -13.8 Q17.4 -14.8 18 -9.4 Q21.2 -4.5 16.4 -1.4 Q12 1.1 8.4 -2.5 Q4.5 -5 6.3 -9.3 Q6.8 -14.6 12 -13.8 Z M35 -13.3 Q39.4 -11.5 40.8 -7.3 Q44.3 -2.4 38.7 -0.3 Q35 4.6 31.4 -0.5 Q26.3 -2.6 28.1 -7.7 Q30.2 -12 35 -13.3 Z M-25 -34.6 Q-20.1 -34.4 -18.7 -29.8 Q-17.4 -25.3 -21.8 -23.3 Q-25 -21.3 -28.4 -23 Q-32.5 -25.3 -30.8 -29.6 Q-30 -34.6 -25 -34.6 Z M-1 -35.3 Q3.3 -35.9 5.1 -31.9 Q7.3 -27.2 2 -25.8 Q-1 -23.8 -5.1 -24.3 Q-8.9 -27.3 -5.9 -31.5 Q-4.9 -35.3 -1 -35.3 Z M24 -35.1 Q28.2 -33.8 28.9 -29.7 Q31.1 -25.8 28.1 -22.4 Q24 -20.9 21.1 -24.1 Q16 -25.5 19.2 -29.7 Q19.2 -34.8 24 -35.1 Z" fill="currentColor" fill-opacity=".12"/>`,
 
-  scrub: `<path d="M-22 0 Q-18 -22 -4 -26 M4 0 Q10 -18 24 -20 M-8 0 Q-6 -14 2 -16"/>`,
+  scrub: `<path d="M-21 0 Q-24 -14 -9 -19 Q1 -28 12 -19 Q25 -15 22 0"/>
+          <path d="M-11 -5 Q-13 -13 -9 -19 M4 -4 Q5 -13 11 -19"/>`,
 
-  tuft: `<path d="M-16 0 L-12 -22 M-2 0 L-2 -28 M12 0 L16 -20"/>`,
+  /* grass as a splay of curved blades, the way a map-hand marks rough
+     ground — straight strokes off one point just read as a chevron */
+  tuft: `<path d="M-2 0 Q-11 -10 -18 -20 M0 0 Q-3 -12 -5 -25 M2 0 Q6 -11 9 -23 M3 0 Q12 -9 19 -18"/>`,
 
-  thorn: `<path d="M0 0 L0 -42 M0 -27 L-19 -42 M0 -18 L17 -35
-                   M-19 -42 L-19 -55 M17 -35 L17 -48"/>`,
+  thorn: `<path d="M-1 0 Q-7 -12 -15 -25 M0 0 Q-1 -16 -2 -32 M1 0 Q8 -11 16 -24"/>
+          <path d="M-8 -15 Q-13 -17 -19 -17 M9 -14 Q14 -15 19 -15"/>`,
 
-  dune: `<path d="M-52 0 Q-22 -26 10 -8 Q30 -20 54 -4 M-30 14 Q0 -6 34 12"/>`,
+  dune: `<path d="M-48 2 Q-23 -23 8 -8 Q27 -18 50 -4 M-29 14 Q-2 -3 33 12"/>
+         <path d="M-27 -10 Q-26 -7 -25 -4 M-8 -12 Q-7 -9 -6 -6 M30 -10 Q31 -7 32 -4" stroke-width="2.1" opacity=".38"/>`,
 
-  oasis: `<path d="M-48 6 Q0 -12 48 6 Q0 20 -48 6 Z" fill="currentColor" fill-opacity=".22"/>
-          <path d="M-24 0 Q-28 -26 -24 -48 M-24 -48 Q-44 -58 -57 -47 M-24 -48 Q-7 -62 8 -52
-                   M22 0 Q20 -22 22 -40 M22 -40 Q7 -50 -4 -42 M22 -40 Q38 -50 50 -41"/>`,
+  oasis: `<path d="M-42 7 Q0 -11 44 5 Q0 19 -42 7 Z" fill="currentColor" fill-opacity=".14"/>
+          <path d="M-19 1 Q-24 -20 -21 -40 M19 1 Q17 -17 19 -32"/>
+          <path d="M-21 -40 Q-34.2 -51.7 -45 -42 M-21 -40 Q-28.7 -58.8 -35 -55 M-21 -40 Q-10 -57.4 -1 -51 M-21 -40 Q-6.7 -48.3 5 -38 M19 -32 Q8 -41.7 -1 -34 M19 -32 Q12.9 -48 8 -45 M19 -32 Q27.8 -46.6 35 -41 M19 -32 Q31.1 -38.3 41 -30"/>`,
 
-  hills: `<path d="M-54 0 Q-30 -34 -6 0 M-14 0 Q14 -44 42 0 M28 0 Q44 -22 58 0"/>`,
+  /* Landforms in the old engraver's manner: a fine crest line, with
+     hachures raked down the flanks doing the shading instead of a fill. */
+  /* Landforms the way a map-hand draws them: free-standing little
+     peaks in a clump, each with its sunlit face left blank and its
+     shaded face ruled with lines down to the ground. */
+  hills: `<path d="M-52 0 Q-44.8 -8.6 -36.1 -14 Q-30.8 -6.3 -26 0 M-26 0 Q-18.7 -11.2 -13.4 -20 Q-7 -10.7 0 0 M0 0 Q7.2 -9.7 16.1 -16 Q21.5 -8.7 26 0 M26 0 Q30.7 -7 35.9 -12 Q43.5 -6.7 52 0"/>
+           <path d="M-32.3 -8.5 L-31.2 -0 M-29.2 -4.3 L-28.7 -0.6 M-9.1 -13.8 L-9.5 -0.4 M-5.2 -8 L-5.6 -0 M20.3 -10 L19.9 -0.3 M23.5 -4.6 L24.1 -0.4 M41.7 -7.9 L40.5 -0.5 M47 -3.9 L47.1 -0.6" stroke-width="2.1" opacity=".36"/>`,
 
-  crag: `<path d="M-42 0 L-23 -46 L-8 -25 L4 -58 L21 -31 L42 0 Z"
-               fill="currentColor" fill-opacity=".14"/>`,
+  crag: `<path d="M-55 0 Q-49.2 -14 -43.6 -25 Q-38.5 -13.5 -33 0 M-33 0 Q-26.1 -23.3 -20.4 -38 Q-14.9 -18.1 -11 0 M-11 0 Q-6.9 -15.2 -2.3 -29 Q3.6 -16 11 0 M11 0 Q16.3 -23.9 23.1 -43 Q27.6 -18.3 33 0 M33 0 Q38.7 -13.9 45.3 -24 Q49.9 -12.2 55 0"/>
+           <path d="M-40.8 -18.5 L-41.8 -0.3 M-35.9 -7.1 L-36.9 -0.2 M-18 -29.3 L-18.5 -1 M-15.1 -17.9 L-14.8 -1.1 M-12.7 -7.5 L-12.4 -0.1 M1.4 -21 L0.2 -0.5 M5.8 -11.2 L5.4 -1.3 M25.3 -31.7 L25.6 -0.6 M27.6 -20.8 L27.7 -1.4 M30.7 -8.2 L31.3 -1.5 M48.7 -15.3 L48.9 -0.2 M51 -9.7 L51.8 -1.2" stroke-width="2.1" opacity=".36"/>`,
 
-  snowpeak: `<path d="M-56 0 L-16 -66 L6 -38 L30 -78 L60 0 Z"
-                   fill="currentColor" fill-opacity=".16"/>
-             <path d="M-30 -30 L-16 -66 L-4 -44 Q-16 -34 -30 -30 Z
-                      M16 -52 L30 -78 L44 -50 Q30 -40 16 -52 Z"
-                   fill="var(--snow)" stroke="none" opacity=".92"/>`,
+  snowpeak: `<path d="M-48 0 Q-42.4 -16.8 -35.6 -32 Q-30.5 -18 -24 0 M-24 0 Q-17.7 -26.8 -12.3 -48 Q-6 -22 0 0 M0 0 Q7.2 -19.8 14.9 -37 Q18.6 -17.6 24 0 M24 0 Q30.5 -22.8 35.6 -44 Q42.6 -23.8 48 0"/>
+             <path d="M-31.5 -20.7 L-32.2 -1.4 M-27.7 -10.4 L-28.1 -0.1 M-9.5 -36.7 L-10.7 -0.5 M-6.7 -25.5 L-6.3 -2.2 M-3.4 -12.8 L-2.9 -2.2 M17.2 -26 L16.1 -1.4 M20.7 -11.5 L19.7 -1 M38.6 -34.9 L39.7 -1.8 M42.5 -21.9 L42.3 -1.8 M44.9 -12.7 L44.8 -1.6" stroke-width="2.1" opacity=".36"/>
+             <path d="M-38.5 -25.3 Q-36.9 -23.8 -35.9 -25.4 Q-34.7 -23.8 -33.3 -25.6 L-35.6 -32 Z M-14.7 -38.4 Q-13.2 -35.2 -12.1 -37.6 Q-11 -35.2 -9.5 -36.8 L-12.3 -48 Z M11.5 -29.3 Q13.1 -27.1 14.1 -28.9 Q15.2 -27.1 16.6 -28.6 L14.9 -37 Z M33.3 -34.6 Q34.9 -32.6 35.9 -34.8 Q37.1 -32.6 38.6 -34.9 L35.6 -44 Z" fill="var(--snow)" stroke="none" opacity=".85"/>`,
 
-  volcano: `<path d="M-54 0 L-17 -56 L17 -56 L54 0 Z" fill="currentColor" fill-opacity=".16"/>
-            <path d="M-17 -56 Q0 -46 17 -56 M-5 -66 Q-17 -86 -2 -95 Q13 -104 6 -120"/>`,
+  volcano: `<path d="M-38 0 Q-20.5 -24.6 -8.2 -41.9 L3.5 -42.8 Q15.8 -27.9 38 0"/>
+            <path d="M7.4 -38.1 L8 -0.3 M18.9 -23.9 L19.7 -2.2 M25.7 -15.5 L25.9 -1.9" stroke-width="2.1" opacity=".36"/>
+            <path d="M-8.2 -41.9 Q0 -35.9 3.5 -42.8 M-3 -58 Q-15 -71 -4 -81 Q8 -91 1 -104"/>`,
 
   village: `<path d="M-48 0 L-48 -20 L-31 -33 L-14 -20 L-14 0
                      M-5 0 L-5 -27 L14 -42 L33 -27 L33 0
@@ -923,9 +945,6 @@ function buildMap(svg, routePointAt) {
   SYMBOL_SPACE = makeSpacing(230);
   RIDGE_SPACE = makeSpacing(500);    // ridges are wider, so keep them further apart
 
-  /* ---- open sea ---- */
-  p.push(`<rect x="${VB_X}" y="0" width="${VB_W}" height="${VB_H}" fill="url(#seaGrad)"/>`);
-
   /* ---- the shapes of the land ---- */
   const shapes = [];       // everything that is land
   BODIES.forEach(b => shapes.push({
@@ -941,31 +960,121 @@ function buildMap(svg, routePointAt) {
     ...w, d: blob(w.cu, w.cv, w.ru, w.rv, w.seed, 0.17, 34),
   }));
 
-  /* Shallows: the coastline stroked a few times over, wide and faint
-     first, narrow and stronger last. It reads as depth banding round
-     every island and every bay, and it costs five strokes. */
-  const SHELF = [[420, .09], [320, .12], [230, .16], [150, .22], [80, .3]];
   const outlines = shapes.map(s => `<path d="${s.d}"/>`).join("");
 
-  p.push(SHELF.map(([w, o]) =>
-    `<g fill="none" stroke="var(--coast-halo)" stroke-width="${w}"
-        stroke-linejoin="round" opacity="${o}">${outlines}</g>`).join(""));
+  /* ---- open sea ----
 
-  /* ---- the land itself ---- */
-  p.push(`<g>${shapes.map(s => `<path d="${s.d}" fill="${s.fill}"/>`).join("")}</g>`);
+     Painted, not ruled. The water is a wash laid in from the coast
+     outwards: the same outline stroked over and over, widest and
+     faintest first, so the colour accumulates against the shore and
+     thins away from it until the bare sheet shows through again. There
+     is no panel of flat blue anywhere — every part of the sea is paper
+     with a greater or lesser amount of paint on it, which is why the
+     card's own staining reads right through it.
 
-  /* ---- gulfs and lakes, cut back out of it ---- */
-  p.push(waters.map((w, i) => `
-    <clipPath id="w${i}"><path d="${w.d}"/></clipPath>
-    <path d="${w.d}" fill="${w.lake ? "var(--lake)" : "url(#seaGrad)"}"/>
-    <g clip-path="url(#w${i})" fill="none" stroke="var(--coast-halo)" stroke-linejoin="round">
-      ${SHELF.map(([wd, o]) =>
-        `<path d="${w.d}" stroke-width="${wd * 0.8}" opacity="${o}"/>`).join("")}
+     Each band is its own group so the opacities compound the way glazes
+     do, and the colour warms from a pale open-water blue at the outside
+     to a deeper aqua where the paint has run up against the land. */
+  const WASH = [
+    [3000, .045, "var(--sea-far)"],
+    [2450, .05,  "var(--sea-far)"],
+    [1980, .055, "var(--sea-far)"],
+    [1580, .06,  "var(--sea)"],
+    [1250, .07,  "var(--sea)"],
+    [ 970, .075, "var(--sea)"],
+    [ 740, .08,  "var(--sea)"],
+    [ 550, .09,  "var(--sea-2)"],
+    [ 395, .10,  "var(--sea-2)"],
+    [ 270, .12,  "var(--sea-2)"],
+    [ 170, .14,  "var(--sea-deep)"],
+    [  95, .17,  "var(--sea-deep)"],
+  ];
+
+  const sea = [];
+
+  /* the first, thinnest glaze: laid right across the sheet so no stretch
+     of water ever thins out into bare paper and stops reading as sea.
+     It is weak enough that the foxing underneath still comes through. */
+  sea.push(`<rect x="${VB_X}" y="0" width="${VB_W}" height="${VB_H}"
+                  fill="var(--sea-far)" opacity=".34"/>`);
+
+  /* blooms of stronger colour pooled here and there in the open water,
+     so the wash varies the way a brushed one does instead of stepping
+     evenly out from every shore */
+  const bloom = rng(9137);
+  for (let u = 1200; u < JOURNEY; u += 2600) {
+    const cu = u + bloom() * 1800;
+    const cv = 200 + bloom() * (ACROSS - 400);
+    if (!onSea(cu, cv, 420)) continue;
+    sea.push(`<path d="${blob(cu, cv, 900 + bloom() * 1300, 380 + bloom() * 520,
+                             Math.floor(bloom() * 9999), 0.3, 30)}"
+                    fill="var(--sea-2)" opacity=".05"/>`);
+  }
+
+  WASH.forEach(([w, o, c]) => sea.push(
+    `<g fill="none" stroke="${c}" stroke-width="${w}" stroke-linejoin="round"
+        opacity="${o}">${outlines}</g>`));
+
+  p.push(sea.join(""));
+
+  /* ---- the land itself ----
+     Then a darker wash brushed just inside every shore: on a tinted map
+     the colour is laid in from the coast and thins as it runs inland,
+     so the rim is always the deepest part of the ground. Each shape is
+     clipped to itself and its own outline stroked wide, which puts the
+     band on the land side of the line and nowhere else. */
+  /* The wash goes down a touch off the line it was meant to fill, the
+     way a hand-tinted sheet always ends up: colour crowding over the
+     coast on one side, a sliver of bare water showing on the other.
+     Only the flat fill moves — the ink, the shore band and everything
+     drawn on the ground stay where they belong. */
+  p.push(`<g transform="translate(${VERTICAL ? "-14,18" : "18,-14"})">
+    ${shapes.map(s => `<path d="${s.d}" fill="${s.fill}"/>`).join("")}</g>`);
+
+  p.push(shapes.map((s, i) => `
+    <clipPath id="ld${i}"><path d="${s.d}"/></clipPath>
+    <g clip-path="url(#ld${i})" fill="none" stroke="var(--shore-wash)"
+       stroke-linejoin="round">
+      <path d="${s.d}" stroke-width="300" opacity=".16"/>
+      <path d="${s.d}" stroke-width="160" opacity=".2"/>
+      <path d="${s.d}" stroke-width="60"  opacity=".26"/>
     </g>`).join(""));
 
-  /* ---- the coastline, printed as a hairline ---- */
-  p.push(`<g fill="none" stroke="var(--map-ink)" stroke-width="5" opacity=".34"
-             stroke-dasharray="30 20">${outlines}
+  /* ---- gulfs and lakes, cut back out of it ----
+     Painted the other way about: a flat wash across the whole of the
+     water, then the same glazes stacked up against its shore from the
+     inside, clipped so none of it spills onto the land.
+
+     A gulf is drawn as a whole blob but is only ever a bite taken out
+     of the land, so the whole of it — wash, glazes and ink alike — is
+     clipped to the land it bites into. Without that, the part hanging
+     past the shore paints a second, closed coastline out in the open
+     sea, crossing the real one. */
+  const LAKE_WASH = [[620, .07], [420, .09], [260, .11], [140, .14]];
+
+  p.push(`<clipPath id="landAll">${outlines}</clipPath>`);
+
+  p.push(`<g clip-path="url(#landAll)">${waters.map((w, i) => {
+    const fill = w.lake ? "var(--lake)" : "var(--sea)";
+    return `
+    <clipPath id="w${i}"><path d="${w.d}"/></clipPath>
+    <path d="${w.d}" fill="${fill}" opacity=".4"/>
+    <g clip-path="url(#w${i})" fill="none" stroke-linejoin="round">
+      ${LAKE_WASH.map(([sw, o]) =>
+        `<path d="${w.d}" stroke="var(--sea-2)" stroke-width="${sw}" opacity="${o}"/>`).join("")}
+    </g>`;
+  }).join("")}</g>`);
+
+  /* ---- the coastline, drawn heavy in brown ink ----
+     Thick enough to hold as a drawn line at the size the card is
+     actually seen: the ribbon is sixty thousand units long and only
+     ever rendered a few thousand pixels wide, so a hairline here comes
+     out at a fraction of a pixel. */
+  p.push(`<g fill="none" stroke="var(--map-ink)" stroke-width="26" opacity=".8"
+             stroke-linejoin="round">${outlines}</g>`);
+
+  p.push(`<g clip-path="url(#landAll)" fill="none" stroke="var(--map-ink)"
+             stroke-width="14" opacity=".62" stroke-linejoin="round">
     ${waters.map(w => `<path d="${w.d}"/>`).join("")}</g>`);
 
   /* ---- what's on the ground, and what's in the water ---- */
@@ -1049,10 +1158,6 @@ function buildMap(svg, routePointAt) {
 }
 
 function defs() {
-  const g = VERTICAL
-    ? `x1="0" y1="0" x2="1" y2="0"`
-    : `x1="0" y1="0" x2="0" y2="1"`;
-
   /* the mainland is one continuous shape, so the biomes have to come
      from a gradient running the length of it rather than from a
      different fill per country */
@@ -1074,11 +1179,6 @@ function defs() {
       .map(([k, d]) => `<g id="s-${k}">${d}</g>`).join("");
 
   return `<defs>
-    <linearGradient id="seaGrad" ${g}>
-      <stop offset="0"    stop-color="var(--sea-2)"/>
-      <stop offset="0.55" stop-color="var(--sea)"/>
-      <stop offset="1"    stop-color="var(--sea-2)"/>
-    </linearGradient>
     <linearGradient id="biomeGrad" gradientUnits="userSpaceOnUse" ${bg}>${stops}</linearGradient>
     ${glyphs}
   </defs>`;
@@ -1168,23 +1268,87 @@ function terrain() {
       if (!RIDGE_SPACE(cu, cv)) continue;
 
       const alpine = b === BIOMES.alpine;
-      const n = 3 + Math.floor(r() * 4);
-      const ridge = [], caps = [];
+      const n = 5 + Math.floor(r() * 4);      // a range, not a handful
+      const ridge = [], hach = [], caps = [];
+
+      /* Each peak is its own little triangle standing on the ground,
+         clustered with its neighbours into a range — not one long
+         zigzag, which reads as a row of chevrons rather than as
+         mountains.
+
+         Built in screen space, the way the stamped glyphs are, rather
+         than in journey space: P() swaps the axes for the portrait
+         layout, so a peak laid out along the ribbon lies on its side
+         there instead of standing up. Only the anchor goes through
+         P(); the peak itself is always drawn upright. */
+      const sp = (x, y) => `${x.toFixed(1)},${y.toFixed(1)}`;
+      const q0 = P(cu, cv);          // the clump's anchor, in screen space
+
+      /* a point along a quadratic, so the hatching can sit on the bowed
+         flank rather than on a straight line it no longer follows */
+      const qAt = (p0, p1, p2, t) => {
+        const u = 1 - t;
+        return [u * u * p0[0] + 2 * u * t * p1[0] + t * t * p2[0],
+                u * u * p0[1] + 2 * u * t * p1[1] + t * t * p2[1]];
+      };
+
+      /* Peaks are laid foot to foot along the screen's horizontal, each
+         one starting where the last ended. Spacing them on a fixed
+         stride instead lets a wide peak overrun its neighbour, and the
+         crossed flanks read as a chain-link lattice rather than a
+         range. Horizontal in both layouts, too: stepping along the
+         ribbon would stack them down the page in portrait. */
+      const ws = [];
+      for (let i = 0; i < n; i++) ws.push(26 + r() * 13);
+      const span = ws.reduce((a, b) => a + b, 0) * 2;
+      let cursor = q0.x - span / 2;
 
       for (let i = 0; i < n; i++) {
-        const uu = cu + i * 140 - (n * 140) / 2;
-        const h = (alpine ? 95 : 60) + r() * (alpine ? 110 : 70);
-        ridge.push(`M${pp(uu - 88, cv)} L${pp(uu, cv - h)} L${pp(uu + 88, cv)}`);
-        if (alpine) {                     // snow only where snow belongs
-          caps.push(`M${pp(uu - 28, cv - h * 0.6)} L${pp(uu, cv - h)} ` +
-                    `L${pp(uu + 28, cv - h * 0.6)} Q${pp(uu, cv - h * 0.44)} ${pp(uu - 28, cv - h * 0.6)} Z`);
+        const h = (alpine ? 46 : 32) + r() * (alpine ? 38 : 26);
+        const w = ws[i];
+        const X = cursor + w;
+        cursor += w * 2;
+        const Y = q0.y + (r() - 0.5) * 30;
+
+        /* No peak is symmetrical and no flank is ruled: the summit
+           leans, and both sides bow. Two mirror-image straight lines
+           are what made these read as drawn by a machine. */
+        const lean = (r() - 0.5) * w * 0.34;
+        const apex = [X + lean, Y - h];
+        const baseL = [X - w, Y], baseR = [X + w, Y];
+        const ctrlL = [X - w * 0.5 + lean * 0.5, Y - h * (0.52 + r() * 0.12)];
+        const ctrlR = [X + w * 0.5 + lean * 0.5, Y - h * (0.46 + r() * 0.12)];
+
+        ridge.push(`M${sp(baseL[0], baseL[1])} Q${sp(ctrlL[0], ctrlL[1])} ${sp(apex[0], apex[1])} ` +
+                   `Q${sp(ctrlR[0], ctrlR[1])} ${sp(baseR[0], baseR[1])}`);
+
+        /* the shaded face: strokes raked off the right flank down to the
+           foot, spaced by a hand rather than a ruler */
+        const lines = 2 + Math.floor(r() * 3);
+        for (let j = 1; j <= lines; j++) {
+          const t = (j + (r() - 0.5) * 0.5) / (lines + 1);
+          const [hx, hy] = qAt(apex, ctrlR, baseR, t);
+          hach.push(`M${sp(hx, hy)} L${sp(hx + (r() - 0.5) * 4, Y)}`);
+        }
+
+        /* Snow only where snow belongs — as a filled cap rather than a
+           drawn snowline: near-white ink on this paper only reads as a
+           patch of lighter ground, never as a line. */
+        if (alpine) {
+          const [lx, ly] = qAt(baseL, ctrlL, apex, 0.82);
+          const [rx, ry] = qAt(apex, ctrlR, baseR, 0.18);
+          const dip = Math.max(ly, ry) + h * 0.09;
+          caps.push(`M${sp(lx, ly)} Q${sp(lx + (rx - lx) * 0.28, dip)} ${sp((lx + rx) / 2, ly + (ry - ly) / 2)} ` +
+                    `Q${sp(lx + (rx - lx) * 0.76, dip)} ${sp(rx, ry)} L${sp(apex[0], apex[1])} Z`);
         }
       }
 
       g.push(`<path d="${ridge.join(" ")}" fill="none" stroke="var(--map-ink)"
-        stroke-width="6" opacity=".32" stroke-linejoin="round"/>`);
+        stroke-width="3.4" opacity=".4" stroke-linejoin="round" stroke-linecap="round"/>`);
+      g.push(`<path d="${hach.join(" ")}" fill="none" stroke="var(--map-ink)"
+        stroke-width="2.4" opacity=".3" stroke-linecap="round"/>`);
       if (caps.length) {
-        g.push(`<path d="${caps.join(" ")}" fill="var(--snow)" opacity=".82" stroke="none"/>`);
+        g.push(`<path d="${caps.join(" ")}" fill="var(--snow)" stroke="none" opacity=".8"/>`);
       }
     }
   }
@@ -1254,7 +1418,7 @@ function terrain() {
          next, there is a boat in the channel --- */
   for (const u of STRAITS) {
     if (u <= 0 || u >= JOURNEY) continue;
-    put("s-boat", u, ACROSS / 2 + 520, 3.2, "var(--map-ink)", "sea-glyph sea-glyph--ship");
+    put("s-boat", u, ACROSS / 2 + 520, 2.2, "var(--map-ink)", "sea-glyph sea-glyph--ship");
   }
 
   return `<g class="terrain">${g.join("")}</g>`;
@@ -1299,11 +1463,19 @@ function seaLife() {
 function compass(u, v) {
   const R = 190;
   const q = P(u, v);
-  return `<g class="compass" transform="translate(${q.x.toFixed(1)},${q.y.toFixed(1)})">
-    <circle r="${R}" fill="none" stroke-width="7" opacity=".5"/>
-    <circle r="${R * 0.72}" fill="none" stroke-width="3" opacity=".3"/>
-    <path d="M0 ${-R * 0.9} L42 0 L0 ${R * 0.9} L-42 0 Z" fill="var(--map-ink)" opacity=".5"/>
-    <path d="M${-R * 0.9} 0 L0 -32 L${R * 0.9} 0 L0 32 Z" fill="var(--map-ink)" opacity=".25"/>
+  const f = (n) => n.toFixed(1);
+  const star = (len, mid) => {
+    const L = f(len), M = f(mid), m = f(-mid), l = f(-len);
+    return `M0 ${l} L${M} ${m} L${L} 0 L${M} ${M} L0 ${L} L${m} ${M} L${l} 0 L${m} ${m} Z`;
+  };
+  const nMid = f(R * 0.17), nSh = f(-R * 0.17), nTip = f(-R * 0.96);
+  return `<g class="compass" transform="translate(${f(q.x)},${f(q.y)})">
+    <circle r="${R}" fill="none" stroke-width="5" opacity=".45"/>
+    <circle r="${f(R * 0.62)}" fill="none" stroke-width="2.5" opacity=".28"/>
+    <path d="${star(R * 0.66, R * 0.12)}" transform="rotate(45)" fill="none" stroke-width="2.5" opacity=".4"/>
+    <path d="${star(R * 0.96, R * 0.16)}" fill="none" stroke-width="3" opacity=".55"/>
+    <path d="M0 ${nTip} L${nMid} ${nSh} L0 0 L-${nMid} ${nSh} Z" fill="var(--red)" stroke="none" opacity=".8"/>
+    <circle r="11" fill="none" stroke-width="3"/>
     <text class="compass__n" y="${-R - 42}">N</text>
   </g>`;
 }

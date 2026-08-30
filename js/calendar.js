@@ -7,9 +7,10 @@
      open      — today once opened, and every past day
    ========================================================= */
 
-const START = "2026-08-18";
+const START = "2026-08-31";
 const END   = "2026-12-20";
 const STORE = "bb-opened";
+const SEEN  = "bb-intro-seen";
 
 /* The ribbon's geometry lives in map.js: JOURNEY (distance along),
    ACROSS, VERTICAL, VB_W / VB_H, and the P() layout function that
@@ -19,7 +20,17 @@ const STORE = "bb-opened";
    Dates
    --------------------------------------------------------- */
 
+/* The key of a date already in UTC (the ones we build ourselves). */
 const key = d => d.toISOString().slice(0, 10);
+
+/* …and the key of the day it is *on the device*. toISOString() would
+   answer in UTC, which is a different day from the one the reader is
+   living in for part of every night — east of Greenwich their new door
+   would arrive late, west of it, early. The calendar follows the clock
+   on the phone. */
+const localKey = (d = new Date()) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-` +
+  `${String(d.getDate()).padStart(2, "0")}`;
 
 function parse(k) {
   const [y, m, d] = k.split("-").map(Number);
@@ -110,8 +121,9 @@ const els = {
   walked:   document.getElementById("routeWalked"),
   doors:    document.getElementById("doorLayer"),
   jump:     document.getElementById("jumpToday"),
-  devDate:  document.getElementById("devDate"),
-  devReset: document.getElementById("devReset"),
+
+  intro:      document.getElementById("intro"),
+  introOk:    document.getElementById("introOk"),
 
   modal:      document.getElementById("modal"),
   modalScrim: document.getElementById("modalScrim"),
@@ -215,19 +227,6 @@ DATES.forEach((k, i) => {
   doorEls.push(door);
 });
 
-/* Which place on the map each day lands you in. */
-const PLACES = CITIES
-  .map((c, ci) => ({ i: Math.min(TOTAL - 1, Math.round(c.t * (TOTAL - 1))), ci, name: c.name }))
-  .sort((a, b) => a.i - b.i);
-
-function placeFor(i) {
-  let cur = PLACES[0];
-  for (const p of PLACES) if (p.i <= i) cur = p;
-  const next = PLACES.find(p => p.i > i);
-  if (cur.i === i) return `arribant a ${cur.name}`;
-  return next ? `passat ${cur.name}, caminant cap a ${next.name}` : `gairebé a ${cur.name}`;
-}
-
 /* Doors are sized off the card's short side, so spacing along the
    route holds however the window is shaped. */
 function sizeDoors() {
@@ -242,10 +241,9 @@ window.addEventListener("resize", sizeDoors);
    State
    --------------------------------------------------------- */
 
+/* today, as the device reckons it */
 function effectiveDate() {
-  const v = els.devDate.value;
-  if (v) return v;
-  return key(new Date());
+  return localKey();
 }
 
 /* index of the current day; -1 before the calendar starts */
@@ -267,20 +265,118 @@ const artFor = k => (SONGS[k] && SONGS[k].art)
   ? `url('${encodeURI(SONGS[k].art)}')`
   : placeholderArt(k);
 
+/* A CD has no printed art — it's the bare mirror surface with the title
+   and artist inked around the spindle hole: the title curves across the
+   top, the artist across the bottom, a dot on each side between them. */
+const CD_TEXT_R = 12;   // radius of the ring the lettering runs around
+
+function cdLabelSvg(song, uid) {
+  const id = "cdlabel-" + uid;
+  const r = CD_TEXT_R;
+  const title = song && song.title ? esc(song.title) : "";
+  const artist = song && song.artist ? esc(song.artist) : "";
+
+  //  -t : a circle clockwise from 9 o'clock — 25% along is the top
+  //  -b : the same circle anticlockwise — 25% along is the bottom, and
+  //       the text sits the right way up there
+  return `<svg class="disc__label" viewBox="0 0 100 100" aria-hidden="true">
+    <circle class="disc__hub" cx="50" cy="50" r="17"/>
+    <circle class="disc__hubring" cx="50" cy="50" r="17"/>
+    <circle class="disc__hubring" cx="50" cy="50" r="6.5"/>
+    <defs>
+      <path id="${id}-t" d="M50,50 m-${r},0 a${r},${r} 0 1,1 ${r * 2},0 a${r},${r} 0 1,1 -${r * 2},0"/>
+      <path id="${id}-b" d="M50,50 m-${r},0 a${r},${r} 0 1,0 ${r * 2},0 a${r},${r} 0 1,0 -${r * 2},0"/>
+    </defs>
+    <text class="disc__cap disc__cap--title" data-full="${title}"><textPath href="#${id}-t" startOffset="25%">${title}</textPath></text>
+    <text class="disc__cap disc__cap--artist" data-full="${artist}"><textPath href="#${id}-b" startOffset="25%">${artist}</textPath></text>
+    <text class="disc__cap disc__dot" x="${50 - r}" y="50">·</text>
+    <text class="disc__cap disc__dot" x="${50 + r}" y="50">·</text>
+  </svg>`;
+}
+
+/* Size the title and the artist so each fills its half of the ring —
+   the title the top arc, the artist the bottom — leaving room at the
+   sides for the two dots. Shrink to fit, but not past a legible size:
+   below that the line is truncated with an ellipsis instead. */
+function fitCdLabel(svg) {
+  if (!svg) return;
+  const arcPath = svg.querySelector("defs path");
+  if (!arcPath || !arcPath.getTotalLength) return;
+  const half = arcPath.getTotalLength() / 2;   // one arc, top or bottom
+  const room = half * 0.82;                     // minus the side dots
+  const REF = 10, MAX = 8.5, MIN = 4;
+
+  const fit = (sel, capSize) => {
+    const el = svg.querySelector(sel);
+    const tp = el && el.querySelector("textPath");
+    if (!tp || !tp.getComputedTextLength) return null;
+
+    const full = el.getAttribute("data-full") || tp.textContent;
+    tp.textContent = full;
+    el.style.fontSize = REF + "px";
+    void svg.getBBox();
+    const len = tp.getComputedTextLength();
+    if (len <= 0) return null;
+
+    let size = Math.min(MAX, capSize, REF * room / len);
+    if (size >= MIN) {
+      el.style.fontSize = size + "px";
+      return size;
+    }
+
+    // won't fit legibly — hold at the floor and clip with an ellipsis
+    size = Math.min(MIN, capSize);
+    el.style.fontSize = size + "px";
+    void svg.getBBox();
+    if (tp.getComputedTextLength() > room && full.length > 1) {
+      let lo = 1, hi = full.length;
+      while (lo < hi) {
+        const mid = (lo + hi + 1) >> 1;
+        tp.textContent = full.slice(0, mid).replace(/\s+$/, "") + "…";
+        void svg.getBBox();
+        if (tp.getComputedTextLength() <= room) lo = mid; else hi = mid - 1;
+      }
+      tp.textContent = full.slice(0, lo).replace(/\s+$/, "") + "…";
+    }
+    return size;
+  };
+
+  const titleSize = fit(".disc__cap--title", MAX) ?? 6;
+  // the artist is never larger than the title
+  const artistSize = fit(".disc__cap--artist", titleSize) ?? titleSize;
+
+  svg.querySelectorAll(".disc__dot").forEach(d => {
+    d.style.fontSize = Math.min(titleSize, 7) + "px";
+  });
+}
+
+/* A vinyl carries the album art on its centre label; a CD gets the
+   written hub instead. */
+function discFace(k, isVinyl) {
+  if (isVinyl) {
+    const art = document.createElement("div");
+    art.className = "disc__art";
+    art.style.backgroundImage = artFor(k);
+    return art;
+  }
+  const tpl = document.createElement("template");
+  tpl.innerHTML = cdLabelSvg(SONGS[k], k);
+  return tpl.content.firstElementChild;
+}
+
 /* The little disc glimpsed in the recess once a door is open. The
    full-size one lives in the popup. */
 function fillDoor(door, k) {
   if (door.querySelector(".disc")) return;
 
+  const isVinyl = !!door.dataset.vinyl;
   const disc = document.createElement("div");
-  disc.className = "disc " + (door.dataset.vinyl ? "disc--vinyl" : "disc--cd");
-
-  const art = document.createElement("div");
-  art.className = "disc__art";
-  art.style.backgroundImage = artFor(k);
-  disc.appendChild(art);
+  disc.className = "disc " + (isVinyl ? "disc--vinyl" : "disc--cd");
+  const face = discFace(k, isVinyl);
+  disc.appendChild(face);
 
   door.querySelector(".door__well").appendChild(disc);
+  if (!isVinyl) fitCdLabel(face);
 }
 
 function render() {
@@ -364,30 +460,34 @@ function showSong(k) {
       <div class="modal__sleeve${isVinyl ? "" : " modal__sleeve--cd"}"
            style="background-image:${art}"></div>
       <div class="modal__disc ${isVinyl ? "disc--vinyl" : "disc--cd"}">
-        <div class="disc__art" style="background-image:${art}"></div>
+        ${isVinyl
+          ? `<div class="disc__art" style="background-image:${art}"></div>`
+          : cdLabelSvg(song, "modal")}
       </div>
     </div>
 
     <h2 class="modal__title">${esc(song ? song.title : "Encara no triada")}</h2>
     <p class="modal__artist">${esc(song ? song.artist : "—")}</p>
-    <p class="modal__place">${esc(placeFor(i))}</p>
 
     ${song && song.url
       ? `<a class="modal__link" href="${esc(song.url)}" target="_blank" rel="noopener">
-           <span class="modal__link-mark"></span> Escolta-la a Apple Music</a>`
+           <span class="modal__link-play" aria-hidden="true"></span> Escolta-la</a>`
       : `<p class="modal__pending">encara no hi ha cançó triada per aquest dia</p>`}`;
 
   openModal("modal--song");
+
+  // measure once the panel is actually laid out and painted — text
+  // metrics read 0 while the modal is still hidden
+  if (!isVinyl) {
+    const label = els.modalBody.querySelector(".disc__label");
+    requestAnimationFrame(() => requestAnimationFrame(() => fitCdLabel(label)));
+  }
 }
 
 function showCity(ci) {
   const c = CITIES[ci];
-  const i = Math.round(c.t * (TOTAL - 1));
-  const k = DATES[i];
 
   els.modalBody.innerHTML = `
-    <p class="modal__day">${esc(c.country)} <em>${PRETTY(k)}</em></p>
-
     <figure class="modal__photo">
       <div class="modal__photo-paper">
         <svg viewBox="-140 -150 280 260" class="modal__photo-draw">${iconOf(c)}</svg>
@@ -401,15 +501,11 @@ function showCity(ci) {
   openModal("modal--city");
 }
 
-/* the country between the cities — no day attached to it, just the
-   place and where along the walk it turns up */
+/* the country between the cities — just the place itself */
 function showScene(si) {
   const s = SCENES[si];
-  const i = Math.round(s.t * (TOTAL - 1));
 
   els.modalBody.innerHTML = `
-    <p class="modal__day">${esc(s.where)} <em>${PRETTY(DATES[i])}</em></p>
-
     <figure class="modal__photo">
       <div class="modal__photo-paper">
         <img src="photos/scenes/${s.slug}.jpg" alt="${esc(s.name)}"
@@ -461,29 +557,42 @@ function scrollToToday() {
   }
 }
 
+els.jump.addEventListener("click", scrollToToday);
+
 /* ---------------------------------------------------------
-   Prototype controls
+   The welcome
+
+   Shown once per device, the first time the card is opened. If
+   localStorage is unavailable — a locked-down browser, private mode on
+   some phones — we simply don't show it rather than showing it on every
+   single visit.
    --------------------------------------------------------- */
 
-// Real today is 12 Aug 2026 — before the calendar starts — so the
-// preview date opens on day one instead of an entirely sealed card.
-const realToday = key(new Date());
-els.devDate.value =
-  realToday < START ? START : realToday > END ? END : realToday;
+function introAlreadySeen() {
+  try {
+    return localStorage.getItem(SEEN) === "1";
+  } catch {
+    return true;
+  }
+}
 
-els.devDate.addEventListener("change", () => { render(); scrollToToday(); });
+function dismissIntro() {
+  els.intro.classList.remove("intro--in");
+  setTimeout(() => { els.intro.hidden = true; }, 280);
+  try {
+    localStorage.setItem(SEEN, "1");
+  } catch {
+    /* nothing to do — it just shows again next time */
+  }
+}
 
-els.devReset.addEventListener("click", () => {
-  opened = new Set();
-  saveOpened(opened);
-  doorEls.forEach(el => {
-    const disc = el.querySelector(".disc");
-    if (disc) disc.remove();
-  });
-  render();
-});
+if (!introAlreadySeen()) {
+  els.intro.hidden = false;
+  requestAnimationFrame(() => els.intro.classList.add("intro--in"));
+  els.introOk.focus({ preventScroll: true });
+}
 
-els.jump.addEventListener("click", scrollToToday);
+els.introOk.addEventListener("click", dismissIntro);
 
 /* ---------------------------------------------------------
    Declutter
@@ -685,10 +794,13 @@ render();
 requestAnimationFrame(scrollToToday);
 
 /* text metrics depend on the webfont, so wait for it before measuring */
+const refitAllCdLabels = () =>
+  document.querySelectorAll(".disc__label").forEach(fitCdLabel);
+
 if (document.fonts && document.fonts.ready) {
-  document.fonts.ready.then(declutter);
+  document.fonts.ready.then(() => { declutter(); refitAllCdLabels(); });
 } else {
-  window.addEventListener("load", declutter);
+  window.addEventListener("load", () => { declutter(); refitAllCdLabels(); });
 }
 
 /* re-resolve on resize — the same svg-space layout can gain or lose
