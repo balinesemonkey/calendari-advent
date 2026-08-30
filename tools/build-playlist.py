@@ -34,7 +34,7 @@ DATA = ROOT / "data"
 # The last door, and the one the best-ranked song goes on. Every earlier
 # door counts backwards from here, so the list plays best-last.
 LAST_DOOR = date(2026, 12, 20)
-DOORS = 112                      # 2026-08-31 .. 2026-12-20 inclusive
+DOORS = 111                      # 2026-09-01 .. 2026-12-20 inclusive
 
 DEV_SHUFFLE_SEED = 20261220
 

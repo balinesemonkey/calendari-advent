@@ -2,7 +2,7 @@
 """
 Fetch the album art printed on the discs.
 
-For every song dealt onto a door (data/mixed-songs.json, positions 1..112)
+For every song dealt onto a door (data/mixed-songs.json, positions 1..111)
 this looks the track up in Apple's public iTunes API by the id in its
 music.apple.com URL, downloads the cover at 600×600 and writes it to
 art/<slug>.jpg. A small art/art-map.json (song url → file) is written
@@ -37,7 +37,7 @@ OUT = os.path.join(ROOT, "art")
 MIXED = os.path.join(ROOT, "data", "mixed-songs.json")
 ART_MAP = os.path.join(OUT, "art-map.json")
 
-DOORS = 112
+DOORS = 111
 SIZE = 600
 COUNTRY = "es"
 UA = "bali-advent-calendar/1.0 (personal project; python-urllib)"

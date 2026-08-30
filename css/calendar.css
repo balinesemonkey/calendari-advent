@@ -1475,10 +1475,12 @@ body.is-vertical .modal--city .modal__photo-paper img {
 
 .intro__panel {
   position: relative;
-  width: min(92vw, 460px);
-  max-height: 88vh;
-  overflow: auto;
-  padding: 34px 32px 30px;
+  display: flex;
+  flex-direction: column;
+  width: min(88vw, 400px);
+  max-height: 60vh;              /* never more than 60% of the screen */
+  overflow: hidden;              /* the letter inside does the scrolling */
+  padding: 24px 24px 20px;
   text-align: center;
   color: var(--ink);
   border-radius: 2px;
@@ -1513,28 +1515,60 @@ body.is-vertical .modal--city .modal__photo-paper img {
 
 .intro__title {
   position: relative;
-  margin: 0 0 16px;
+  flex: 0 0 auto;
+  margin: 0 0 12px;
   font-family: var(--font-display);
-  font-size: 27px;
+  font-size: 22px;
   font-weight: 600;
   line-height: 1.2;
   color: var(--red-deep);
 }
 
+.intro__body {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;                 /* or a flex child refuses to shrink */
+  overflow-y: auto;
+  margin-bottom: 16px;
+  padding-right: 4px;
+}
+
 .intro__text {
   position: relative;
-  margin: 0 0 26px;
+  margin: 0 0 18px;
   font-family: var(--font-ui);
-  font-size: 15px;
-  line-height: 1.62;
+  font-size: 14.5px;
+  line-height: 1.6;
   color: var(--ink-soft);
   text-align: left;
 }
 
+.intro__text p { margin: 0 0 13px; }
+.intro__text p:last-child { margin-bottom: 0; }
+
+/* the sign-off, in the hand the dates on the map are written in */
+.intro__sign {
+  position: relative;
+  margin: 0;
+  text-align: left;
+  font-family: var(--font-ui);
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.intro__sign span {
+  font-family: var(--font-map-hand);
+  font-size: 23px;
+  color: var(--red-deep);
+}
+
 .intro__ok {
   position: relative;
-  padding: 13px 34px;
-  font-size: 15px;
+  flex: 0 0 auto;
+  align-self: center;
+  padding: 11px 30px;
+  font-size: 14.5px;
   letter-spacing: .04em;
   color: var(--paper);
   background: var(--red-deep);
@@ -1547,6 +1581,11 @@ body.is-vertical .modal--city .modal__photo-paper img {
 .intro__ok:hover { background: #6d2313; transform: translateY(-1px); }
 .intro__ok:active { transform: none; }
 
-body.is-vertical .intro__panel { padding: 30px 24px 26px; }
-body.is-vertical .intro__title { font-size: 24px; }
-body.is-vertical .intro__text { font-size: 14.5px; }
+/* it takes focus on open so the keyboard lands somewhere sensible —
+   don't paint a ring for that, only for an actual tab */
+.intro__ok:focus:not(:focus-visible) { outline: none; }
+
+body.is-vertical .intro__panel { padding: 18px 16px 14px; max-height: 60vh; }
+body.is-vertical .intro__title { font-size: 20px; }
+body.is-vertical .intro__text,
+body.is-vertical .intro__sign { font-size: 14px; }

@@ -10,7 +10,6 @@
    ========================================================= */
 
 const SONGS = {
-  "2026-08-31": { title: "Miss Sarajevo (feat. Luciano Pavarotti)", artist: "Passengers", url: "https://music.apple.com/es/album/miss-sarajevo-feat-luciano-pavarotti-single-radio-edit/1440655963?i=1440655981&l=en-GB", art: "art/miss-sarajevo-feat-luciano-pavarotti.jpg" },
   "2026-09-01": { title: "The Fate of Ophelia", artist: "Taylor Swift", url: "https://music.apple.com/es/album/the-fate-of-ophelia/1838810949?i=1838810951&l=en-GB", art: "art/the-fate-of-ophelia.jpg" },
   "2026-09-02": { title: "Al mar!", artist: "Manel", url: "https://music.apple.com/es/album/al-mar/1443959128?i=1443959404&l=en-GB", art: "art/al-mar.jpg" },
   "2026-09-03": { title: "Shape Of My Heart", artist: "Sting", url: "https://music.apple.com/es/album/shape-of-my-heart/1486682685?i=1486683136&l=en-GB", art: "art/shape-of-my-heart.jpg" },

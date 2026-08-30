@@ -7,7 +7,7 @@
      open      — today once opened, and every past day
    ========================================================= */
 
-const START = "2026-08-31";
+const START = "2026-09-01";
 const END   = "2026-12-20";
 const STORE = "bb-opened";
 const SEEN  = "bb-intro-seen";
