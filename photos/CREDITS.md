@@ -132,3 +132,4 @@ swapped for real ground-level photographs.
 - **El Krakatau** — `Anak Krakatau-2.JPG` · Lord Mountbatten · CC BY-SA 3.0
 - **La plana gangètica** — `A view of landscape pre with harvest wheat crop in Punjab.jpg` · Harvinder Chandigarh · CC BY-SA 4.0
 - **El delta del Ganges** — `The Sundarban forest river channel, Bangladesh.jpg` · Syed sajidul islam · CC BY-SA 4.0
+- **Seva** — C/Can Garriga · Google Street View screenshot · © Google
