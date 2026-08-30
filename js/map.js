@@ -826,7 +826,8 @@ const GLYPHS = {
   bamboo: `<path d="M-15 0 Q-17 -30 -19 -60 M1 0 Q0 -40 -1 -80 M15 0 Q17 -26 19 -52"/>
            <path d="M-21 -22 L-13 -23 M-20 -43 L-13 -44 M-4 -31 L4 -32 M-3 -57 L4 -58 M13 -20 L21 -21 M14 -38 L21 -39" stroke-width="2.3" opacity=".65"/>`,
 
-  paddy: `<path d="M-44 0 Q3.7 -12.8 44 -1.6 M-41 -14 Q-3.2 -25.8 41 -15.7 M-38 -28 Q4.6 -39.9 38 -28.7 M-35 -42 Q-4.5 -54.3 35 -42.8"/>`,
+  paddy: `<path d="M-45.3 -3.3 L-0.6 -3.2 L-0.5 -18.2 L-41.1 -18.6 Z M3.5 -3.3 L46.5 -1.3 L39.8 -16.7 L1.6 -16.6 Z M-41.2 -18.7 L-1.9 -16.4 L-0.9 -34.8 L-31.8 -35.2 Z M2.3 -18.9 L38.5 -16.6 L32.3 -34.9 L2.3 -34.2 Z M-31.6 -32.9 L-1.9 -34.6 L-1.2 -49.5 L-22.9 -47.4 Z M3.1 -34.1 L31.1 -35.3 L24.3 -49.2 L1 -49 Z" fill="currentColor" fill-opacity=".07"/>
+           <path d="M0 -1 Q1 -25 0 -49" stroke-width="2.4" opacity=".4"/>`,
 
   /* a round clumpy canopy on a short trunk — the lollipop of every
      hand-drawn map, its edge scalloped rather than a plain circle */
