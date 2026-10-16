@@ -2,7 +2,8 @@
 """
 Fetch the album art printed on the discs.
 
-For every song dealt onto a door (data/mixed-songs.json, positions 1..111)
+For every song in the merged ranking (data/mixed-songs.json) — any of
+them can end up on a door once the artist-gap rule reshuffles the deal —
 this looks the track up in Apple's public iTunes API by the id in its
 music.apple.com URL, downloads the cover at 600×600 and writes it to
 art/<slug>.jpg. A small art/art-map.json (song url → file) is written
@@ -37,7 +38,6 @@ OUT = os.path.join(ROOT, "art")
 MIXED = os.path.join(ROOT, "data", "mixed-songs.json")
 ART_MAP = os.path.join(OUT, "art-map.json")
 
-DOORS = 111
 SIZE = 600
 COUNTRY = "es"
 UA = "bali-advent-calendar/1.0 (personal project; python-urllib)"
@@ -108,8 +108,7 @@ def to_jpeg(src, dst):
 
 def main():
     songs = json.loads(open(MIXED, encoding="utf-8").read())
-    doors = sorted((s for s in songs if s["position"] <= DOORS),
-                   key=lambda s: s["position"])
+    doors = sorted(songs, key=lambda s: s["position"])
 
     os.makedirs(OUT, exist_ok=True)
     tmp = os.path.join(OUT, ".tmp")
